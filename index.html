@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AJOGA — Insurance Intermediary Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#070c07; --surface:#0d140d; --surface2:#111c11; --surface3:#162116;
+  --border:#1a2a1a; --border2:#243624;
+  --green:#3ddc6e; --green-dim:#1a5c30; --green-glow:rgba(61,220,110,0.12); --green-glow2:rgba(61,220,110,0.06);
+  --text:#c8e0c8; --text2:#7a9e7a; --text3:#3d5c3d;
+  --amber:#f0b429; --amber-dim:rgba(240,180,41,0.1);
+  --red:#f05252; --red-dim:rgba(240,82,82,0.1);
+  --blue:#5b9cf6; --blue-dim:rgba(91,156,246,0.1);
+  --white:#eaf5ea;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+/* ── TOPNAV ── */
+#topnav{position:relative;z-index:20;background:var(--surface);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 20px;gap:16px;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:10px;padding-right:20px;border-right:1px solid var(--border)}
+.brand-icon{width:32px;height:32px;background:var(--green-glow);border:1px solid var(--green-dim);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.brand-name{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white)}
+.brand-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:3px;text-transform:uppercase}
+.nav-tabs{display:flex;gap:2px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:3px}
+.ntab{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:5px 14px;border-radius:4px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:all 0.2s;text-transform:uppercase;white-space:nowrap}
+.ntab.active{background:var(--green-glow);color:var(--green);border:1px solid var(--green-dim)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.spill{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:1px}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:sp 2s ease infinite}
+@keyframes sp{0%,100%{opacity:1}50%{opacity:0.3}}
+.api-row{display:flex;align-items:center;gap:6px}
+.api-row input{background:var(--bg);border:1px solid var(--border2);border-radius:4px;padding:5px 10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text);outline:none;width:180px}
+.api-row input:focus{border-color:var(--green-dim)}
+.api-row input::placeholder{color:var(--text3)}
+.api-row button{background:var(--green-glow);border:1px solid var(--green-dim);border-radius:4px;padding:5px 10px;color:var(--green);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:1px}
+#api-ok{font-family:'DM Mono',monospace;font-size:10px;color:var(--green)}
+#err-bar{display:none;background:#150303;border-bottom:1px solid var(--red);padding:7px 20px;font-family:'DM Mono',monospace;font-size:11px;color:var(--red);z-index:15;flex-shrink:0}
+
+/* ── VIEWS ── */
+#main{flex:1;display:flex;overflow:hidden;position:relative;z-index:1}
+.view{flex:1;display:none;flex-direction:column;overflow:hidden}
+.view.active{display:flex}
+
+/* ══ CLIENT PORTAL ══ */
+#client-view{flex-direction:row}
+/* Left: form */
+.client-form-col{width:300px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.col-head{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surface2);flex-shrink:0}
+.ch-top{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 8px;border-radius:2px;text-transform:uppercase}
+.badge-client{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(91,156,246,0.2)}
+.badge-agent{background:var(--green-glow);color:var(--green);border:1px solid var(--green-dim)}
+.badge-owner{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(240,180,41,0.2)}
+.col-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:2px}
+.col-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3)}
+.form-scroll{flex:1;overflow-y:auto;padding:14px}
+.fg{margin-bottom:10px}
+.fl{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;display:block}
+.fi,.fs,.ft{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:7px 10px;font-family:'Instrument Sans',sans-serif;font-size:12px;color:var(--text);outline:none;transition:border-color 0.2s}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--green-dim)}
+.fi::placeholder,.ft::placeholder{color:var(--text3)}
+.fs{cursor:pointer}.fs option{background:var(--surface2)}
+.ft{resize:vertical;min-height:56px}
+.frow{display:flex;gap:8px}.frow .fg{flex:1}
+.form-footer{padding:12px 14px;border-top:1px solid var(--border);flex-shrink:0}
+.start-chat-btn{width:100%;background:var(--blue-dim);border:1px solid rgba(91,156,246,0.3);border-radius:6px;padding:9px;color:var(--blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
+.start-chat-btn:hover{background:rgba(91,156,246,0.15);border-color:var(--blue)}
+
+/* Right: chat */
+.client-chat-col{flex:1;display:flex;flex-direction:column;background:var(--bg)}
+#client-chat{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text3)}
+.ce-icon{font-size:36px;opacity:0.3}
+.ce-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.ce-sub{font-size:12px;color:var(--text3);text-align:center;max-width:300px;line-height:1.7}
+.msg-row{display:flex;gap:10px;align-items:flex-start;animation:fu 0.3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg-row.right{flex-direction:row-reverse}
+.av{width:30px;height:30px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px}
+.av-ai{background:var(--green-glow);border:1px solid var(--green-dim)}
+.av-cl{background:var(--blue-dim);border:1px solid rgba(91,156,246,0.2);font-family:'DM Mono',monospace;font-size:10px;color:var(--blue)}
+.bub{max-width:80%;padding:11px 15px;font-size:13px;line-height:1.8}
+.bub-ai{background:var(--surface2);border:1px solid var(--border);border-radius:2px 10px 10px 10px;color:var(--text)}
+.bub-cl{background:var(--blue-dim);border:1px solid rgba(91,156,246,0.2);color:var(--white);border-radius:10px 2px 10px 10px}
+.bub h3{font-family:'DM Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;margin:10px 0 5px}
+.bub ul{list-style:none;padding:0}
+.bub ul li{display:flex;gap:8px;margin-bottom:4px;color:var(--text2);font-size:12px}
+.bub ul li::before{content:"›";color:var(--green);flex-shrink:0}
+.bub hr{border:none;border-top:1px solid var(--border);margin:8px 0}
+.typing-row{display:flex;gap:10px;align-items:center;animation:fu 0.3s ease}
+.typing-bub{background:var(--surface2);border:1px solid var(--border);border-radius:2px 10px 10px 10px;padding:11px 15px;display:flex;gap:5px;align-items:center}
+.dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:db 1.2s ease infinite}
+.dot:nth-child(2){animation-delay:0.2s}.dot:nth-child(3){animation-delay:0.4s}
+@keyframes db{0%,100%{opacity:0.2;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+.chat-input{border-top:1px solid var(--border);padding:12px 16px;background:var(--surface);flex-shrink:0;display:flex;gap:8px;align-items:flex-end}
+.chat-input textarea{flex:1;background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.5;transition:border-color 0.2s}
+.chat-input textarea:focus{border-color:var(--green-dim)}
+.chat-input textarea::placeholder{color:var(--text3)}
+.chat-input button{background:var(--blue-dim);border:1px solid rgba(91,156,246,0.3);border-radius:6px;padding:9px 14px;color:var(--blue);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:1px;white-space:nowrap;transition:all 0.2s}
+.chat-input button:disabled{opacity:0.3;cursor:not-allowed}
+.chat-input button:hover:not(:disabled){border-color:var(--blue)}
+
+/* ══ OWNER DASHBOARD ══ */
+#owner-view{flex-direction:column}
+.owner-topbar{padding:16px 24px;border-bottom:1px solid var(--border);background:var(--surface2);flex-shrink:0;display:flex;align-items:center;gap:16px}
+.owner-topbar h2{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white)}
+.owner-stats{display:flex;gap:10px;margin-left:auto}
+.stat-pill{background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:6px 14px;text-align:center}
+.stat-num{font-family:'DM Mono',monospace;font-size:16px;color:var(--green);display:block}
+.stat-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:1px;text-transform:uppercase}
+#submissions-list{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px}
+.sub-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text3)}
+.sub-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color 0.15s}
+.sub-card:hover{border-color:var(--border2)}
+.sc-head{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sc-ref{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3)}
+.sc-name{font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:14px;color:var(--white)}
+.sc-time{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-left:auto}
+.sc-body{padding:12px 16px;display:flex;gap:16px}
+.sc-info{flex:1;font-size:12px;color:var(--text2);line-height:1.8}
+.sc-info strong{color:var(--text);display:block;margin-bottom:4px}
+.sc-analysis{flex:2;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px;font-size:12px;color:var(--text2);line-height:1.7;max-height:160px;overflow-y:auto}
+.sc-actions{padding:10px 16px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center}
+.status-tag{font-family:'DM Mono',monospace;font-size:9px;padding:3px 8px;border-radius:2px;letter-spacing:1px;text-transform:uppercase}
+.st-new{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(91,156,246,0.3)}
+.st-review{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(240,180,41,0.3)}
+.st-sent{background:var(--green-glow);color:var(--green);border:1px solid var(--green-dim)}
+.act-btn{background:var(--surface2);border:1px solid var(--border2);border-radius:5px;padding:6px 12px;color:var(--text2);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:1px;transition:all 0.15s}
+.act-btn:hover{border-color:var(--green-dim);color:var(--green)}
+.act-btn.primary{background:var(--green-glow);border-color:var(--green-dim);color:var(--green)}
+.act-btn.primary:hover{box-shadow:0 0 10px var(--green-glow)}
+.print-btn{background:var(--amber-dim);border:1px solid rgba(240,180,41,0.3);border-radius:5px;padding:6px 12px;color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:1px;transition:all 0.15s}
+.print-btn:hover{border-color:var(--amber)}
+
+/* MODAL */
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center}
+#modal-overlay.open{display:flex}
+#modal{background:var(--surface);border:1px solid var(--border2);border-radius:10px;width:90%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
+.modal-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.modal-head h3{font-family:'DM Serif Display',serif;font-size:16px;color:var(--white);flex:1}
+.modal-close{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;line-height:1}
+.modal-body{flex:1;overflow-y:auto;padding:20px}
+.modal-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+
+/* PRINT REPORT */
+@media print {
+  body{background:white;color:#111}
+  #topnav,#err-bar,.nav-tabs,.api-row,.act-btn,.print-btn,#modal-overlay{display:none!important}
+  .sub-card{border:1px solid #ccc;page-break-inside:avoid}
+}
+
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- TOPNAV -->
+<div id="topnav">
+  <div class="brand">
+    <div class="brand-icon">🛡</div>
+    <div>
+      <div class="brand-name">AJOGA</div>
+      <div class="brand-sub">Insurance Intermediary</div>
+    </div>
+  </div>
+  <div class="nav-tabs">
+    <button class="ntab active" onclick="goView('client')">💬 Client Portal</button>
+    <button class="ntab" onclick="goView('owner')">📋 Owner Dashboard</button>
+  </div>
+  <div class="nav-right">
+    <div class="spill"><div class="sdot"></div>AJOGA LIVE</div>
+    <div class="spill">INTERMEDIARY · NN VOORKEUR</div>
+    <div class="api-row">
+      <input type="password" id="api-key-input" placeholder="sk-ant-..."/>
+      <button onclick="saveKey()">SAVE</button>
+      <span id="api-ok"></span>
+    </div>
+  </div>
+</div>
+<div id="err-bar"></div>
+
+<div id="main">
+
+  <!-- ══ CLIENT PORTAL ══ -->
+  <div id="client-view" class="view active">
+
+    <!-- FORM -->
+    <div class="client-form-col">
+      <div class="col-head">
+        <div class="ch-top"><span class="badge badge-client">CLIENT</span><span class="col-title">Uw Gegevens</span></div>
+        <div class="col-sub">Vul in wat u weet — AJOGA vraagt de rest via chat</div>
+      </div>
+      <div class="form-scroll">
+        <div class="fg"><label class="fl">Bedrijfsnaam *</label><input class="fi" id="f-name" placeholder="Naam van uw bedrijf"/></div>
+        <div class="fg"><label class="fl">Uw naam</label><input class="fi" id="f-contact" placeholder="Contactpersoon"/></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">Sector</label>
+            <select class="fs" id="f-sector">
+              <option value="">Selecteer...</option>
+              <option>Kantoor / Dienstverlening</option>
+              <option>Retail / Detailhandel</option>
+              <option>Horeca</option>
+              <option>Ambacht / Installatie</option>
+              <option>Productie / Industrie</option>
+              <option>Bouw / Constructie</option>
+              <option>Transport / Logistiek</option>
+              <option>ICT / Tech</option>
+              <option>Zorg / Medisch</option>
+              <option>Overig</option>
+            </select>
+          </div>
+          <div class="fg"><label class="fl">Omzet (€)</label>
+            <select class="fs" id="f-omzet">
+              <option value="">Selecteer...</option>
+              <option>&lt; €250k</option>
+              <option>€250k – €500k</option>
+              <option>€500k – €1M</option>
+              <option>€1M – €2.5M</option>
+              <option>€2.5M – €5M</option>
+              <option>€5M – €10M</option>
+              <option>&gt; €10M</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label class="fl">Onderwerp / Product *</label>
+          <select class="fs" id="f-subject">
+            <option value="">Selecteer verzekering...</option>
+            <option value="verhuur">🏠 Verhuur Woning (opstal + aansprakelijkheid)</option>
+            <option value="avb">🏭 Bedrijfsaansprakelijkheid (AVB)</option>
+            <option value="inboedel">🛋 Inboedelverzekering</option>
+            <option value="opstal">🏗 Opstalverzekering</option>
+            <option value="auto">🚗 Autoverzekering</option>
+            <option value="zorg">❤️ Zorgverzekering aanvulling</option>
+            <option value="reis">✈️ Reisverzekering</option>
+            <option value="overig">📋 Anders / Weet ik niet</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Korte omschrijving (optioneel)</label><textarea class="ft" id="f-desc" placeholder="Vertel kort wat u nodig heeft — AJOGA vraagt de rest via chat"></textarea></div>
+        <div class="fg"><label class="fl">Verzekeraar voorkeur</label>
+          <select class="fs" id="f-pref">
+            <option>Geen voorkeur</option>
+            <option>Nationale-Nederlanden (NN)</option>
+            <option>Allianz</option>
+            <option>AXA</option>
+            <option>Centraal Beheer</option>
+            <option>Zurich</option>
+            <option>HDI</option>
+            <option>Chubb</option>
+            <option>Aegon</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Gewenste dekking</label>
+          <select class="fs" id="f-limit">
+            <option>€1.25M</option><option>€2.5M</option><option>€5M</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button class="start-chat-btn" onclick="startClientChat()">💬 START GESPREK MET AJOGA</button>
+      </div>
+    </div>
+
+    <!-- CHAT -->
+    <div class="client-chat-col">
+      <div class="col-head">
+        <div class="ch-top"><span class="badge badge-agent">AJOGA AI</span><span class="col-title">Uw Intermediair</span></div>
+        <div class="col-sub">AJOGA verzamelt uw risico-informatie en stuurt dit door naar de verzekeraar</div>
+      </div>
+      <div id="client-chat">
+        <div class="chat-empty" id="chat-empty">
+          <div class="ce-icon">🛡</div>
+          <div class="ce-title">Welkom bij AJOGA</div>
+          <div class="ce-sub">Vul uw gegevens in links en klik op "Start Gesprek" — AJOGA begeleidt u stap voor stap door de aanvraag</div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <textarea id="client-msg" rows="2" placeholder="Typ uw antwoord hier..." onkeydown="handleClientKey(event)" oninput="onClientInput()"></textarea>
+        <button id="client-send" onclick="sendClientMsg()" disabled>VERSTUUR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ OWNER DASHBOARD ══ -->
+  <div id="owner-view" class="view">
+    <div class="owner-topbar">
+      <div>
+        <h2>📋 Owner Dashboard</h2>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:1px;margin-top:3px">Beoordeel aanvragen · Stuur handmatig door naar NN</div>
+      </div>
+      <div class="owner-stats">
+        <div class="stat-pill"><span class="stat-num" id="stat-total">0</span><span class="stat-lbl">Totaal</span></div>
+        <div class="stat-pill"><span class="stat-num" id="stat-new" style="color:var(--blue)">0</span><span class="stat-lbl">Nieuw</span></div>
+        <div class="stat-pill"><span class="stat-num" id="stat-sent" style="color:var(--amber)">0</span><span class="stat-lbl">Verstuurd</span></div>
+      </div>
+    </div>
+    <div id="submissions-list">
+      <div class="sub-empty" id="sub-empty">
+        <div style="font-size:32px;opacity:0.3">📬</div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase">Geen aanvragen</div>
+        <div style="font-size:12px;text-align:center;max-width:300px;line-height:1.7">Aanvragen van klanten verschijnen hier zodra zij hun gesprek met AJOGA hebben voltooid</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL: Full analysis -->
+<div id="modal-overlay">
+  <div id="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Volledige Analyse</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="act-btn" onclick="closeModal()">Sluiten</button>
+      <button class="print-btn" onclick="printReport()">🖨 Print / PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ─────────────────────────────────────────────────────────────────
+let clientHistory = [];
+// API key is server-side — no key needed in browser
+let submissions = JSON.parse(localStorage.getItem('ajoga_submissions') || '[]');
+let currentSubmission = null;
+let chatStarted = false;
+
+const SYSTEM = `You are AJOGA, an AI-powered insurance intermediary in the Netherlands handling ALL types of personal and commercial insurance. You are NOT an insurer and you do NOT accept or decline risks. Your role is to:
+
+1. COLLECT complete risk information from the client through friendly conversation
+2. ANALYSE the risk profile clearly and objectively  
+3. PACKAGE the information into a structured dossier for the AJOGA owner
+4. The AJOGA owner then manually reviews and sends the dossier to the insurer (Nationale-Nederlanden preferred, but client preference always comes first)
+
+LANGUAGE: Respond in Dutch unless the client writes in English.
+
+YOUR CONVERSATION APPROACH:
+- Be warm, professional and clear — you are the client's guide
+- Ask one or two questions at a time — don't overwhelm
+- Gather all necessary AVB underwriting information through natural conversation
+- When you have enough information, produce a complete risk summary
+
+INFORMATION TO COLLECT — adapt per product:
+
+VERHUUR WONING:
+- Type woning, adres, bouwjaar, herbouwwaarde
+- Volledig of gedeeltelijk verhuurd? Eigenaar woont er ook?
+- Kort (Airbnb) of lang verhuur (huurcontract)?
+- Huurder type: particulier, toerist, expat, student?
+- Inboedel meeverzekeren (gemeubileerd)?
+- Hypotheek? Bank stelt eisen aan dekking
+- Schadeverleden
+
+AVB (BEDRIJFSAANSPRAKELIJKHEID):
+- Exacte bedrijfsactiviteiten
+- Werken ze bij klanten op locatie?
+- Producten gemaakt of verkocht?
+- Gevaarlijke stoffen?
+- Aantal medewerkers, omzet, schadeverleden
+
+INBOEDEL/OPSTAL:
+- Adres, type woning, bouwjaar
+- Huur of eigen woning?
+- Waarde inboedel of herbouwwaarde
+- Bijzonderheden: waardevolle spullen, verbouwingen
+
+AUTO:
+- Kenteken of type voertuig, bouwjaar
+- Zakelijk of privégebruik?
+- Gewenste dekking: WA / beperkt casco / allrisk
+- Rijervaring en schadeverleden
+
+REIS:
+- Individueel of gezin?
+- Bestemming en duur
+- Doorlopend of eenmalig?
+- Bijzondere activiteiten (wintersport, avontuur)?
+
+OVERIG / ONBEKEND:
+- Vraag eerst wat de klant precies nodig heeft
+- Dan de juiste vragen stellen per product
+
+WHEN YOU HAVE ENOUGH INFO — produce a structured dossier:
+Use this format:
+
+## AJOGA RISICO DOSSIER
+
+**Referentie:** [auto-generate like AJG-2024-001]
+**Datum:** [today]
+**Status:** Gereed voor doorsturen naar verzekeraar
+
+### BEDRIJFSPROFIEL
+[company details]
+
+### ACTIVITEITEN & RISICO
+[what they do, key exposures]
+
+### RISICOBEOORDELING
+[rate each factor: 🟢 Laag / 🟡 Gemiddeld / 🔴 Hoog]
+
+### VERZEKERAAR ADVIES
+Voorkeur: [NN or client preference]
+Reden: [why this insurer fits]
+Alternatief: [backup insurer if needed]
+
+### PREMIE-INDICATIE (indicatief)
+[benchmark range — always caveat as indicative]
+
+### AANDACHTSPUNTEN VOOR VERZEKERAAR
+[flags, conditions, exclusions to check]
+
+### AJOGA INTERMEDIAIR NOTITIE
+AJOGA is een tussenpersoon. De verzekeraar neemt de definitieve acceptatiebeslissing. Dit dossier is samengesteld op basis van door de klant verstrekte informatie.
+
+---
+After producing the dossier, tell the client: their information has been packaged and will be reviewed by AJOGA and forwarded to the insurer. They will be contacted with the outcome.`;
+
+// ── INIT ─────────────────────────────────────────────────────────────────
+if (apiKey) {
+  document.getElementById('api-key-input').value = apiKey;
+  document.getElementById('api-ok').textContent = '✓';
+}
+renderDashboard();
+
+function saveKey() {
+  const k = document.getElementById('api-key-input').value.trim();
+  if (!k.startsWith('sk-')) { alert('Voer een geldige API key in (sk-ant-...)'); return; }
+  apiKey = k;
+  localStorage.setItem('ajoga_key', k);
+  document.getElementById('api-ok').textContent = '✓ SAVED';
+}
+
+// ── VIEW ──────────────────────────────────────────────────────────────────
+function goView(v) {
+  document.querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('active',['client','owner'][i]===v));
+  document.getElementById('client-view').classList.toggle('active', v==='client');
+  document.getElementById('owner-view').classList.toggle('active', v==='owner');
+  if (v==='owner') renderDashboard();
+}
+
+// ── START CLIENT CHAT ──────────────────────────────────────────────────────
+function startClientChat() {
+// No API key check needed — handled server-side
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { alert('Vul uw naam in om te beginnen.'); return; }
+  const subjectCheck = document.getElementById('f-subject').value;
+  if (!subjectCheck) { alert('Selecteer het gewenste verzekeringsproduct.'); return; }
+
+  const sector = document.getElementById('f-sector').value;
+  const omzet = document.getElementById('f-omzet').value;
+  const desc = document.getElementById('f-desc').value.trim();
+  const pref = document.getElementById('f-pref').value;
+  const limit = document.getElementById('f-limit').value;
+  const contact = document.getElementById('f-contact').value.trim();
+
+  clientHistory = [];
+  chatStarted = true;
+  currentSubmission = { name, contact, sector, omzet, desc, pref, limit, status:'new', ref: genRef(), time: now(), analysis:'' };
+
+  const empty = document.getElementById('chat-empty');
+  if (empty) empty.remove();
+
+  const subject = document.getElementById('f-subject').value;
+  const subjectLabels = {
+    'verhuur': 'Verhuur Woning (opstal + aansprakelijkheid verhuurder)',
+    'avb': 'Bedrijfsaansprakelijkheidsverzekering (AVB)',
+    'inboedel': 'Inboedelverzekering',
+    'opstal': 'Opstalverzekering',
+    'auto': 'Autoverzekering',
+    'zorg': 'Zorgverzekering aanvulling',
+    'reis': 'Reisverzekering',
+    'overig': 'Nog nader te bepalen'
+  };
+  const subjectLabel = subjectLabels[subject] || 'Nog niet opgegeven';
+
+  const intro = `Nieuwe aanvraag van klant:
+Naam: ${name}
+${contact ? 'Contactpersoon: ' + contact : ''}
+Gewenst product: ${subjectLabel}
+Sector (indien zakelijk): ${sector || 'Particulier / niet opgegeven'}
+Omzet (indien zakelijk): ${omzet || 'n.v.t.'}
+Gewenste dekking: ${limit}
+Verzekeraar voorkeur: ${pref}
+${desc ? 'Toelichting klant: ' + desc : ''}
+
+INSTRUCTIE VOOR AJOGA:
+Stel jezelf voor als AJOGA, de verzekeringstussenpersoon van de klant.
+Het onderwerp van deze aanvraag is: ${subjectLabel}.
+Stel gerichte vragen die passen bij dit product — niet generiek.
+Spreek de klant aan met "u". Wees warm, eenvoudig en zonder vakjargon.
+Stel maximaal 2 vragen tegelijk. Verzamel alle benodigde informatie en maak aan het einde een volledig risico dossier aan voor de AJOGA eigenaar om door te sturen naar de verzekeraar.`;
+
+  clientHistory.push({ role:'user', content: intro });
+  showTyping('client-chat');
+  callClientAPI();
+}
+
+// ── CLIENT CHAT ───────────────────────────────────────────────────────────
+function onClientInput() {
+  document.getElementById('client-send').disabled =
+    !document.getElementById('client-msg').value.trim() || !chatStarted;
+}
+
+function handleClientKey(e) {
+  if (e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendClientMsg();}
+}
+
+function sendClientMsg() {
+  const inp = document.getElementById('client-msg');
+  const text = inp.value.trim();
+  if (!text||!apiKey||!chatStarted) return;
+  inp.value='';
+  document.getElementById('client-send').disabled=true;
+  appendMsg('client-chat','client',text);
+  clientHistory.push({role:'user',content:text});
+  showTyping('client-chat');
+  callClientAPI();
+}
+
+async function callClientAPI() {
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true',
+        'x-api-key':apiKey
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1500,
+        system:SYSTEM,
+        messages:clientHistory
+      })
+    });
+
+    removeTyping('client-chat');
+
+    if(!res.ok){const e=await res.text();showErr('HTTP '+res.status+': '+e);clientHistory.pop();return;}
+    const data=await res.json();
+    if(data.error){showErr('API: '+data.error.message);clientHistory.pop();return;}
+
+    const reply=data.content.filter(b=>b.type==='text').map(b=>b.text).join('\n');
+    clientHistory.push({role:'assistant',content:reply});
+    appendMsg('client-chat','ai',reply);
+
+    // If dossier is produced, save to dashboard
+    if(reply.includes('AJOGA RISICO DOSSIER') && currentSubmission) {
+      currentSubmission.analysis = reply;
+      currentSubmission.status = 'new';
+      submissions.unshift(currentSubmission);
+      localStorage.setItem('ajoga_submissions', JSON.stringify(submissions));
+      updateStats();
+    }
+
+  } catch(e) {
+    removeTyping('client-chat');
+    showErr('Verbinding mislukt: '+e.message);
+    clientHistory.pop();
+  } finally {
+    document.getElementById('client-send').disabled =
+      !document.getElementById('client-msg').value.trim()||!chatStarted;
+  }
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const list = document.getElementById('submissions-list');
+  const empty = document.getElementById('sub-empty');
+
+  if (submissions.length===0) {
+    if(!empty) {
+      list.innerHTML='<div class="sub-empty" id="sub-empty"><div style="font-size:32px;opacity:0.3">📬</div><div style="font-family:DM Mono,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase">Geen aanvragen</div><div style="font-size:12px;text-align:center;max-width:300px;line-height:1.7">Aanvragen van klanten verschijnen hier zodra zij hun gesprek met AJOGA hebben voltooid</div></div>';
+    }
+    updateStats();
+    return;
+  }
+
+  list.innerHTML='';
+  submissions.forEach((sub,i) => {
+    const card = document.createElement('div');
+    card.className='sub-card';
+
+    const statusClass = sub.status==='sent'?'st-sent':sub.status==='review'?'st-review':'st-new';
+    const statusLabel = sub.status==='sent'?'✓ Verstuurd naar verzekeraar':sub.status==='review'?'In behandeling':'🔵 Nieuw — actie vereist';
+
+    const preview = sub.analysis
+      ? sub.analysis.replace(/\*\*/g,'').replace(/#{1,3} /g,'').replace(/🟢|🟡|🔴|⛔/g,'').slice(0,200)+'...'
+      : 'Analyse nog niet voltooid — gesprek loopt nog';
+
+    card.innerHTML=`
+      <div class="sc-head">
+        <span class="sc-ref">${sub.ref}</span>
+        <span class="sc-name">${esc(sub.name)}</span>
+        <span class="sc-time">${sub.time}</span>
+      </div>
+      <div class="sc-body">
+        <div class="sc-info">
+          <strong>Klantgegevens</strong>
+          ${sub.contact?'<div>👤 '+esc(sub.contact)+'</div>':''}
+          <div>🏭 ${esc(sub.sector||'—')}</div>
+          <div>💶 ${esc(sub.omzet||'—')}</div>
+          <div>🛡 ${esc(sub.limit||'—')}</div>
+          <div>🏦 ${esc(sub.pref||'Geen voorkeur')}</div>
+        </div>
+        <div class="sc-analysis">${sub.analysis ? fmtAnalysis(sub.analysis) : '<span style="color:var(--text3);font-style:italic">'+preview+'</span>'}</div>
+      </div>
+      <div class="sc-actions">
+        <span class="status-tag ${statusClass}">${statusLabel}</span>
+        ${sub.analysis?`<button class="act-btn" onclick="openModal(${i})">👁 Volledige Analyse</button>`:''}
+        ${sub.analysis?`<button class="print-btn" onclick="openModal(${i});setTimeout(printReport,300)">🖨 Print Dossier</button>`:''}
+        ${sub.status!=='sent'&&sub.analysis?`<button class="act-btn primary" onclick="markSent(${i})">✉️ Markeer als Verstuurd naar NN</button>`:''}
+        <button class="act-btn" style="margin-left:auto;color:var(--red);border-color:var(--border2)" onclick="deleteSubmission(${i})">🗑</button>
+      </div>`;
+
+    list.appendChild(card);
+  });
+  updateStats();
+}
+
+function updateStats() {
+  document.getElementById('stat-total').textContent = submissions.length;
+  document.getElementById('stat-new').textContent = submissions.filter(s=>s.status==='new').length;
+  document.getElementById('stat-sent').textContent = submissions.filter(s=>s.status==='sent').length;
+}
+
+function markSent(i) {
+  submissions[i].status = 'sent';
+  localStorage.setItem('ajoga_submissions', JSON.stringify(submissions));
+  renderDashboard();
+}
+
+function deleteSubmission(i) {
+  if(!confirm('Aanvraag verwijderen?')) return;
+  submissions.splice(i,1);
+  localStorage.setItem('ajoga_submissions', JSON.stringify(submissions));
+  renderDashboard();
+}
+
+function openModal(i) {
+  const sub = submissions[i];
+  document.getElementById('modal-title').textContent = 'Dossier — ' + sub.name + ' · ' + sub.ref;
+  document.getElementById('modal-body').innerHTML = fmtAnalysis(sub.analysis);
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function printReport() {
+  window.print();
+}
+
+// ── CHAT HELPERS ──────────────────────────────────────────────────────────
+function appendMsg(chatId, role, content) {
+  const chat = document.getElementById(chatId);
+  const row = document.createElement('div');
+  row.className = 'msg-row' + (role==='client'?' right':'');
+  const av = document.createElement('div');
+  av.className = 'av '+(role==='ai'?'av-ai':'av-cl');
+  av.textContent = role==='ai'?'🛡':'CL';
+  const bub = document.createElement('div');
+  bub.className = 'bub '+(role==='ai'?'bub-ai':'bub-cl');
+  bub.innerHTML = role==='ai' ? fmtMsg(content) : esc(content);
+  if(role==='ai'){row.appendChild(av);row.appendChild(bub);}
+  else{row.appendChild(bub);row.appendChild(av);}
+  chat.appendChild(row);
+  row.scrollIntoView({behavior:'smooth'});
+}
+
+function showTyping(chatId) {
+  const chat = document.getElementById(chatId);
+  const row = document.createElement('div');
+  row.className='typing-row';row.id='typing-'+chatId;
+  const av=document.createElement('div');av.className='av av-ai';av.textContent='🛡';
+  const bub=document.createElement('div');bub.className='typing-bub';
+  bub.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  row.appendChild(av);row.appendChild(bub);
+  chat.appendChild(row);row.scrollIntoView({behavior:'smooth'});
+}
+
+function removeTyping(chatId) {
+  const t=document.getElementById('typing-'+chatId);if(t)t.remove();
+}
+
+// ── FORMAT ────────────────────────────────────────────────────────────────
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function fmtMsg(text) {
+  return esc(text)
+    .replace(/^## (.+)$/gm,'<h3 style="font-family:DM Serif Display,serif;font-size:15px;color:var(--white);border-bottom:1px solid var(--border);padding-bottom:5px;margin:14px 0 8px">$1</h3>')
+    .replace(/^### (.+)$/gm,'<div class="bub" style="padding:0"><h3>$1</h3></div>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong style="color:var(--white)">$1</strong>')
+    .replace(/^[-*] (.+)$/gm,'<ul><li>$1</li></ul>')
+    .replace(/<\/ul>\n<ul>/g,'')
+    .replace(/^---$/gm,'<hr>')
+    .replace(/🟢 Laag/g,'<span style="background:rgba(61,220,110,0.1);color:var(--green);border:1px solid var(--green-dim);padding:1px 6px;border-radius:3px;font-family:DM Mono,monospace;font-size:10px">🟢 Laag</span>')
+    .replace(/🟡 Gemiddeld/g,'<span style="background:var(--amber-dim);color:var(--amber);border:1px solid rgba(240,180,41,0.3);padding:1px 6px;border-radius:3px;font-family:DM Mono,monospace;font-size:10px">🟡 Gemiddeld</span>')
+    .replace(/🔴 Hoog/g,'<span style="background:var(--red-dim);color:var(--red);border:1px solid rgba(240,82,82,0.3);padding:1px 6px;border-radius:3px;font-family:DM Mono,monospace;font-size:10px">🔴 Hoog</span>')
+    .replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+}
+
+function fmtAnalysis(text) {
+  return fmtMsg(text);
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────
+function showErr(m){const b=document.getElementById('err-bar');b.style.display='block';b.textContent='⚠ '+m;}
+function genRef(){return 'AJG-'+new Date().getFullYear()+'-'+String(submissions.length+1).padStart(4,'0')}
+function now(){const d=new Date();return d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear()+' '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')}
+</script>
+</body>
+</html>
