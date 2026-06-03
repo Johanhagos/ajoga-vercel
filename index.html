@@ -282,29 +282,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
             <label class="fl">Product *</label>
             <select class="fs" id="f-subject" onchange="showDektingFields()">
               <option value="">Kies verzekering...</option>
-              <optgroup label="🏠 Particulier">
-                <option value="verhuur">🏠 Verhuur woning</option>
-                <option value="opstal">🏗 Opstalverzekering</option>
-                <option value="inboedel">🛋 Inboedelverzekering</option>
-                <option value="woonhuis">🏡 Woonhuis (opstal + inboedel)</option>
-                <option value="auto">🚗 Autoverzekering</option>
-                <option value="avp">⚖️ Aansprakelijkheid particulier (AVP)</option>
-                <option value="reis">✈️ Reisverzekering</option>
-                <option value="zorg">❤️ Aanvullende zorgverzekering</option>
-                <option value="leven">🤝 Levensverzekering</option>
-                <option value="aov">💼 AOV / Arbeidsongeschiktheid</option>
-              </optgroup>
-              <optgroup label="🏢 Zakelijk">
-                <option value="avb">🏭 Bedrijfsaansprakelijkheid (AVB)</option>
-                <option value="bav">📋 Beroepsaansprakelijkheid (BAV)</option>
-                <option value="bedrijfspand">🏢 Bedrijfspand</option>
-                <option value="inventaris">📦 Inventaris & goederen</option>
-                <option value="transport">🚛 Transport & vloot</option>
-                <option value="cyber">💻 Cyberverzekering</option>
-                <option value="bsv">⏸ Bedrijfsschadeverzekering</option>
-                <option value="rechtsbijstand">⚖️ Rechtsbijstand zakelijk</option>
-              </optgroup>
-              <option value="overig">❓ Weet ik niet / anders</option>
+              <option value="avb">🏭 Bedrijfsaansprakelijkheid (AVB)</option>
+              <option value="bav">📋 Beroepsaansprakelijkheid (BAV)</option>
+              <option value="transport">🚛 Transport & Logistiek</option>
+              <option value="evenementen">🎪 Evenementenverzekering</option>
+              <option value="machine">⚙️ Machinebreuk & Technische verzekering</option>
+              <option value="msv">🏗 Montage & Constructie (MSV/CAR)</option>
             </select>
           </div>
 
@@ -397,115 +380,88 @@ let currentTab = 'contact';
 
 // ── PRODUCT FIELDS ────────────────────────────────────────────────────────
 const PRODUCT_FIELDS = {
-  verhuur: [
-    { id:'vtype', label:'Type woning', type:'select', opts:['Appartement','Tussenwoning','Hoekwoning','Vrijstaande woning','Studio','Kamer'] },
-    { id:'vbouwjaar', label:'Bouwjaar (ca.)', type:'select', opts:['Voor 1950','1950–1975','1975–2000','Na 2000'] },
-    { id:'vherbouw', label:'Herbouwwaarde (€)', type:'select', opts:['< €100k','€100k–€200k','€200k–€350k','€350k–€500k','> €500k'] },
-    { id:'vhuurtype', label:'Type verhuur', type:'select', opts:['Langdurig (huurcontract)','Kort (Airbnb/vakantie)','Beide'] },
-    { id:'vhuurder', label:'Type huurder', type:'select', opts:['Particulier','Toerist','Expat','Student','Nog onbekend'] },
-    { id:'veigenaar', label:'Woont eigenaar er ook?', type:'select', opts:['Nee — volledig verhuurd','Ja — gedeeltelijk','Soms — tijdelijk'] },
-    { id:'vgemeubileerd', label:'Gemeubileerd?', type:'select', opts:['Nee','Ja','Gedeeltelijk'] },
-    { id:'vhypotheek', label:'Hypotheek aanwezig?', type:'select', opts:['Nee','Ja — geldgever:','Ja — maar vrij'] },
-    { id:'vschade', label:'Schadeverleden (3 jaar)', type:'select', opts:['Geen schades','1 kleine schade','2 kleine schades','1 grote schade (>€10k)','3+ schades'] },
-  ],
-  opstal: [
-    { id:'otype', label:'Type woning', type:'select', opts:['Appartement','Tussenwoning','Hoekwoning','Vrijstaande woning'] },
-    { id:'obouwjaar', label:'Bouwjaar', type:'select', opts:['Voor 1940','1940–1970','1970–2000','Na 2000'] },
-    { id:'oherbouw', label:'Herbouwwaarde (€)', type:'select', opts:['< €150k','€150k–€300k','€300k–€500k','> €500k'] },
-    { id:'oeigendom', label:'Eigendom of huur?', type:'select', opts:['Eigen woning','Huurwoning'] },
-    { id:'omonument', label:'Monumentaal pand?', type:'select', opts:['Nee','Ja — rijksmonument','Ja — gemeentelijk'] },
-    { id:'overbouw', label:'Recente verbouwing?', type:'select', opts:['Nee','Ja — minder dan 1 jaar geleden','Ja — 1–3 jaar geleden'] },
-    { id:'oschade', label:'Schadeverleden', type:'select', opts:['Geen','1–2 kleine schades','Grote schade gehad'] },
-  ],
-  inboedel: [
-    { id:'iwaarde', label:'Geschatte inboedelwaarde (€)', type:'select', opts:['< €25k','€25k–€50k','€50k–€100k','€100k–€200k','> €200k'] },
-    { id:'iwaardevol', label:'Waardevolle items (sieraden, kunst, elektronica)?', type:'select', opts:['Nee','Ja — minder dan €5k','Ja — meer dan €5k'] },
-    { id:'ihuurkoop', label:'Huurder of eigenaar?', type:'select', opts:['Eigenaar','Huurder'] },
-    { id:'ischade', label:'Schadeverleden', type:'select', opts:['Geen','1–2 kleine schades','Grote schade gehad'] },
-  ],
-  woonhuis: [
-    { id:'whtype', label:'Type woning', type:'select', opts:['Appartement','Tussenwoning','Hoekwoning','Vrijstaande woning'] },
-    { id:'whbouwjaar', label:'Bouwjaar', type:'select', opts:['Voor 1940','1940–1970','1970–2000','Na 2000'] },
-    { id:'whherbouw', label:'Herbouwwaarde (€)', type:'select', opts:['< €150k','€150k–€300k','€300k–€500k','> €500k'] },
-    { id:'whinboedel', label:'Inboedelwaarde (€)', type:'select', opts:['< €25k','€25k–€50k','€50k–€100k','> €100k'] },
-    { id:'wheigendom', label:'Eigendom of huur?', type:'select', opts:['Eigen woning','Huurwoning'] },
-    { id:'whschade', label:'Schadeverleden', type:'select', opts:['Geen','1–2 kleine schades','Grote schade gehad'] },
-  ],
-  auto: [
-    { id:'amerk', label:'Merk & model', type:'text', placeholder:'bijv. Volkswagen Golf' },
-    { id:'abouwjaar', label:'Bouwjaar voertuig', type:'text', placeholder:'bijv. 2019' },
-    { id:'akenteken', label:'Kenteken', type:'text', placeholder:'bijv. AB-123-C' },
-    { id:'agebruik', label:'Gebruik', type:'select', opts:['Privé','Zakelijk','Privé + zakelijk'] },
-    { id:'akm', label:'Km per jaar (geschat)', type:'select', opts:['< 10.000 km','10.000–25.000 km','25.000–50.000 km','> 50.000 km'] },
-    { id:'adekking', label:'Gewenste dekking', type:'select', opts:['WA (minimaal)','WA + beperkt casco','Allrisk (volledig casco)'] },
-    { id:'aleeftijd', label:'Leeftijd hoofdbestuurder', type:'text', placeholder:'bijv. 35' },
-    { id:'arijbewijs', label:'Rijbewijs sinds', type:'text', placeholder:'bijv. 2008' },
-    { id:'aschade', label:'Schadeverleden (3 jaar)', type:'select', opts:['Schadevrij','1 schade','2 schades','3+ schades'] },
-    { id:'abm', label:'Huidige BM-ladder trede', type:'text', placeholder:'bijv. trede 10' },
-  ],
-  avp: [
-    { id:'pvgezin', label:'Gezinssituatie', type:'select', opts:['Alleenstaand','Samenwonend (geen kinderen)','Gezin met kinderen','Eenoudergezin'] },
-    { id:'pvhuurkoop', label:'Huurder of eigenaar?', type:'select', opts:['Eigenaar','Huurder'] },
-    { id:'pvhuisdier', label:'Huisdieren?', type:'select', opts:['Nee','Ja — hond','Ja — kat','Ja — anders'] },
-    { id:'pvlimiet', label:'Gewenst verzekerd bedrag', type:'select', opts:['€1.25M','€2.5M','€5M'] },
-  ],
-  reis: [
-    { id:'rtype', label:'Doorlopend of eenmalig?', type:'select', opts:['Doorlopend (heel jaar)','Eenmalig (één reis)'] },
-    { id:'rpersonen', label:'Wie meeverzekeren?', type:'select', opts:['Alleen mezelf','Ikzelf + partner','Heel gezin'] },
-    { id:'rbestemming', label:'Bestemming', type:'select', opts:['Europa','Wereldwijd excl. VS/Canada','Wereldwijd incl. VS/Canada'] },
-    { id:'rduur', label:'Max. reisduur per reis', type:'select', opts:['Tot 30 dagen','Tot 60 dagen','Tot 90 dagen','Tot 180 dagen'] },
-    { id:'ractiviteit', label:'Bijzondere activiteiten?', type:'select', opts:['Geen','Wintersport','Duiken','Avontuursport'] },
-    { id:'rbagage', label:'Bagage meeverzekeren?', type:'select', opts:['Nee','Ja'] },
-    { id:'rannulering', label:'Annulering meeverzekeren?', type:'select', opts:['Nee','Ja'] },
-  ],
-  aov: [
-    { id:'aovsector', label:'Dienstverband of ZZP?', type:'select', opts:['ZZP / Freelance','Loondienst','DGA / Directeur-grootaandeelhouder'] },
-    { id:'aovberoep', label:'Beroep / vakgebied', type:'text', placeholder:'bijv. IT consultant, timmerman' },
-    { id:'aovinkomen', label:'Bruto jaarinkomen (€)', type:'select', opts:['< €30k','€30k–€50k','€50k–€80k','€80k–€120k','> €120k'] },
-    { id:'aovdekking', label:'Gewenste uitkering per maand (€)', type:'select', opts:['< €1.500','€1.500–€2.500','€2.500–€4.000','> €4.000'] },
-    { id:'aovwacht', label:'Gewenste wachttijd', type:'select', opts:['1 maand','2 maanden','3 maanden','6 maanden','12 maanden'] },
-    { id:'aovduur', label:'Uitkeringsduur', type:'select', opts:['2 jaar','5 jaar','Tot AOW-leeftijd'] },
-    { id:'aovgezond', label:'Gezondheidsklachten / aandoeningen?', type:'select', opts:['Nee','Ja — nader te specificeren'] },
-  ],
   avb: [
-    { id:'avbactiviteit', label:'Bedrijfsactiviteiten', type:'textarea', placeholder:'Wat doet uw bedrijf precies? Producten, diensten, werkzaamheden bij derden...' },
+    { id:'avbactiviteit', label:'Bedrijfsactiviteiten *', type:'textarea', placeholder:'Wat doet het bedrijf precies? Producten, diensten, werkzaamheden bij derden...' },
     { id:'avbsbi', label:'SBI-code (indien bekend)', type:'text', placeholder:'bijv. 4120 (bouwbedrijf)' },
-    { id:'avbomzet', label:'Jaaromzet (€)', type:'select', opts:['< €100k','€100k–€250k','€250k–€500k','€500k–€1M','€1M–€2.5M','€2.5M–€5M','€5M–€10M','> €10M'] },
-    { id:'avbpersoneel', label:'Aantal medewerkers (FTE)', type:'select', opts:['0 (ZZP)','1–5','6–15','16–50','> 50'] },
+    { id:'avbomzet', label:'Jaaromzet (€) *', type:'select', opts:['< €100k','€100k–€250k','€250k–€500k','€500k–€1M','€1M–€2.5M','€2.5M–€5M','€5M–€10M','> €10M'] },
+    { id:'avbpersoneel', label:'Aantal medewerkers (FTE)', type:'select', opts:['0 (ZZP)','1–5','6–15','16–50','51–100','> 100'] },
     { id:'avblocatie', label:'Werkt u bij klanten op locatie?', type:'select', opts:['Nee','Soms','Ja — altijd'] },
     { id:'avbproduct', label:'Produceert of verkoopt u producten?', type:'select', opts:['Nee — puur diensten','Ja — handel/retail','Ja — eigen productie'] },
-    { id:'avbexport', label:'Export buiten EU?', type:'select', opts:['Nee','Ja — binnen Europa','Ja — wereldwijd'] },
-    { id:'avbgevaar', label:'Gevaarlijke stoffen of materialen?', type:'select', opts:['Nee','Ja — nader te specificeren'] },
-    { id:'avbdekking', label:'Gewenst verzekerd bedrag', type:'select', opts:['€1.25M','€2.5M','€5M','> €5M'] },
-    { id:'avbschade', label:'Schadeverleden (3 jaar)', type:'select', opts:['Geen schades','1 kleine schade','2 kleine schades','1 grote schade (>€50k)','3+ schades'] },
-    { id:'avbhuidig', label:'Huidige verzekeraar', type:'text', placeholder:'bijv. Allianz (reden van overstap...)' },
+    { id:'avbexport', label:'Export buiten EU?', type:'select', opts:['Nee','Ja — binnen Europa','Ja — wereldwijd incl. VS/Canada'] },
+    { id:'avbgevaar', label:'Gevaarlijke stoffen of materialen?', type:'select', opts:['Nee','Ja — nader te omschrijven'] },
+    { id:'avbhoogte', label:'Werkzaamheden op hoogte (> 2,5m)?', type:'select', opts:['Nee','Soms','Ja — regelmatig'] },
+    { id:'avbonderaan', label:'Onderaannemers of ZZP ingehuurd?', type:'select', opts:['Nee','Soms','Ja — structureel'] },
+    { id:'avbdekking', label:'Gewenst verzekerd bedrag', type:'select', opts:['€1.25M','€2.5M','€5M','€10M','> €10M'] },
+    { id:'avbschade', label:'Schadeverleden (5 jaar)', type:'select', opts:['Geen schades','1 kleine schade (< €5k)','2–3 kleine schades','1 grote schade (> €50k)','Meerdere grote schades'] },
+    { id:'avbhuidig', label:'Huidige verzekeraar + reden overstap', type:'text', placeholder:'bijv. Allianz — te duur / opgezegd' },
+    { id:'avbgeweigerd', label:'Eerder geweigerd door verzekeraar?', type:'select', opts:['Nee','Ja — nader te omschrijven'] },
   ],
   bav: [
-    { id:'bavberoep', label:'Beroep / vakgebied', type:'text', placeholder:'bijv. advocaat, architect, IT consultant' },
-    { id:'bavopdrachten', label:'Type opdrachten', type:'textarea', placeholder:'Wat doet u voor uw klanten? Wat zijn de risicos?' },
-    { id:'bavklanten', label:'Type klanten', type:'select', opts:['Particulieren','Bedrijven (MKB)','Grote bedrijven / multinationals','Gemengd'] },
-    { id:'bavomzet', label:'Jaaromzet (€)', type:'select', opts:['< €50k','€50k–€100k','€100k–€250k','€250k–€500k','> €500k'] },
-    { id:'bavervaring', label:'Jaren ervaring in dit vakgebied', type:'select', opts:['< 2 jaar','2–5 jaar','5–10 jaar','> 10 jaar'] },
-    { id:'bavdekking', label:'Gewenst verzekerd bedrag', type:'select', opts:['€250k','€500k','€1M','€2.5M','> €2.5M'] },
-    { id:'bavschade', label:'Claims / klachten in afgelopen 5 jaar?', type:'select', opts:['Nee','Ja — nader te specificeren'] },
+    { id:'bavberoep', label:'Beroep / vakgebied *', type:'text', placeholder:'bijv. architect, IT consultant, accountant' },
+    { id:'bavopdrachten', label:'Type opdrachten en diensten *', type:'textarea', placeholder:'Wat levert u precies aan klanten? Wat zijn de mogelijke risicos van fouten?' },
+    { id:'bavklanten', label:'Type klanten', type:'select', opts:['Particulieren','MKB bedrijven','Grote bedrijven / multinationals','Overheid','Gemengd'] },
+    { id:'bavomzet', label:'Jaaromzet (€) *', type:'select', opts:['< €50k','€50k–€100k','€100k–€250k','€250k–€500k','€500k–€1M','> €1M'] },
+    { id:'bavpersoneel', label:'Aantal medewerkers', type:'select', opts:['0 (ZZP)','1–5','6–15','16–50','> 50'] },
+    { id:'bavervaring', label:'Jaren ervaring in vakgebied', type:'select', opts:['< 2 jaar','2–5 jaar','5–10 jaar','> 10 jaar'] },
+    { id:'bavretro', label:'Retroactieve dekking nodig?', type:'select', opts:['Nee','Ja — datum: nader te bepalen','Weet niet'] },
+    { id:'bavdekking', label:'Gewenst verzekerd bedrag', type:'select', opts:['€250k','€500k','€1M','€2.5M','€5M','> €5M'] },
+    { id:'bavverplicht', label:'PI verplich gesteld door opdrachtgever?', type:'select', opts:['Nee','Ja — minimaal bedrag vereist'] },
+    { id:'bavschade', label:'Claims of klachten (5 jaar)', type:'select', opts:['Nee','Ja — nader te omschrijven'] },
+    { id:'bavhuidig', label:'Huidige verzekeraar + reden overstap', type:'text', placeholder:'bijv. HDI — contract afgelopen' },
   ],
   transport: [
-    { id:'trvloot', label:'Aantal voertuigen', type:'select', opts:['1','2–5','6–15','16–50','> 50'] },
-    { id:'trtypes', label:'Type voertuigen', type:'text', placeholder:'bijv. bestelwagens, vrachtwagens, aanhangwagens' },
-    { id:'trgebruik', label:'Gebruik', type:'select', opts:['Eigen transport (eigen goederen)','Derden transport (goederen van klanten)','Beide'] },
-    { id:'trgebied', label:'Rijgebied', type:'select', opts:['Nederland','Europa','Internationaal (buiten EU)'] },
-    { id:'trcargo', label:'Goederentransport meeverzekeren?', type:'select', opts:['Nee','Ja — eigen goederen','Ja — goederen van derden (CMR)'] },
-    { id:'tromzet', label:'Jaaromzet transport (€)', type:'select', opts:['< €250k','€250k–€500k','€500k–€1M','> €1M'] },
-    { id:'trschade', label:'Schadeverleden vloot (3 jaar)', type:'select', opts:['Geen','1–2 schades','3–5 schades','Meer dan 5 schades'] },
+    { id:'trtransporttype', label:'Type transport activiteit *', type:'select', opts:['Eigen vervoer (eigen goederen)','Derden vervoer (goederen van klanten)','Beide','Koeriersdienst','Internationaal vrachttransport'] },
+    { id:'trvloot', label:'Aantal voertuigen *', type:'select', opts:['1','2–5','6–15','16–50','> 50'] },
+    { id:'trtypes', label:'Type voertuigen', type:'text', placeholder:'bijv. bestelwagens, vrachtwagens, opleggers, kranen' },
+    { id:'trgebied', label:'Rijgebied', type:'select', opts:['Nederland','Benelux','Europa','Internationaal (buiten EU)','Wereldwijd'] },
+    { id:'trcmr', label:'Internationaal vervoer (CMR-aansprakelijkheid)?', type:'select', opts:['Nee','Ja — EU','Ja — wereldwijd'] },
+    { id:'trcargo', label:'Goederenwaarde per transport (€)', type:'select', opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M'] },
+    { id:'trgoederen', label:'Type goederen', type:'text', placeholder:'bijv. elektronica, bouwmaterialen, voedsel, gevaarlijke stoffen (ADR)' },
+    { id:'tradrkoel', label:'Gevaarlijke stoffen (ADR) of koelvervoer?', type:'select', opts:['Nee','Ja — ADR','Ja — koelvervoer','Beide'] },
+    { id:'trgps', label:'GPS / track & trace aanwezig?', type:'select', opts:['Ja — volledig','Gedeeltelijk','Nee'] },
+    { id:'tromzet', label:'Jaaromzet transport (€)', type:'select', opts:['< €250k','€250k–€500k','€500k–€1M','€1M–€5M','> €5M'] },
+    { id:'trschade', label:'Schadeverleden vloot (3 jaar)', type:'select', opts:['Geen','1–2 kleine schades','3–5 schades','Meer dan 5 schades','Grote schade (> €50k)'] },
+    { id:'trhuidig', label:'Huidige verzekeraar + reden overstap', type:'text', placeholder:'bijv. Zurich — te duur' },
   ],
-  cyber: [
-    { id:'cybersector', label:'Sector / branche', type:'text', placeholder:'bijv. e-commerce, zorg, financieel' },
-    { id:'cyberomzet', label:'Jaaromzet (€)', type:'select', opts:['< €250k','€250k–€1M','€1M–€5M','> €5M'] },
-    { id:'cyberdata', label:'Verwerkt u persoonsgegevens (AVG)?', type:'select', opts:['Nee','Ja — beperkt (eigen klanten)','Ja — uitgebreid (grote database)','Ja — bijzondere gegevens (medisch, financieel)'] },
-    { id:'cybersystemen', label:'Kritische IT-systemen?', type:'select', opts:['Standaard kantoor ICT','Webshop / online platform','Productie- of bedrijfssystemen','Cloud-gebaseerde dienstverlening'] },
-    { id:'cyberbackup', label:'Zijn er regelmatige backups?', type:'select', opts:['Ja — dagelijks offsite','Ja — wekelijks','Soms','Nee'] },
-    { id:'cybermfa', label:'Multi-factor authenticatie (MFA) actief?', type:'select', opts:['Ja — volledig','Gedeeltelijk','Nee'] },
-    { id:'cyberschade', label:'Cyber incident in afgelopen 3 jaar?', type:'select', opts:['Nee','Ja — nader te specificeren'] },
+  evenementen: [
+    { id:'evnaam', label:'Naam / type evenement *', type:'text', placeholder:'bijv. muziekfestival, bedrijfsfeest, sportevenement, beurs' },
+    { id:'evdatum', label:'Datum evenement', type:'text', placeholder:'bijv. 15 juni 2025' },
+    { id:'evduur', label:'Duur evenement', type:'select', opts:['1 dag','2–3 dagen','4–7 dagen','Meerdere weekenden','Doorlopend (seizoen)'] },
+    { id:'evlocatie', label:'Locatie type', type:'select', opts:['Binnen (zaal/hal)','Buiten','Beide (indoor + outdoor)','Mobiel (wisselende locaties)'] },
+    { id:'evbezoeker', label:'Verwacht aantal bezoekers', type:'select', opts:['< 100','100–500','500–2.500','2.500–10.000','> 10.000'] },
+    { id:'evkaartjes', label:'Entreegeld / kaartverkoop?', type:'select', opts:['Nee — gratis toegang','Ja — kaartverkoop','Ja — abonnementen'] },
+    { id:'evomzet', label:'Totale omzet / begroting evenement (€)', type:'select', opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M'] },
+    { id:'evactiviteit', label:'Bijzondere activiteiten of risicos', type:'text', placeholder:'bijv. vuurwerk, podia, alcohol, extreme sporten, live acts' },
+    { id:'evannulering', label:'Annuleringsverzekering gewenst?', type:'select', opts:['Nee','Ja','Weet niet'] },
+    { id:'evaansprakelijk', label:'Aansprakelijkheid organisator meeverzekeren?', type:'select', opts:['Ja','Nee','Weet niet'] },
+    { id:'evmaterialen', label:'Materialen / apparatuur meeverzekeren?', type:'select', opts:['Nee','Ja — eigen materiaal','Ja — gehuurd materiaal','Beide'] },
+    { id:'evvergunning', label:'Vergunningen aangevraagd?', type:'select', opts:['Ja — compleet','In aanvraag','Nog niet'] },
+  ],
+  machine: [
+    { id:'mtype', label:'Type machine(s) *', type:'text', placeholder:'bijv. CNC-freesmachine, kraan, compressor, generator, productielijn' },
+    { id:'mwaarde', label:'Totale nieuwwaarde machines (€) *', type:'select', opts:['< €50k','€50k–€250k','€250k–€1M','€1M–€5M','> €5M'] },
+    { id:'mleeftijd', label:'Gemiddelde leeftijd machines', type:'select', opts:['< 2 jaar','2–5 jaar','5–10 jaar','> 10 jaar'] },
+    { id:'msector', label:'Sector / branche', type:'text', placeholder:'bijv. metaalbewerking, bouw, voedselproductie, energie' },
+    { id:'mgebruik', label:'Gebruik machines', type:'select', opts:['Eigen gebruik','Verhuurd aan derden','Beide'] },
+    { id:'mlocatie', label:'Locatie machines', type:'select', opts:['Vast (eigen locatie)','Mobiel (wisselende locaties)','Beide'] },
+    { id:'monderhoud', label:'Onderhoud en inspectie', type:'select', opts:['Regelmatig — gecertificeerd','Regelmatig — eigen dienst','Onregelmatig','Weet niet'] },
+    { id:'mbedrijfsschade', label:'Bedrijfsschade / stilstandverzekering gewenst?', type:'select', opts:['Nee','Ja','Weet niet'] },
+    { id:'mstilstand', label:'Max. stilstandperiode acceptabel', type:'select', opts:['1–3 dagen','1 week','2 weken','1 maand','> 1 maand'] },
+    { id:'mschade', label:'Schadeverleden machines (5 jaar)', type:'select', opts:['Geen','1 schade','2–3 schades','Meerdere grote schades'] },
+    { id:'mhuidig', label:'Huidige verzekeraar + reden overstap', type:'text', placeholder:'bijv. Allianz — contract afgelopen' },
+  ],
+  msv: [
+    { id:'msvtype', label:'Type project *', type:'select', opts:['Nieuwbouw woning(en)','Utiliteitsbouw (kantoor, bedrijfshal)','Renovatie / verbouwing','Installatieproject','Infrastructuur (wegen, bruggen)','Industriële installatie','Anders'] },
+    { id:'msvomschrijving', label:'Projectomschrijving *', type:'textarea', placeholder:'Wat wordt er gebouwd, geïnstalleerd of gemonteerd?' },
+    { id:'msvwaarde', label:'Aanneemsom / projectwaarde (€) *', type:'select', opts:['< €100k','€100k–€500k','€500k–€2M','€2M–€10M','€10M–€50M','> €50M'] },
+    { id:'msvduur', label:'Looptijd project', type:'select', opts:['< 3 maanden','3–6 maanden','6–12 maanden','1–2 jaar','> 2 jaar'] },
+    { id:'msvlocatie', label:'Projectlocatie', type:'text', placeholder:'bijv. Amsterdam, Rotterdam, buitenland' },
+    { id:'msvopdrachtgever', label:'Opdrachtgever type', type:'select', opts:['Particulier','MKB bedrijf','Grote onderneming','Overheid / gemeente','Woningcorporatie'] },
+    { id:'msvhoofdaan', label:'Bent u hoofdaannemer of onderaannemer?', type:'select', opts:['Hoofdaannemer','Onderaannemer','Beide rollen','ZZP / eenmanszaak'] },
+    { id:'msvonderaan', label:'Onderaannemers ingehuurd?', type:'select', opts:['Nee','Ja — nationaal','Ja — internationaal'] },
+    { id:'msvbestaand', label:'Bestaande opstal meeverzekeren?', type:'select', opts:['Nee','Ja — waarde nader te bepalen'] },
+    { id:'msvcar', label:'CAR (Contractors All Risk) of MSV?', type:'select', opts:['CAR — bouwkundig','MSV — montage/installatie','Combinatie','Weet niet — laat AJOGA adviseren'] },
+    { id:'msvschade', label:'Schadeverleden projecten (5 jaar)', type:'select', opts:['Geen','1 schade','2–3 schades','Meerdere grote schades'] },
   ],
 };
 
@@ -564,122 +520,132 @@ function showDektingFields() {
 }
 
 // ── SYSTEM PROMPT ─────────────────────────────────────────────────────────
-const SYSTEM = `You are AJOGA, a warm and knowledgeable Dutch insurance intermediary (tussenpersoon). You help clients apply for insurance through a guided, natural conversation. You are NOT an insurer — you never accept or decline. You collect information, analyse risks, and package a complete dossier for the AJOGA owner to review and manually forward to the insurer.
+const SYSTEM = `You are AJOGA, a specialist Dutch insurance intermediary (tussenpersoon) with deep expertise in exactly 5 commercial insurance lines: AVB, BAV, Transport & Logistiek, Evenementenverzekering, and Machinebreuk & MSV/CAR. You do NOT handle other insurance types. If asked about other products (home, car, health, life etc.), politely explain AJOGA only covers these 5 specialisms and suggest a general broker for other needs.
 
-LANGUAGE: Always Dutch ("u" form — respectful, warm). Switch to English if the client writes in English.
-
-TONE: Warm, simple, clear. No jargon. Max 2 questions at a time. Be reassuring and professional. Short paragraphs.
+LANGUAGE: Always Dutch (u-form). Switch to English if the client writes English.
+TONE: Professional, warm, specialist authority. Max 2 follow-up questions at a time. Short clear paragraphs.
 
 INSURER LOGIC:
-- Always follow client's stated preference first
-- If no preference: advise the best fitting insurer based purely on the risk profile — no default preference
-- Consider: Nationale-Nederlanden, Allianz, AXA, Centraal Beheer, Interpolis, Zurich, HDI, Aegon
-- Always explain simply why you recommend a specific insurer for this risk
+- Follow client preference first
+- If no preference: advise best insurer based purely on risk profile
+- AVB/BAV MKB: NN, Centraal Beheer, AXA, Allianz, HDI, Chubb
+- Transport: Zurich, AXA, Allianz, HDI, TVM
+- Evenementen: Hiscox, Chubb, AIG, Markel
+- Machinebreuk: Allianz Engineering, HSB, Chubb, Zurich
+- MSV/CAR: Allianz, AXA XL, Zurich, Munich Re, HDI
 
-PRODUCT-SPECIFIC FOLLOW-UP QUESTIONS:
+== AVB - BEDRIJFSAANSPRAKELIJKHEID ==
+Covers: lichamelijk letsel of zaakschade aan derden door bedrijfsactiviteiten of producten.
+Key follow-up questions (ask what is missing from form):
+- Exacte dagelijkse werkzaamheden — wat doet het bedrijf precies?
+- Werkt men bij klanten op locatie?
+- Worden producten gemaakt, bewerkt of verkocht? Export buiten EU?
+- Werkzaamheden op hoogte (>2,5m) of in besloten ruimten?
+- Gevaarlijke stoffen (REACH, CMR-stoffen)?
+- Onderaannemers ingehuurd — zijn zij zelf verzekerd?
+- Contractuele aansprakelijkheid (boeteclausules in contracten)?
+Risk flags: bouw + hoogte = hoog risico, productie + export VS/CA = hoog risico, puur kantoor = laag risico
+Standard exclusions: opzet, eigen werk/product, beroepsfouten, motorrijtuigen, milieu, recall, cyber
 
-🏠 VERHUUR WONING — verify and deepen:
-- Huurcontract aanwezig? Geregistreerd bij gemeente?
-- Hoe lang al verhuurd? Wisselende huurders?
-- VvE (Vereniging van Eigenaren) aanwezig bij appartement?
-- Is de woning verbouwd of aangepast voor verhuur?
-- Zijn er huisdieren toegestaan aan huurders?
-- Zelfstandige of onzelfstandige woonruimte?
+== BAV - BEROEPSAANSPRAKELIJKHEID ==
+Covers: financiele schade bij derden door fouten of nalatigheid in de beroepsuitoefening.
+Key follow-up questions:
+- Exacte aard van adviezen of diensten — wat kan er misgaan?
+- Potentiele schadeomvang bij een fout?
+- Werkzaamheden voor overheid of financiele instellingen?
+- Gebruik van onderaannemers of freelancers?
+- Retroactieve datum — hoe lang al actief?
+- Verplichtstelling door beroepsvereniging of opdrachtgever?
+- Buitenlandse opdrachten (VS/CA vereist aparte dekking)?
+Risk flags: financieel advies = hoog, IT/software = hoog, medisch = hoog
+Always check: retroactieve dekking, run-off bij bedrijfsstop, buitenlandse clausule
+Always claims-made basis in NL
 
-🏗 OPSTAL / 🛋 INBOEDEL / 🏡 WOONHUIS — verify and deepen:
-- Plat of zadeldak? Dakbedekking type (EPDM, pannen, bitumen)?
-- Staat van onderhoud (goed, matig, slecht)?
-- Kelder aanwezig?
-- Alarmsysteem of rookmelders aanwezig?
-- Spouwmuurisolatie of na-isolatie aangebracht?
+== TRANSPORT & LOGISTIEK ==
+Covers: CMR-aansprakelijkheid, goederentransport, wagenparkdekking, freight liability.
+Key follow-up questions:
+- Eigen vervoer of vervoer voor derden (CMR)?
+- Welke goederen — waarde per zending?
+- ADR (gevaarlijke stoffen) of koelvervoer?
+- Internationale routes — welke landen?
+- Eigen rijders of inhuur externe carriers?
+- Beveiligingsmaatregelen (GPS, alarmen, sealen)?
+Risk flags: ADR = hoog, hoge ladingwaarde = hoog, internationale routes = gemiddeld
+Key policies: CMR-verzekering, goederentransportverzekering, wagenpark WA/casco
 
-🚗 AUTO — verify and deepen:
-- Wagenpark of privé voertuig?
-- Wordt de auto geleased of is het eigendom?
-- Andere bestuurders (partner, kinderen)?
-- Garageplaats of openbaar parkeren?
-- Elektrisch, hybride of brandstof?
+== EVENEMENTENVERZEKERING ==
+Covers: annulering/afgelasting, aansprakelijkheid organisator, materialen, bezoekers.
+Key follow-up questions:
+- Publiek evenement of besloten feest?
+- Alcohol geschonken? Podia, tribunes of tijdelijke constructies?
+- Artiesten of acts met contractuele verplichtingen?
+- Outdoor en weersafhankelijk?
+- Calamiteitenplan aanwezig?
+- Zijn externe leveranciers (catering, beveiliging) zelf verzekerd?
+Risk flags: outdoor + >5000 bezoekers = hoog, vuurwerk = hoog, alcohol + grote menigte = hoog
+Key policies: aansprakelijkheid organisator, annulering, materialen, ongevallen bezoekers
 
-⚖️ AVP — verify and deepen:
-- Sport of hobby's met verhoogd risico?
-- Vrijwilligerswerk?
+== MACHINEBREUK & TECHNISCHE VERZEKERING ==
+Covers: plotselinge en onvoorziene schade aan machines, installaties en technische systemen.
+Key follow-up questions:
+- Vast opgesteld of mobiel?
+- Ouderdom en onderhoudsstatus — keuringen aanwezig (Kiwa, Lloyds)?
+- Productieverlies bij stilstand — hoeveel per dag/week?
+- Worden machines verhuurd aan derden?
+- Lease of eigendom?
+Risk flags: machines >10 jaar oud = gemiddeld, geen keuringen = hoog, hoge stilstandkosten = hoog
+Key additions: bedrijfsschade/stilstand, verhuurderrisico, inspectiedienst
 
-✈️ REIS — verify and deepen:
-- Heeft u al een reisverzekering via creditcard?
-- Medische aandoeningen of beperkingen?
-- Kostbaarste bagage items?
+== MSV / CAR - MONTAGE, CONSTRUCTIE & INSTALLATIE ==
+Covers: schade aan het werk tijdens bouw of montage, aansprakelijkheid, gereedschappen.
+Key follow-up questions:
+- CAR (bouwkundig) of MSV (montage/installatie) of combinatie?
+- Bestaande opstal ook in gevaar tijdens het werk?
+- Wie is verzekeringnemer — opdrachtgever of aannemer?
+- Onderaannemers mee op de polis?
+- Proefdraaien/testen voor oplevering?
+- Onderhoudstermijn na oplevering (12-24 maanden)?
+- Omringende eigendommen risico?
+Risk flags: waterwerken = hoog, tunnels = hoog, installaties in bestaand gebouw = gemiddeld
+Key clauses: bestaande eigendommen, onderhoudstermijn, derde-aansprakelijkheid, proefdraaien
 
-💼 AOV / ZZP — verify and deepen:
-- Eigen risico periode gewenst?
-- Indexatie gewenst?
-- Bestaande arbeidsongeschiktheidsverzekering of WIA?
-- Medische voorgeschiedenis relevant?
+RISK RATINGS TO USE IN OUTPUT: 🟢 Laag / 🟡 Gemiddeld / 🔴 Hoog
 
-🏭 AVB — verify and deepen:
-- Onderaannemers of ZZP'ers ingehuurd?
-- Werkzaamheden op hoogte (> 2,5m)?
-- Werk in explosiegevaarlijke omgevingen?
-- Huidige verzekering opgezegd of geweigerd?
-- Europese of mondiale dekking gewenst?
-
-📋 BAV — verify and deepen:
-- Werkzaamheden voor overheidsinstanties?
-- Werkt u met vertrouwelijke of gevoelige informatie?
-- PI verzekering vereist door opdrachtgevers?
-- Retroactieve dekking nodig?
-
-🚛 TRANSPORT — verify and deepen:
-- CMR aansprakelijkheid (internationaal vervoer)?
-- Koelvervoer of gevaarlijke stoffen (ADR)?
-- Eigen rijders of ook inhuur?
-- GPS/track & trace aanwezig?
-
-💻 CYBER — verify and deepen:
-- Verwerkersovereenkomsten afgesloten met leveranciers?
-- ISO 27001 of andere certificering?
-- Welke data wordt opgeslagen (klantdata, financieel, medisch)?
-- Cloudopslag of eigen servers?
-- Pentests uitgevoerd?
-
-DOSSIER OUTPUT FORMAT (use when you have enough info):
+DOSSIER OUTPUT FORMAT — use when you have enough information:
 ---DOSSIER---
-## AJOGA DOSSIER — [PRODUCT]
+## AJOGA DOSSIER — [PRODUCT NAAM]
 
-**Referentie:** AJG-[YEAR]-[NUMBER]
-**Datum:** [TODAY]
+**Referentie:** AJG-[YEAR]-[NR]
+**Datum:** [VANDAAG]
 **Status:** Gereed voor doorsturen naar verzekeraar
 
 ### KLANTGEGEVENS
-**Naam:** [naam]
-**Geboortedatum:** [datum]
-**Telefoon:** [tel]
-**E-mail:** [email]
-**Woonadres:** [adres]
-**Risicoadres:** [adres indien afwijkend]
+**Naam:** [naam] | **Geboortedatum:** [datum]
+**Telefoon:** [tel] | **E-mail:** [email]
+**Woonadres:** [adres] | **Risicoadres:** [risicoadres indien afwijkend]
 **Verzekeraar voorkeur:** [voorkeur]
 
 ### RISICOPROFIEL
-[2-3 zinnen samenvatting]
+[2-3 zinnen kernomschrijving van het risico en de activiteiten]
 
 ### RISICOBEOORDELING
-[Per factor: 🟢 Laag / 🟡 Gemiddeld / 🔴 Hoog]
+[Per risicofactor met rating: 🟢 Laag / 🟡 Gemiddeld / 🔴 Hoog]
 
 ### BENODIGDE DEKKING
-[Welke producten, limieten en clausules in eenvoudig Nederlands]
+[Welke polissen, limieten, clausules en bijzondere voorwaarden — in eenvoudig Nederlands]
 
 ### VERZEKERAAR ADVIES
-**Voorkeur:** [naam]
-**Reden:** [eenvoudige uitleg]
-**Alternatief:** [back-up]
+**Aanbevolen:** [naam + korte reden]
+**Alternatief:** [naam + reden]
 
 ### PREMIE-INDICATIE
-[Bandbreedte per product — altijd toevoegen: "Indicatief — definitieve premie door verzekeraar"]
+[Bandbreedte per product — altijd toevoegen: "Indicatief — definitieve premie door verzekeraar vastgesteld"]
 
 ### AANDACHTSPUNTEN VOOR VERZEKERAAR
-[Bijzonderheden, risicoverhogingen, uitsluitingen, clausules]
+[Risicoverhogingen, uitsluitingen, bijzondere clausules, ontbrekende informatie]
 
 ### AJOGA INTERMEDIAIR NOTITIE
-AJOGA is tussenpersoon. Verzekeraar neemt definitieve acceptatiebeslissing.
+AJOGA is een onafhankelijke tussenpersoon. De verzekeraar neemt de definitieve acceptatiebeslissing op basis van dit dossier.
 ---EINDE---
 
 After the dossier, tell the client warmly their application is complete and AJOGA will forward it to the insurer. They will be contacted about the outcome.`;
