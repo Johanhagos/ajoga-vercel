@@ -203,6 +203,21 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 .modal-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:var(--bg)}
 
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* UPLOAD */
+.upload-box{border:2px dashed var(--border);border-radius:8px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--bg);position:relative}
+.upload-box:hover{border-color:var(--green);background:var(--green-light)}
+.upload-box.has-files{border-color:var(--green);border-style:solid;background:var(--green-light)}
+.upload-icon{font-size:24px;margin-bottom:6px;display:block}
+.upload-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:3px}
+.upload-sub{font-size:11px;color:var(--text3)}
+.upload-files{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.upload-file-item{display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:5px;padding:6px 10px;text-align:left}
+.upload-file-name{font-size:11px;color:var(--text);flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.upload-file-size{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3)}
+.upload-file-remove{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;line-height:1;padding:0 2px}
+.upload-file-remove:hover{color:var(--red)}
+.upload-count{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);margin-top:4px;display:block}
 </style>
 </head>
 <body>
@@ -240,8 +255,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
       </div>
 
       <div class="form-tabs">
-        <button class="ftab active" id="tab-contact" onclick="switchTab('contact')">👤 Contact Details</button>
+        <button class="ftab active" id="tab-contact" onclick="switchTab('contact')">👤 Contact</button>
         <button class="ftab" id="tab-dekking" onclick="switchTab('dekking')">🛡 Coverage</button>
+        <button class="ftab" id="tab-upload" onclick="switchTab('upload')">📎 Documents</button>
       </div>
 
       <div class="form-scroll">
@@ -404,6 +420,74 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
           <div id="dynamic-fields"></div>
 
         </div>
+
+        <!-- TAB 3: DOCUMENT UPLOAD -->
+        <div class="form-section" id="section-upload">
+
+          <div class="section-header">
+            <div class="section-icon si-amber">📎</div>
+            <span class="section-header-text">Document Upload</span>
+          </div>
+
+          <p style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.6">Upload any relevant documents to support your application. All file types accepted (PDF, JPG, PNG, DOCX). Max 10MB per file.</p>
+
+          <div class="fg">
+            <label class="fl">Existing insurance policies</label>
+            <div class="upload-box" onclick="document.getElementById('up-policy').click()" id="box-policy">
+              <input type="file" id="up-policy" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('policy', this)"/>
+              <div class="upload-icon">📄</div>
+              <div class="upload-label">Click to upload or drag & drop</div>
+              <div class="upload-sub">Current policies, coverage summaries</div>
+              <div class="upload-files" id="files-policy"></div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Company registration / KvK extract</label>
+            <div class="upload-box" onclick="document.getElementById('up-kvk').click()" id="box-kvk">
+              <input type="file" id="up-kvk" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('kvk', this)"/>
+              <div class="upload-icon">🏢</div>
+              <div class="upload-label">Click to upload or drag & drop</div>
+              <div class="upload-sub">Chamber of Commerce registration, UBO register</div>
+              <div class="upload-files" id="files-kvk"></div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Financial statements / annual reports</label>
+            <div class="upload-box" onclick="document.getElementById('up-financial').click()" id="box-financial">
+              <input type="file" id="up-financial" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx" style="display:none" onchange="handleUpload('financial', this)"/>
+              <div class="upload-icon">💰</div>
+              <div class="upload-label">Click to upload or drag & drop</div>
+              <div class="upload-sub">Annual reports, balance sheets, P&L statements</div>
+              <div class="upload-files" id="files-financial"></div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Claims / damage history</label>
+            <div class="upload-box" onclick="document.getElementById('up-claims').click()" id="box-claims">
+              <input type="file" id="up-claims" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('claims', this)"/>
+              <div class="upload-icon">📋</div>
+              <div class="upload-label">Click to upload or drag & drop</div>
+              <div class="upload-sub">Claims history, damage reports, correspondence</div>
+              <div class="upload-files" id="files-claims"></div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Other documents</label>
+            <div class="upload-box" onclick="document.getElementById('up-other').click()" id="box-other">
+              <input type="file" id="up-other" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx,.zip" style="display:none" onchange="handleUpload('other', this)"/>
+              <div class="upload-icon">📎</div>
+              <div class="upload-label">Click to upload or drag & drop</div>
+              <div class="upload-sub">Any other relevant documents</div>
+              <div class="upload-files" id="files-other"></div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
       <div class="form-footer">
@@ -484,6 +568,56 @@ let submissions = JSON.parse(localStorage.getItem('ajoga_subs') || '[]');
 let currentSub = null;
 let chatActive = false;
 let currentTab = 'contact';
+let uploadedFiles = { policy: [], kvk: [], financial: [], claims: [], other: [] };
+
+function handleUpload(category, input) {
+  const files = Array.from(input.files);
+  const maxSize = 10 * 1024 * 1024; // 10MB
+  const validFiles = files.filter(f => {
+    if (f.size > maxSize) { alert(f.name + ' is too large. Max 10MB per file.'); return false; }
+    return true;
+  });
+  uploadedFiles[category] = [...uploadedFiles[category], ...validFiles];
+  renderUploadedFiles(category);
+  // Stop click propagation issues
+  input.value = '';
+}
+
+function renderUploadedFiles(category) {
+  const container = document.getElementById('files-' + category);
+  const box = document.getElementById('box-' + category);
+  const files = uploadedFiles[category];
+  container.innerHTML = '';
+  if (files.length === 0) { box.classList.remove('has-files'); return; }
+  box.classList.add('has-files');
+  files.forEach((f, i) => {
+    const item = document.createElement('div');
+    item.className = 'upload-file-item';
+    const sizeStr = f.size > 1024*1024 ? (f.size/1024/1024).toFixed(1) + ' MB' : Math.round(f.size/1024) + ' KB';
+    item.innerHTML = '<span style="font-size:13px">📄</span><span class="upload-file-name">' + esc(f.name) + '</span><span class="upload-file-size">' + sizeStr + '</span><button class="upload-file-remove" onclick="removeFile(\'' + category + '\',' + i + ');event.stopPropagation()">✕</button>';
+    container.appendChild(item);
+  });
+  const count = document.createElement('span');
+  count.className = 'upload-count';
+  count.textContent = files.length + ' file' + (files.length > 1 ? 's' : '') + ' selected';
+  container.appendChild(count);
+}
+
+function removeFile(category, index) {
+  uploadedFiles[category].splice(index, 1);
+  renderUploadedFiles(category);
+}
+
+function getUploadSummary() {
+  const labels = { policy: 'Insurance policies', kvk: 'Company registration', financial: 'Financial statements', claims: 'Claims history', other: 'Other documents' };
+  let summary = '';
+  Object.keys(uploadedFiles).forEach(cat => {
+    if (uploadedFiles[cat].length > 0) {
+      summary += '\n' + labels[cat] + ': ' + uploadedFiles[cat].map(f => f.name).join(', ');
+    }
+  });
+  return summary || 'None uploaded';
+}
 
 const PRODUCT_FIELDS = {
   avb: [
@@ -669,20 +803,27 @@ function switchTab(tab) {
   document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
   document.getElementById('section-' + tab).classList.add('active');
   document.getElementById('tab-' + tab).classList.add('active');
-  document.getElementById('prev-btn').style.display = tab === 'dekking' ? 'block' : 'none';
-  document.getElementById('next-btn').textContent = tab === 'contact' ? 'Next step →' : '🛡 Start application';
+  document.getElementById('prev-btn').style.display = (tab === 'dekking' || tab === 'upload') ? 'block' : 'none';
+  document.getElementById('next-btn').textContent = tab === 'contact' ? 'Next step →' : tab === 'dekking' ? 'Upload Documents →' : '🛡 Start application';
 }
 
 function nextOrStart() {
   if (currentTab === 'contact') {
     if (!document.getElementById('f-voornaam').value.trim()) { alert('Please enter your first name.'); return; }
     switchTab('dekking');
+  } else if (currentTab === 'dekking') {
+    if (!document.getElementById('f-subject').value) { alert('Please select an insurance product.'); return; }
+    switchTab('upload');
   } else {
     startChat();
   }
 }
 
-function prevTab() { switchTab('contact'); }
+function prevTab() {
+  if (currentTab === 'dekking') switchTab('contact');
+  else if (currentTab === 'upload') switchTab('dekking');
+}
+
 
 function toggleRisicoAdres() {
   document.getElementById('risico-adres-fields').style.display =
@@ -760,10 +901,16 @@ function startChat() {
 
   history = [];
   chatActive = true;
+  const uploadSummaryShort = Object.keys(uploadedFiles)
+    .filter(k => uploadedFiles[k].length > 0)
+    .map(k => uploadedFiles[k].length + ' ' + k)
+    .join(', ') || 'none';
+
   currentSub = {
     naam, aanhef, telefoon, email, subject,
     subjectLabel: subjectNames[subject] || subject,
     pref, status: 'new',
+    uploadedDocs: uploadSummaryShort,
     ref: 'AJG-' + new Date().getFullYear() + '-' + String(submissions.length + 1).padStart(4,'0'),
     time: now(), analysis: ''
   };
@@ -789,6 +936,11 @@ ${opmerkingen ? 'OPMERKINGEN: ' + opmerkingen : ''}
 ${dynamicData ? '\nINGEVULDE PRODUCTGEGEVENS:' + dynamicData : ''}
 
 INSTRUCTIE: Spreek de klant aan als "${aanspreking}" (gebruik "u"). Begroet hen professioneel en warm. Bevestig de gewenste verzekering. Gebruik de ingevulde gegevens en stel alleen gerichte vervolgvragen die nog ontbreken voor dit specifieke product. Maximaal 2 vragen tegelijk.`;
+
+  const uploadSummary = getUploadSummary();
+  if (uploadSummary !== 'None uploaded') {
+    intro += '\n\nUPLOADED DOCUMENTS:\n' + uploadSummary + '\nNote: Documents have been uploaded by the client and are available for review in the dossier.';
+  }
 
   history.push({ role: 'user', content: intro });
   showTyping();
