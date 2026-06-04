@@ -7,27 +7,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f5f7f5;
+  --bg: #f7f9f7;
   --white: #ffffff;
-  --surface: #eff3ef;
-  --border: #dce8dc;
-  --border2: #c4d8c4;
-  --green: #1a3d1a;
-  --green2: #122e12;
-  --green-light: #eaf2ea;
-  --green-mid: rgba(26,61,26,0.1);
-  --green-glow: rgba(26,61,26,0.06);
-  --text: #0f1f0f;
-  --text2: #3a5a3a;
-  --text3: #7a9a7a;
+  --surface: #f0f4f0;
+  --border: #e0e8e0;
+  --border2: #ccdacc;
+  --green: #2a7a4a;
+  --green2: #1f5e38;
+  --green-light: #e8f4ed;
+  --green-mid: rgba(42,122,74,0.12);
+  --green-glow: rgba(42,122,74,0.08);
+  --text: #1a2e1a;
+  --text2: #4a6b4a;
+  --text3: #8aab8a;
   --amber: #b87a10;
   --amber-bg: #fdf6e8;
   --red: #b83232;
   --red-bg: #fdf0f0;
   --blue: #2a5aa0;
   --blue-bg: #eef3fb;
-  --shadow: 0 2px 12px rgba(15,31,15,0.08);
-  --shadow2: 0 4px 24px rgba(15,31,15,0.14);
+  --shadow: 0 2px 12px rgba(26,46,26,0.08);
+  --shadow2: 0 4px 24px rgba(26,46,26,0.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden}
@@ -102,7 +102,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 /* ── CHAT PANEL ── */
 .chat-col{flex:1;display:flex;flex-direction:column;background:var(--bg)}
 .chat-header{padding:14px 20px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;box-shadow:0 1px 4px rgba(26,46,26,0.04)}
-.chat-avatar{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(26,61,26,0.3)}
+.chat-avatar{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 6px rgba(42,122,74,0.25)}
 .chat-header-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--text)}
 .chat-header-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:0.5px;margin-top:2px}
 
@@ -110,20 +110,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 
 /* WELCOME STATE */
 .chat-welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px 32px;text-align:center}
-.cw-logo{width:64px;height:64px;background:var(--green);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(26,61,26,0.3);margin:0 auto}
+.cw-logo{width:64px;height:64px;background:var(--green);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(42,122,74,0.25);margin:0 auto}
 .cw-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--text)}
 .cw-sub{font-size:14px;color:var(--text2);line-height:1.7;max-width:360px}
-.cw-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:400px}
-.cw-prod{background:var(--white);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;flex-direction:row;align-items:center;gap:10px;font-size:12px;font-weight:500;color:var(--text2);transition:all 0.15s;text-align:left}
-.cw-prod:hover{border-color:var(--green);color:var(--green);background:var(--green-light)}
-.cw-prod-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+.cw-products{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%;max-width:480px}
+.cw-prod{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--text2);transition:all 0.15s}
+.cw-prod:hover{border-color:var(--green);color:var(--green)}
+.cw-prod-icon{font-size:22px}
 
 /* MESSAGES */
 .msg-wrap{display:flex;gap:12px;align-items:flex-start;animation:fu 0.3s ease}
 @keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .msg-wrap.right{flex-direction:row-reverse}
 .msg-av{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
-.av-ai{background:var(--green);box-shadow:0 2px 6px rgba(26,61,26,0.25);display:flex;align-items:center;justify-content:center}
+.av-ai{background:var(--green);box-shadow:0 2px 6px rgba(42,122,74,0.25)}
 .av-cl{background:var(--blue-bg);border:1.5px solid var(--border);font-size:11px;font-weight:600;color:var(--blue)}
 .msg-bub{max-width:78%;padding:12px 16px;font-size:13.5px;line-height:1.8;border-radius:3px 12px 12px 12px}
 .bub-ai{background:var(--white);border:1.5px solid var(--border);color:var(--text);box-shadow:var(--shadow)}
@@ -225,12 +225,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 <!-- TOPNAV -->
 <div id="topnav">
   <div class="brand">
-    <div class="brand-icon">
-      <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white" stroke="white" stroke-width="0.5"/>
-        <path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+    <div class="brand-icon">🛡</div>
     <div>
       <div class="brand-name">AJOGA</div>
       <div class="brand-sub">Independent Intermediary</div>
@@ -255,7 +250,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
     <!-- FORM -->
     <div class="form-col">
       <div class="col-head">
-        <div class="col-head-title" style="font-family:'Playfair Display',serif;color:var(--green)">Insurance Application</div>
+        <div class="col-head-title">Insurance Application</div>
         <div class="col-head-sub">Fill in your details · AJOGA will guide you through</div>
       </div>
 
@@ -320,7 +315,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 
           <div class="section-divider"></div>
           <div class="section-header">
-            <div class="section-icon si-blue">🛡</div>
+            <div class="section-icon si-blue">🏠</div>
             <span class="section-header-text">Home / Business Address</span>
           </div>
 
@@ -504,7 +499,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
     <!-- CHAT -->
     <div class="chat-col">
       <div class="chat-header">
-        <div class="chat-avatar"><svg width="22" height="22" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="52" cy="62" rx="26" ry="16" fill="#1a3d1a"/><ellipse cx="38" cy="46" rx="10" ry="13" fill="#1a3d1a"/><ellipse cx="58" cy="42" rx="11" ry="15" fill="#1a3d1a"/><rect x="64" y="36" width="9" height="20" rx="4" fill="#1a3d1a"/><ellipse cx="70" cy="33" rx="8" ry="7" fill="#1a3d1a"/><rect x="30" y="74" width="7" height="16" rx="3" fill="#1a3d1a"/><rect x="44" y="74" width="7" height="16" rx="3" fill="#1a3d1a"/><rect x="56" y="74" width="7" height="14" rx="3" fill="#1a3d1a"/><rect x="67" y="74" width="7" height="14" rx="3" fill="#1a3d1a"/><circle cx="73" cy="30" r="2" fill="white"/></svg></div>
+        <div class="chat-avatar">🛡</div>
         <div>
           <div class="chat-header-title">AJOGA — Your Insurance Intermediary</div>
           <div class="chat-header-sub">Commercial specialist · AVB · BAV · Transport · Events · Machinery · MSV/CAR</div>
@@ -513,17 +508,17 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
       </div>
 
       <div id="client-chat">
-        <div class="chat-welcome" id="chat-welcome" style="background:var(--white)">
-          <div class="cw-logo"><svg width="36" height="40" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white" stroke="white" stroke-width="0.5"/><path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="chat-welcome" id="chat-welcome">
+          <div class="cw-logo">🛡</div>
           <div class="cw-title">Welcome to AJOGA</div>
           <div class="cw-sub">Fill in your contact details and desired insurance in the form on the left. AJOGA analyses your risk and prepares your dossier for the insurer.</div>
           <div class="cw-products">
-            <div class="cw-prod"><div class="cw-prod-dot"></div>Commercial Liability (AVB)</div>
-            <div class="cw-prod"><div class="cw-prod-dot"></div>Professional Indemnity (BAV)</div>
-            <div class="cw-prod"><div class="cw-prod-dot"></div>Transport &amp; Logistics</div>
-            <div class="cw-prod"><div class="cw-prod-dot"></div>Event Insurance</div>
-            <div class="cw-prod"><div class="cw-prod-dot"></div>Machinery Breakdown</div>
-            <div class="cw-prod"><div class="cw-prod-dot"></div>Erection &amp; Construction</div>
+            <div class="cw-prod"><span class="cw-prod-icon">🏭</span>AVB</div>
+            <div class="cw-prod"><span class="cw-prod-icon">📋</span>BAV</div>
+            <div class="cw-prod"><span class="cw-prod-icon">🚛</span>Transport</div>
+            <div class="cw-prod"><span class="cw-prod-icon">🎪</span>Evenementen</div>
+            <div class="cw-prod"><span class="cw-prod-icon">⚙️</span>Machinebreuk</div>
+            <div class="cw-prod"><span class="cw-prod-icon">🏗</span>MSV/CAR</div>
           </div>
         </div>
       </div>
@@ -539,9 +534,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
   <div id="owner-view" class="view">
     <div class="owner-topbar">
       <div>
-          <h2>Ajoga Dashboard</h2>
-          <p>Review client applications · Forward to insurer · Independent Intermediary</p>
-        </div>
+        <h2>Dashboard</h2>
+        <p>Review applications and manually forward to the insurer</p>
       </div>
       <div class="owner-stats">
         <div class="stat-pill"><span class="stat-num" id="stat-total">0</span><span class="stat-lbl">Total</span></div>
@@ -1063,11 +1057,7 @@ function appendMsg(role, content) {
   wrap.className = 'msg-wrap' + (role === 'client' ? ' right' : '');
   const av = document.createElement('div');
   av.className = 'msg-av ' + (role === 'ai' ? 'av-ai' : 'av-cl');
-  if (role === 'ai') {
-      av.innerHTML = '<svg width="16" height="18" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white" stroke="white" stroke-width="0.5"/><path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    } else {
-      av.textContent = '👤';
-    }
+  av.textContent = role === 'ai' ? '🛡' : '👤';
   const bub = document.createElement('div');
   bub.className = 'msg-bub ' + (role === 'ai' ? 'bub-ai' : 'bub-cl');
   bub.innerHTML = role === 'ai' ? fmt(content) : esc(content);
