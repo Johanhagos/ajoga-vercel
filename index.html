@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,35 +7,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f7f9f7;
-  --white: #ffffff;
-  --surface: #f0f4f0;
-  --border: #e0e8e0;
-  --border2: #ccdacc;
-  --green: #2a7a4a;
-  --green2: #1f5e38;
-  --green-light: #e8f4ed;
-  --green-mid: rgba(42,122,74,0.12);
-  --green-glow: rgba(42,122,74,0.08);
-  --text: #1a2e1a;
-  --text2: #4a6b4a;
-  --text3: #8aab8a;
-  --amber: #b87a10;
-  --amber-bg: #fdf6e8;
-  --red: #b83232;
-  --red-bg: #fdf0f0;
-  --blue: #2a5aa0;
-  --blue-bg: #eef3fb;
-  --shadow: 0 2px 12px rgba(26,46,26,0.08);
-  --shadow2: 0 4px 24px rgba(26,46,26,0.12);
+  --bg:#f5f7f5; --white:#ffffff; --surface:#eff3ef;
+  --border:#dce8dc; --border2:#c4d8c4;
+  --green:#1a3d1a; --green2:#122e12;
+  --green-light:#eaf2ea; --green-glow:rgba(26,61,26,0.06);
+  --text:#0f1f0f; --text2:#3a5a3a; --text3:#7a9a7a;
+  --amber:#b87a10; --amber-bg:#fdf6e8;
+  --red:#b83232; --red-bg:#fdf0f0;
+  --blue:#2a5aa0; --blue-bg:#eef3fb;
+  --shadow:0 2px 12px rgba(15,31,15,0.08);
+  --shadow2:0 4px 24px rgba(15,31,15,0.14);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden}
 
-/* ── TOPNAV ── */
-#topnav{background:var(--white);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 24px;gap:20px;flex-shrink:0;box-shadow:0 1px 8px rgba(26,46,26,0.06);position:relative;z-index:20}
+/* TOPNAV */
+#topnav{background:var(--white);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 24px;gap:20px;flex-shrink:0;box-shadow:0 1px 8px rgba(15,31,15,0.06);z-index:20;position:relative}
 .brand{display:flex;align-items:center;gap:12px;padding-right:24px;border-right:1px solid var(--border)}
-.brand-icon{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(42,122,74,0.3)}
+.brand-icon{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(26,61,26,0.3);flex-shrink:0}
 .brand-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);letter-spacing:0.5px}
 .brand-sub{font-size:10px;color:var(--text3);letter-spacing:1px;margin-top:1px;font-family:'DM Mono',monospace;text-transform:uppercase}
 .nav-tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:3px}
@@ -49,14 +38,14 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 
 #err-bar{display:none;background:var(--red-bg);border-bottom:2px solid var(--red);padding:8px 24px;font-size:12px;color:var(--red);z-index:15;flex-shrink:0}
 
-/* ── LAYOUT ── */
+/* LAYOUT */
 #main{flex:1;display:flex;overflow:hidden;position:relative}
 .view{flex:1;display:none;flex-direction:column;overflow:hidden}
 .view.active{display:flex}
 #client-view{flex-direction:row}
 
-/* ── FORM PANEL ── */
-.form-col{width:380px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;box-shadow:2px 0 12px rgba(26,46,26,0.04)}
+/* FORM PANEL */
+.form-col{width:380px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
 .col-head{padding:16px 20px;background:var(--white);border-bottom:1px solid var(--border);flex-shrink:0}
 .col-head-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--text);margin-bottom:3px}
 .col-head-sub{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:0.5px}
@@ -71,7 +60,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 
 /* SECTION HEADERS */
 .section-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;margin-top:4px}
-.section-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.section-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .si-blue{background:var(--blue-bg)}
 .si-green{background:var(--green-light)}
 .si-amber{background:var(--amber-bg)}
@@ -85,7 +74,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 .fi,.fs,.ft{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:6px;padding:8px 11px;font-family:'Inter',sans-serif;font-size:13px;color:var(--text);outline:none;transition:all 0.2s}
 .fi:focus,.fs:focus,.ft:focus{border-color:var(--green);background:var(--white);box-shadow:0 0 0 3px var(--green-glow)}
 .fi::placeholder,.ft::placeholder{color:var(--text3)}
-.fs{cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238aab8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+.fs{cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a9a7a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;background-color:var(--bg)}
 .fs option{background:var(--white)}
 .ft{resize:vertical;min-height:56px;line-height:1.5}
 .frow{display:flex;gap:10px}.frow .fg{flex:1}
@@ -94,39 +83,38 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 .dynamic-title{font-size:10px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:1.5px;font-family:'DM Mono',monospace;margin:14px 0 10px;padding:6px 10px;background:var(--amber-bg);border-radius:4px;border-left:3px solid var(--amber)}
 
 .form-footer{padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;display:flex;gap:8px;background:var(--white)}
-.start-btn{flex:1;background:var(--green);border:none;border-radius:8px;padding:11px;color:white;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.3px}
-.start-btn:hover{background:var(--green2);box-shadow:0 4px 12px rgba(42,122,74,0.3)}
-.prev-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:11px 16px;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s}
-.prev-btn:hover{border-color:var(--border2)}
+.start-btn{flex:1;background:var(--green);border:none;border-radius:8px;padding:12px;color:white;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s}
+.start-btn:hover{background:var(--green2);box-shadow:0 4px 12px rgba(26,61,26,0.3)}
+.prev-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s}
 
-/* ── CHAT PANEL ── */
+/* CHAT PANEL */
 .chat-col{flex:1;display:flex;flex-direction:column;background:var(--bg)}
-.chat-header{padding:14px 20px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;box-shadow:0 1px 4px rgba(26,46,26,0.04)}
-.chat-avatar{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 6px rgba(42,122,74,0.25)}
+.chat-header{padding:14px 20px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;box-shadow:0 1px 4px rgba(15,31,15,0.04)}
+.chat-avatar{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(26,61,26,0.25);flex-shrink:0}
 .chat-header-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--text)}
 .chat-header-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:0.5px;margin-top:2px}
 
 #client-chat{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px}
 
-/* WELCOME STATE */
+/* WELCOME */
 .chat-welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px 32px;text-align:center}
-.cw-logo{width:64px;height:64px;background:var(--green);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(42,122,74,0.25);margin:0 auto}
-.cw-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--text)}
-.cw-sub{font-size:14px;color:var(--text2);line-height:1.7;max-width:360px}
-.cw-products{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%;max-width:480px}
-.cw-prod{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--text2);transition:all 0.15s}
-.cw-prod:hover{border-color:var(--green);color:var(--green)}
-.cw-prod-icon{font-size:22px}
+.cw-logo{width:72px;height:72px;background:var(--green);border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(26,61,26,0.3);margin:0 auto}
+.cw-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--text)}
+.cw-sub{font-size:14px;color:var(--text2);line-height:1.7;max-width:400px}
+.cw-products{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%;max-width:520px}
+.cw-prod{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--text2);transition:all 0.15s;cursor:default}
+.cw-prod:hover{border-color:var(--green);color:var(--green);background:var(--green-light)}
+.cw-prod-icon{font-size:28px;line-height:1}
 
 /* MESSAGES */
 .msg-wrap{display:flex;gap:12px;align-items:flex-start;animation:fu 0.3s ease}
 @keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .msg-wrap.right{flex-direction:row-reverse}
-.msg-av{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
-.av-ai{background:var(--green);box-shadow:0 2px 6px rgba(42,122,74,0.25)}
+.msg-av{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.av-ai{background:var(--green);box-shadow:0 2px 6px rgba(26,61,26,0.25)}
 .av-cl{background:var(--blue-bg);border:1.5px solid var(--border);font-size:11px;font-weight:600;color:var(--blue)}
-.msg-bub{max-width:78%;padding:12px 16px;font-size:13.5px;line-height:1.8;border-radius:3px 12px 12px 12px}
-.bub-ai{background:var(--white);border:1.5px solid var(--border);color:var(--text);box-shadow:var(--shadow)}
+.msg-bub{max-width:78%;padding:12px 16px;font-size:13.5px;line-height:1.8}
+.bub-ai{background:var(--white);border:1.5px solid var(--border);border-radius:3px 12px 12px 12px;color:var(--text);box-shadow:var(--shadow)}
 .bub-cl{background:var(--green);color:white;border-radius:12px 3px 12px 12px}
 .msg-bub h2{font-family:'Playfair Display',serif;font-size:15px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:6px;margin:14px 0 8px}
 .msg-bub h3{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;font-family:'DM Mono',monospace;margin:12px 0 6px}
@@ -154,13 +142,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 .chat-input textarea{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.6;transition:all 0.2s}
 .chat-input textarea:focus{border-color:var(--green);background:var(--white);box-shadow:0 0 0 3px var(--green-glow)}
 .chat-input textarea::placeholder{color:var(--text3)}
-.chat-input button{background:var(--green);border:none;border-radius:10px;padding:10px 18px;color:white;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.2s;letter-spacing:0.3px}
-.chat-input button:hover:not(:disabled){background:var(--green2);box-shadow:0 4px 12px rgba(42,122,74,0.3)}
+.chat-input button{background:var(--green);border:none;border-radius:10px;padding:10px 18px;color:white;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.chat-input button:hover:not(:disabled){background:var(--green2);box-shadow:0 4px 12px rgba(26,61,26,0.3)}
 .chat-input button:disabled{opacity:0.35;cursor:not-allowed}
 
-/* ── DASHBOARD ── */
+/* DASHBOARD */
 #owner-view{flex-direction:column}
-.owner-topbar{padding:16px 24px;border-bottom:1px solid var(--border);background:var(--white);flex-shrink:0;display:flex;align-items:center;gap:20px;box-shadow:0 1px 4px rgba(26,46,26,0.04)}
+.owner-topbar{padding:16px 24px;border-bottom:1px solid var(--border);background:var(--white);flex-shrink:0;display:flex;align-items:center;gap:20px;box-shadow:0 1px 4px rgba(15,31,15,0.04)}
 .owner-topbar h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--text)}
 .owner-topbar p{font-size:12px;color:var(--text3);margin-top:2px}
 .owner-stats{display:flex;gap:10px;margin-left:auto}
@@ -192,9 +180,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 .act-btn.danger:hover{border-color:var(--red);color:var(--red)}
 
 /* MODAL */
-#modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,46,26,0.5);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,31,15,0.5);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 #modal-overlay.open{display:flex}
-#modal{background:var(--white);border:1px solid var(--border);border-radius:14px;width:92%;max-width:720px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(26,46,26,0.2)}
+#modal{background:var(--white);border:1px solid var(--border);border-radius:14px;width:92%;max-width:720px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(15,31,15,0.2)}
 .modal-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg)}
 .modal-head h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--text);flex:1}
 .modal-close{background:none;border:none;color:var(--text3);font-size:22px;cursor:pointer;line-height:1;padding:2px}
@@ -203,21 +191,22 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 .modal-footer{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:var(--bg)}
 
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-
-/* UPLOAD */
-.upload-box{border:2px dashed var(--border);border-radius:8px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--bg);position:relative}
+.upload-box{border:2px dashed var(--border);border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--bg)}
 .upload-box:hover{border-color:var(--green);background:var(--green-light)}
 .upload-box.has-files{border-color:var(--green);border-style:solid;background:var(--green-light)}
-.upload-icon{font-size:24px;margin-bottom:6px;display:block}
-.upload-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:3px}
-.upload-sub{font-size:11px;color:var(--text3)}
-.upload-files{margin-top:10px;display:flex;flex-direction:column;gap:5px}
-.upload-file-item{display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:5px;padding:6px 10px;text-align:left}
-.upload-file-name{font-size:11px;color:var(--text);flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.upload-icon{font-size:22px;margin-bottom:4px;display:block}
+.upload-label{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:2px}
+.upload-sub{font-size:10px;color:var(--text3)}
+.upload-files{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.upload-file-item{display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:5px;padding:5px 8px;text-align:left}
+.upload-file-name{font-size:11px;color:var(--text);flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
 .upload-file-size{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3)}
-.upload-file-remove{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;line-height:1;padding:0 2px}
+.upload-file-remove{background:none;border:none;color:var(--text3);cursor:pointer;font-size:13px;line-height:1;padding:0 2px}
 .upload-file-remove:hover{color:var(--red)}
-.upload-count{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);margin-top:4px;display:block}
+.upload-count{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);margin-top:3px;display:block}
+.lang-switch{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lang-btn{background:transparent;border:none;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:1px;transition:all 0.2s}
+.lang-btn.active{background:var(--green);color:white}
 </style>
 </head>
 <body>
@@ -225,132 +214,127 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 <!-- TOPNAV -->
 <div id="topnav">
   <div class="brand">
-    <div class="brand-icon">🛡</div>
+    <div class="brand-icon">
+      <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+        <path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+        <path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
     <div>
       <div class="brand-name">AJOGA</div>
       <div class="brand-sub">Independent Intermediary</div>
     </div>
   </div>
   <div class="nav-tabs">
-    <button class="ntab active" onclick="goView('client')">💬 Application</button>
-    <button class="ntab" onclick="goView('owner')">📋 Dashboard</button>
+    <button class="ntab active" onclick="goView('client')">💬 Application / Aanvraag</button>
+    <button class="ntab" onclick="goView('owner')">📋 Dashboard / Overzicht</button>
   </div>
   <div class="nav-right">
     <div class="status-badge"><div class="sdot"></div>Online</div>
     <div class="nav-badge">Commercial Specialist</div>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-nl" onclick="setLang('nl')">NL</button>
+    </div>
   </div>
 </div>
 <div id="err-bar"></div>
 
 <div id="main">
 
-  <!-- CLIENT PORTAL -->
+  <!-- CLIENT VIEW -->
   <div id="client-view" class="view active">
 
     <!-- FORM -->
     <div class="form-col">
       <div class="col-head">
-        <div class="col-head-title">Insurance Application</div>
-        <div class="col-head-sub">Fill in your details · AJOGA will guide you through</div>
+        <div class="col-head-title">Insurance Application / Verzekeringsaanvraag</div>
+        <div class="col-head-sub">Fill in your details · Vul uw gegevens in</div>
       </div>
 
       <div class="form-tabs">
-        <button class="ftab active" id="tab-contact" onclick="switchTab('contact')">👤 Contact</button>
-        <button class="ftab" id="tab-dekking" onclick="switchTab('dekking')">🛡 Coverage</button>
-        <button class="ftab" id="tab-upload" onclick="switchTab('upload')">📎 Documents</button>
+        <button class="ftab active" id="tab-contact" onclick="switchTab('contact')">👤 Contact / Gegevens</button>
+        <button class="ftab" id="tab-dekking" onclick="switchTab('dekking')">🛡 Coverage / Dekking</button>
+        <button class="ftab" id="tab-upload" onclick="switchTab('upload')">📎 Documents / Documenten</button>
       </div>
 
       <div class="form-scroll">
 
-        <!-- TAB 1: CONTACT -->
+        <!-- CONTACT TAB -->
         <div class="form-section active" id="section-contact">
-
           <div class="section-header">
             <div class="section-icon si-blue">👤</div>
-            <span class="section-header-text">Personal Details</span>
+            <span class="section-header-text">Personal Details / Persoonsgegevens</span>
           </div>
-
           <div class="frow">
             <div class="fg" style="flex:0 0 110px">
-              <label class="fl">Salutation <span>*</span></label>
+              <label class="fl">Salutation / Aanhef <span>*</span></label>
               <select class="fs" id="f-aanhef">
                 <option value="">Choose...</option>
-                <option>Mr.</option>
-                <option>Mrs.</option>
-                <option>Ms.</option>
-                <option>Dr.</option>
+                <option>Mr.</option><option>Mrs.</option><option>Ms.</option><option>Dr.</option>
               </select>
             </div>
             <div class="fg">
-              <label class="fl">First name <span>*</span></label>
+              <label class="fl">First name / Voornaam <span>*</span></label>
               <input class="fi" id="f-voornaam" placeholder="First name"/>
             </div>
             <div class="fg">
-              <label class="fl">Last name <span>*</span></label>
+              <label class="fl">Last name / Achternaam <span>*</span></label>
               <input class="fi" id="f-achternaam" placeholder="Last name"/>
             </div>
           </div>
-
           <div class="frow">
             <div class="fg">
-              <label class="fl">Date of birth</label>
+              <label class="fl">Date of birth / Geboortedatum</label>
               <input class="fi" id="f-geboortedatum" type="date"/>
             </div>
             <div class="fg">
-              <label class="fl">Company name</label>
+              <label class="fl">Company name / Bedrijfsnaam</label>
               <input class="fi" id="f-bedrijf" placeholder="Optional"/>
             </div>
           </div>
-
           <div class="frow">
             <div class="fg">
-              <label class="fl">Phone <span>*</span></label>
+              <label class="fl">Phone / Telefoon <span>*</span></label>
               <input class="fi" id="f-telefoon" placeholder="+31-6-12345678"/>
             </div>
             <div class="fg">
-              <label class="fl">Email address <span>*</span></label>
+              <label class="fl">Email / E-mailadres <span>*</span></label>
               <input class="fi" id="f-email" placeholder="name@company.com"/>
             </div>
           </div>
-
           <div class="section-divider"></div>
           <div class="section-header">
             <div class="section-icon si-blue">🏠</div>
-            <span class="section-header-text">Home / Business Address</span>
+            <span class="section-header-text">Home / Business Address / Adres</span>
           </div>
-
           <div class="fg">
-            <label class="fl">Street + house number <span>*</span></label>
+            <label class="fl">Street + house number / Straat <span>*</span></label>
             <input class="fi" id="f-straat" placeholder="Street name 12 A"/>
           </div>
           <div class="frow">
             <div class="fg">
-              <label class="fl">Postal code <span>*</span></label>
+              <label class="fl">Postal code / Postcode <span>*</span></label>
               <input class="fi" id="f-postcode" placeholder="1234 AB"/>
             </div>
             <div class="fg">
-              <label class="fl">City <span>*</span></label>
+              <label class="fl">City / Woonplaats <span>*</span></label>
               <input class="fi" id="f-woonplaats" placeholder="Amsterdam"/>
             </div>
           </div>
           <div class="fg">
-            <label class="fl">Country</label>
+            <label class="fl">Country / Land</label>
             <select class="fs" id="f-land">
-              <option>Netherlands</option>
-              <option>Belgium</option>
-              <option>Germany</option>
-              <option>Other</option>
+              <option>Netherlands</option><option>Belgium</option><option>Germany</option><option>Other</option>
             </select>
           </div>
-
           <div class="section-divider"></div>
           <div class="section-header">
             <div class="section-icon si-amber">📍</div>
-            <span class="section-header-text">Risk Address</span>
+            <span class="section-header-text">Risk Address / Risicoadres</span>
           </div>
-
           <div class="fg">
-            <label class="fl">Same as address above?</label>
+            <label class="fl">Same as address above? / Zelfde adres?</label>
             <select class="fs" id="f-zelfde-adres" onchange="toggleRisicoAdres()">
               <option value="ja">Yes — same address</option>
               <option value="nee">No — different risk address</option>
@@ -362,146 +346,133 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
               <input class="fi" id="f-r-straat" placeholder="Street name 12"/>
             </div>
             <div class="frow">
-              <div class="fg"><label class="fl">Postcode</label><input class="fi" id="f-r-postcode" placeholder="1234 AB"/></div>
-              <div class="fg"><label class="fl">Woonplaats</label><input class="fi" id="f-r-woonplaats" placeholder="Rotterdam"/></div>
+              <div class="fg"><label class="fl">Postal code</label><input class="fi" id="f-r-postcode" placeholder="1234 AB"/></div>
+              <div class="fg"><label class="fl">City</label><input class="fi" id="f-r-woonplaats" placeholder="Rotterdam"/></div>
             </div>
           </div>
-
           <div class="section-divider"></div>
           <div class="section-header">
             <div class="section-icon si-green">🏦</div>
-            <span class="section-header-text">Voorkeur & opmerkingen</span>
+            <span class="section-header-text">Preference & Remarks / Voorkeur</span>
           </div>
-
           <div class="fg">
-            <label class="fl">Insurer preference</label>
+            <label class="fl">Insurer preference / Verzekeraar voorkeur</label>
             <select class="fs" id="f-pref">
               <option>No preference (AJOGA advises)</option>
               <option>Nationale-Nederlanden (NN)</option>
-              <option>Allianz</option>
-              <option>AXA</option>
-              <option>Centraal Beheer</option>
-              <option>Interpolis</option>
-              <option>Zurich</option>
-              <option>HDI</option>
-              <option>Hiscox</option>
-              <option>Chubb</option>
-              <option>Aegon</option>
+              <option>Allianz</option><option>AXA</option>
+              <option>Centraal Beheer</option><option>Interpolis</option>
+              <option>Zurich</option><option>HDI</option>
+              <option>Hiscox</option><option>Chubb</option><option>Aegon</option>
             </select>
           </div>
           <div class="fg">
-            <label class="fl">Remarks / additional information</label>
+            <label class="fl">Remarks / Opmerkingen</label>
             <textarea class="ft" id="f-opmerkingen" placeholder="Any additional information relevant to your application..."></textarea>
           </div>
-
         </div>
 
-        <!-- TAB 2: DEKKING -->
+        <!-- COVERAGE TAB -->
         <div class="form-section" id="section-dekking">
-
           <div class="section-header">
             <div class="section-icon si-green">🛡</div>
-            <span class="section-header-text">Desired insurance</span>
+            <span class="section-header-text">Desired Insurance / Verzekering</span>
           </div>
-
           <div class="fg">
-            <label class="fl">Product <span>*</span></label>
+            <label class="fl">Product / Verzekering <span>*</span></label>
             <select class="fs" id="f-subject" onchange="showDekkingFields()">
               <option value="">Select insurance...</option>
-              <option value="avb">🏭 Commercial General Liability (AVB)</option>
-              <option value="bav">📋 Professional Indemnity (BAV)</option>
-              <option value="transport">🚛 Transport & Logistiek</option>
-              <option value="evenementen">🎪 Event Insurance</option>
-              <option value="machine">⚙️ Machinebreuk & Technische Verzekering</option>
-              <option value="msv">🏗 Montage & Constructie (MSV/CAR)</option>
+              <option value="avb">Commercial General Liability (AVB)</option>
+              <option value="bav">Professional Indemnity (BAV)</option>
+              <option value="transport">Transport &amp; Logistics</option>
+              <option value="evenementen">Event Insurance</option>
+              <option value="machine">Machinery Breakdown &amp; Technical</option>
+              <option value="msv">Erection &amp; Construction (MSV/CAR)</option>
             </select>
           </div>
-
           <div id="dynamic-fields"></div>
-
         </div>
 
-        <!-- TAB 3: DOCUMENT UPLOAD -->
-        <div class="form-section" id="section-upload">
 
+        <!-- TAB 3: DOCUMENTS -->
+        <div class="form-section" id="section-upload">
           <div class="section-header">
             <div class="section-icon si-amber">📎</div>
-            <span class="section-header-text">Document Upload</span>
+            <span class="section-header-text" id="sec-docs">Document Upload</span>
           </div>
-
-          <p style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.6">Upload any relevant documents to support your application. All file types accepted (PDF, JPG, PNG, DOCX). Max 10MB per file.</p>
+          <p id="docs-sub" style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.6">Upload any relevant documents to support your application. PDF, JPG, PNG, DOCX accepted. Max 10MB per file.</p>
 
           <div class="fg">
-            <label class="fl">Existing insurance policies</label>
+            <label class="fl" id="lbl-policy">Existing insurance policies</label>
             <div class="upload-box" onclick="document.getElementById('up-policy').click()" id="box-policy">
-              <input type="file" id="up-policy" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('policy', this)"/>
+              <input type="file" id="up-policy" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('policy',this)"/>
               <div class="upload-icon">📄</div>
-              <div class="upload-label">Click to upload or drag & drop</div>
-              <div class="upload-sub">Current policies, coverage summaries</div>
+              <div class="upload-label" id="ul-click">Click to upload or drag & drop</div>
+              <div class="upload-sub" id="ul-policy-sub">Current policies, coverage summaries</div>
               <div class="upload-files" id="files-policy"></div>
             </div>
           </div>
-
           <div class="fg">
-            <label class="fl">Company registration / KvK extract</label>
+            <label class="fl" id="lbl-kvk">Company registration / KvK</label>
             <div class="upload-box" onclick="document.getElementById('up-kvk').click()" id="box-kvk">
-              <input type="file" id="up-kvk" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('kvk', this)"/>
+              <input type="file" id="up-kvk" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('kvk',this)"/>
               <div class="upload-icon">🏢</div>
               <div class="upload-label">Click to upload or drag & drop</div>
-              <div class="upload-sub">Chamber of Commerce registration, UBO register</div>
+              <div class="upload-sub" id="ul-kvk-sub">Chamber of Commerce registration, UBO register</div>
               <div class="upload-files" id="files-kvk"></div>
             </div>
           </div>
-
           <div class="fg">
-            <label class="fl">Financial statements / annual reports</label>
+            <label class="fl" id="lbl-financial">Financial statements / annual reports</label>
             <div class="upload-box" onclick="document.getElementById('up-financial').click()" id="box-financial">
-              <input type="file" id="up-financial" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx" style="display:none" onchange="handleUpload('financial', this)"/>
+              <input type="file" id="up-financial" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx" style="display:none" onchange="handleUpload('financial',this)"/>
               <div class="upload-icon">💰</div>
               <div class="upload-label">Click to upload or drag & drop</div>
-              <div class="upload-sub">Annual reports, balance sheets, P&L statements</div>
+              <div class="upload-sub" id="ul-financial-sub">Annual reports, balance sheets, P&L statements</div>
               <div class="upload-files" id="files-financial"></div>
             </div>
           </div>
-
           <div class="fg">
-            <label class="fl">Claims / damage history</label>
+            <label class="fl" id="lbl-claims">Claims / damage history</label>
             <div class="upload-box" onclick="document.getElementById('up-claims').click()" id="box-claims">
-              <input type="file" id="up-claims" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('claims', this)"/>
+              <input type="file" id="up-claims" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none" onchange="handleUpload('claims',this)"/>
               <div class="upload-icon">📋</div>
               <div class="upload-label">Click to upload or drag & drop</div>
-              <div class="upload-sub">Claims history, damage reports, correspondence</div>
+              <div class="upload-sub" id="ul-claims-sub">Claims history, damage reports, correspondence</div>
               <div class="upload-files" id="files-claims"></div>
             </div>
           </div>
-
           <div class="fg">
-            <label class="fl">Other documents</label>
+            <label class="fl" id="lbl-other">Other documents</label>
             <div class="upload-box" onclick="document.getElementById('up-other').click()" id="box-other">
-              <input type="file" id="up-other" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx,.zip" style="display:none" onchange="handleUpload('other', this)"/>
+              <input type="file" id="up-other" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx,.zip" style="display:none" onchange="handleUpload('other',this)"/>
               <div class="upload-icon">📎</div>
               <div class="upload-label">Click to upload or drag & drop</div>
-              <div class="upload-sub">Any other relevant documents</div>
+              <div class="upload-sub" id="ul-other-sub">Any other relevant documents</div>
               <div class="upload-files" id="files-other"></div>
             </div>
           </div>
-
         </div>
 
       </div>
 
       <div class="form-footer">
-        <button class="prev-btn" id="prev-btn" onclick="prevTab()" style="display:none">← Back</button>
-        <button class="start-btn" id="next-btn" onclick="nextOrStart()">Next step →</button>
+        <button class="prev-btn" id="prev-btn" onclick="prevTab()" style="display:none">← Back / Terug</button>
+        <button class="start-btn" id="next-btn" onclick="nextOrStart()">Next step / Volgende stap →</button>
       </div>
     </div>
 
     <!-- CHAT -->
     <div class="chat-col">
       <div class="chat-header">
-        <div class="chat-avatar">🛡</div>
+        <div class="chat-avatar">
+          <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+            <path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white"/>
+            <path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div>
-          <div class="chat-header-title">AJOGA — Your Insurance Intermediary</div>
+          <div class="chat-header-title">AJOGA — Your Insurance Intermediary / Uw Tussenpersoon</div>
           <div class="chat-header-sub">Commercial specialist · AVB · BAV · Transport · Events · Machinery · MSV/CAR</div>
         </div>
         <div class="status-badge" style="margin-left:auto"><div class="sdot"></div>Online</div>
@@ -509,15 +480,20 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 
       <div id="client-chat">
         <div class="chat-welcome" id="chat-welcome">
-          <div class="cw-logo">🛡</div>
-          <div class="cw-title">Welcome to AJOGA</div>
-          <div class="cw-sub">Fill in your contact details and desired insurance in the form on the left. AJOGA analyses your risk and prepares your dossier for the insurer.</div>
+          <div class="cw-logo">
+            <svg width="36" height="40" viewBox="0 0 20 22" fill="none">
+              <path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white"/>
+              <path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cw-title">Welcome to AJOGA / Welkom bij AJOGA</div>
+          <div class="cw-sub">Fill in your details on the left · AJOGA analyses your risk and prepares your dossier for the insurer. / Vul uw gegevens in links · AJOGA analyseert uw risico en stelt uw dossier samen.</div>
           <div class="cw-products">
             <div class="cw-prod"><span class="cw-prod-icon">🏭</span>AVB</div>
             <div class="cw-prod"><span class="cw-prod-icon">📋</span>BAV</div>
             <div class="cw-prod"><span class="cw-prod-icon">🚛</span>Transport</div>
-            <div class="cw-prod"><span class="cw-prod-icon">🎪</span>Evenementen</div>
-            <div class="cw-prod"><span class="cw-prod-icon">⚙️</span>Machinebreuk</div>
+            <div class="cw-prod"><span class="cw-prod-icon">🎪</span>Events / Evenementen</div>
+            <div class="cw-prod"><span class="cw-prod-icon">⚙️</span>Machinery / Machinebreuk</div>
             <div class="cw-prod"><span class="cw-prod-icon">🏗</span>MSV/CAR</div>
           </div>
         </div>
@@ -525,7 +501,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
 
       <div class="chat-input">
         <textarea id="chat-input" rows="2" placeholder="Type your answer here..." onkeydown="handleKey(event)" oninput="onInput()"></textarea>
-        <button id="send-btn" onclick="sendMsg()" disabled>Send</button>
+        <button id="send-btn" onclick="sendMsg()" disabled>Send / Verstuur</button>
       </div>
     </div>
   </div>
@@ -534,13 +510,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;heigh
   <div id="owner-view" class="view">
     <div class="owner-topbar">
       <div>
-        <h2>Dashboard</h2>
-        <p>Review applications and manually forward to the insurer</p>
+        <h2>Dashboard / Overzicht</h2>
+        <p>Review applications and forward to insurer / Beoordeel aanvragen en stuur door naar verzekeraar</p>
       </div>
       <div class="owner-stats">
-        <div class="stat-pill"><span class="stat-num" id="stat-total">0</span><span class="stat-lbl">Total</span></div>
-        <div class="stat-pill"><span class="stat-num" id="stat-new" style="color:var(--blue)">0</span><span class="stat-lbl">New</span></div>
-        <div class="stat-pill"><span class="stat-num" id="stat-sent" style="color:var(--amber)">0</span><span class="stat-lbl">Sendd</span></div>
+        <div class="stat-pill"><span class="stat-num" id="stat-total">0</span><span class="stat-lbl">Total / Totaal</span></div>
+        <div class="stat-pill"><span class="stat-num" id="stat-new" style="color:var(--blue)">0</span><span class="stat-lbl">New / Nieuw</span></div>
+        <div class="stat-pill"><span class="stat-num" id="stat-sent" style="color:var(--amber)">0</span><span class="stat-lbl">Sent / Verstuurd</span></div>
       </div>
     </div>
     <div id="submissions-list"></div>
@@ -568,18 +544,436 @@ let submissions = JSON.parse(localStorage.getItem('ajoga_subs') || '[]');
 let currentSub = null;
 let chatActive = false;
 let currentTab = 'contact';
-let uploadedFiles = { policy: [], kvk: [], financial: [], claims: [], other: [] };
+
+const PRODUCT_FIELDS = {
+  avb:[
+    {id:'avbactiviteit',label:'Business activities *',type:'textarea',placeholder:'What does the business do exactly? Products, services, work at third-party premises...'},
+    {id:'avbsbi',label:'Industry / SBI code (if known)',type:'text',placeholder:'e.g. 4120 (construction)'},
+    {id:'avbomzet',label:'Annual turnover (€) *',type:'select',opts:['< €100k','€100k–€250k','€250k–€500k','€500k–€1M','€1M–€2.5M','€2.5M–€5M','€5M–€10M','> €10M']},
+    {id:'avbpersoneel',label:'Number of employees (FTE)',type:'select',opts:['0 (sole trader)','1–5','6–15','16–50','51–100','> 100']},
+    {id:'avblocatie',label:'Work at client premises?',type:'select',opts:['No','Sometimes','Yes — always']},
+    {id:'avbproduct',label:'Products manufactured or sold?',type:'select',opts:['No — services only','Yes — trade/retail','Yes — own production']},
+    {id:'avbexport',label:'Export outside EU?',type:'select',opts:['No','Yes — within Europe','Yes — worldwide incl. US/Canada']},
+    {id:'avbgevaar',label:'Hazardous materials or substances?',type:'select',opts:['No','Yes — to be specified']},
+    {id:'avbhoogte',label:'Work at height (> 2.5m)?',type:'select',opts:['No','Sometimes','Yes — regularly']},
+    {id:'avbonderaan',label:'Subcontractors or freelancers hired?',type:'select',opts:['No','Sometimes','Yes — structurally']},
+    {id:'avbdekking',label:'Desired insured amount',type:'select',opts:['€1.25M','€2.5M','€5M','€10M','> €10M']},
+    {id:'avbschade',label:'Claims history (5 years)',type:'select',opts:['No claims','1 minor claim (< €5k)','2–3 minor claims','1 major claim (> €50k)','Multiple major claims']},
+    {id:'avbhuidig',label:'Current insurer + reason for switching',type:'text',placeholder:'e.g. Allianz — too expensive / cancelled'},
+    {id:'avbgeweigerd',label:'Previously declined by an insurer?',type:'select',opts:['No','Yes — to be specified']},
+  ],
+  bav:[
+    {id:'bavberoep',label:'Profession / field *',type:'text',placeholder:'e.g. architect, IT consultant, accountant'},
+    {id:'bavopdrachten',label:'Type of services and assignments *',type:'textarea',placeholder:'What do you deliver to clients? What are the risks if something goes wrong?'},
+    {id:'bavklanten',label:'Type of clients',type:'select',opts:['Individuals','SME businesses','Large corporates / multinationals','Government','Mixed']},
+    {id:'bavomzet',label:'Annual turnover (€) *',type:'select',opts:['< €50k','€50k–€100k','€100k–€250k','€250k–€500k','€500k–€1M','> €1M']},
+    {id:'bavpersoneel',label:'Number of employees',type:'select',opts:['0 (sole trader)','1–5','6–15','16–50','> 50']},
+    {id:'bavervaring',label:'Years of experience in field',type:'select',opts:['< 2 years','2–5 years','5–10 years','> 10 years']},
+    {id:'bavretro',label:'Retroactive cover needed?',type:'select',opts:['No','Yes — date to be determined','Not sure']},
+    {id:'bavdekking',label:'Desired insured amount',type:'select',opts:['€250k','€500k','€1M','€2.5M','€5M','> €5M']},
+    {id:'bavverplicht',label:'PI required by client / contract?',type:'select',opts:['No','Yes — minimum amount required']},
+    {id:'bavschade',label:'Claims or complaints (5 years)',type:'select',opts:['No','Yes — to be specified']},
+    {id:'bavhuidig',label:'Current insurer + reason for switching',type:'text',placeholder:'e.g. HDI — contract expired'},
+  ],
+  transport:[
+    {id:'trtransporttype',label:'Type of transport activity *',type:'select',opts:['Own goods transport','Third-party transport (client goods)','Both','Courier service','International freight']},
+    {id:'trvloot',label:'Number of vehicles *',type:'select',opts:['1','2–5','6–15','16–50','> 50']},
+    {id:'trtypes',label:'Vehicle types',type:'text',placeholder:'e.g. vans, trucks, semi-trailers, cranes'},
+    {id:'trgebied',label:'Operating area',type:'select',opts:['Netherlands','Benelux','Europe','International (outside EU)','Worldwide']},
+    {id:'trcmr',label:'International transport (CMR liability)?',type:'select',opts:['No','Yes — EU','Yes — worldwide']},
+    {id:'trcargo',label:'Cargo value per shipment (€)',type:'select',opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M']},
+    {id:'trgoederen',label:'Type of goods',type:'text',placeholder:'e.g. electronics, construction materials, food, hazardous goods (ADR)'},
+    {id:'tradrkoel',label:'Hazardous goods (ADR) or refrigerated transport?',type:'select',opts:['No','Yes — ADR','Yes — refrigerated','Both']},
+    {id:'trgps',label:'GPS / track & trace installed?',type:'select',opts:['Yes — fully','Partially','No']},
+    {id:'tromzet',label:'Annual transport turnover (€)',type:'select',opts:['< €250k','€250k–€500k','€500k–€1M','€1M–€5M','> €5M']},
+    {id:'trschade',label:'Fleet claims history (3 years)',type:'select',opts:['None','1–2 minor claims','3–5 claims','More than 5 claims','Major claim (> €50k)']},
+    {id:'trhuidig',label:'Current insurer + reason for switching',type:'text',placeholder:'e.g. Zurich — too expensive'},
+  ],
+  evenementen:[
+    {id:'evnaam',label:'Event name / type *',type:'text',placeholder:'e.g. music festival, corporate event, sports event, trade fair'},
+    {id:'evdatum',label:'Event date',type:'text',placeholder:'e.g. 15 June 2025'},
+    {id:'evduur',label:'Event duration',type:'select',opts:['1 day','2–3 days','4–7 days','Multiple weekends','Ongoing (season)']},
+    {id:'evlocatie',label:'Venue type',type:'select',opts:['Indoor (hall/venue)','Outdoor','Both (indoor + outdoor)','Mobile (changing locations)']},
+    {id:'evbezoeker',label:'Expected number of visitors',type:'select',opts:['< 100','100–500','500–2,500','2,500–10,000','> 10,000']},
+    {id:'evkaartjes',label:'Entry fee / ticket sales?',type:'select',opts:['No — free entry','Yes — ticket sales','Yes — subscriptions']},
+    {id:'evomzet',label:'Total event budget (€)',type:'select',opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M']},
+    {id:'evactiviteit',label:'Special activities or risks',type:'text',placeholder:'e.g. fireworks, stages, alcohol, extreme sports, live acts'},
+    {id:'evannulering',label:'Cancellation insurance desired?',type:'select',opts:['No','Yes','Not sure']},
+    {id:'evaansprakelijk',label:'Organiser liability insurance desired?',type:'select',opts:['Yes','No','Not sure']},
+    {id:'evmaterialen',label:'Equipment / materials to be insured?',type:'select',opts:['No','Yes — own equipment','Yes — hired equipment','Both']},
+    {id:'evvergunning',label:'Permits obtained?',type:'select',opts:['Yes — complete','In progress','Not yet']},
+  ],
+  machine:[
+    {id:'mtype',label:'Type of machine(s) *',type:'text',placeholder:'e.g. CNC milling machine, crane, compressor, generator, production line'},
+    {id:'mwaarde',label:'Total new replacement value (€) *',type:'select',opts:['< €50k','€50k–€250k','€250k–€1M','€1M–€5M','> €5M']},
+    {id:'mleeftijd',label:'Average age of machines',type:'select',opts:['< 2 years','2–5 years','5–10 years','> 10 years']},
+    {id:'msector',label:'Industry / sector',type:'text',placeholder:'e.g. metalworking, construction, food production, energy'},
+    {id:'mgebruik',label:'Machine usage',type:'select',opts:['Own use','Rented to third parties','Both']},
+    {id:'mlocatie',label:'Machine location',type:'select',opts:['Fixed (own premises)','Mobile (changing locations)','Both']},
+    {id:'monderhoud',label:'Maintenance and inspections',type:'select',opts:['Regular — certified','Regular — in-house','Irregular','Not sure']},
+    {id:'mbedrijfsschade',label:'Business interruption / standstill cover desired?',type:'select',opts:['No','Yes','Not sure']},
+    {id:'mstilstand',label:'Max. acceptable standstill period',type:'select',opts:['1–3 days','1 week','2 weeks','1 month','> 1 month']},
+    {id:'mschade',label:'Machine claims history (5 years)',type:'select',opts:['None','1 claim','2–3 claims','Multiple major claims']},
+    {id:'mhuidig',label:'Current insurer + reason for switching',type:'text',placeholder:'e.g. Allianz — contract expired'},
+  ],
+  msv:[
+    {id:'msvtype',label:'Project type *',type:'select',opts:['New residential construction','Commercial construction (office, warehouse)','Renovation / refurbishment','Installation project','Infrastructure (roads, bridges)','Industrial installation','Other']},
+    {id:'msvomschrijving',label:'Project description *',type:'textarea',placeholder:'What is being built, installed or assembled?'},
+    {id:'msvwaarde',label:'Contract sum / project value (€) *',type:'select',opts:['< €100k','€100k–€500k','€500k–€2M','€2M–€10M','€10M–€50M','> €50M']},
+    {id:'msvduur',label:'Project duration',type:'select',opts:['< 3 months','3–6 months','6–12 months','1–2 years','> 2 years']},
+    {id:'msvlocatie',label:'Project location',type:'text',placeholder:'e.g. Amsterdam, Rotterdam, abroad'},
+    {id:'msvopdrachtgever',label:'Client type',type:'select',opts:['Individual','SME business','Large corporation','Government / municipality','Housing corporation']},
+    {id:'msvhoofdaan',label:'Main contractor or subcontractor?',type:'select',opts:['Main contractor','Subcontractor','Both roles','Sole trader']},
+    {id:'msvonderaan',label:'Subcontractors engaged?',type:'select',opts:['No','Yes — domestic','Yes — international']},
+    {id:'msvbestaand',label:'Existing structure to be covered?',type:'select',opts:['No','Yes — value to be determined']},
+    {id:'msvcar',label:'CAR or MSV?',type:'select',opts:['CAR — civil/construction','MSV — erection/installation','Combination','Not sure — let AJOGA advise']},
+    {id:'msvschade',label:'Project claims history (5 years)',type:'select',opts:['None','1 claim','2–3 claims','Multiple major claims']},
+  ],
+};
+
+const SYSTEM = `You are AJOGA, a specialist Dutch insurance intermediary with deep expertise in 5 commercial lines: AVB (Commercial General Liability), BAV (Professional Indemnity), Transport & Logistics, Event Insurance, and Machinery Breakdown & MSV/CAR (Erection & Construction). You do NOT handle other insurance types. If asked about anything outside these 5 lines, politely explain that AJOGA only covers these commercial specialisms.
+
+LANGUAGE: Respond in the language specified in the instruction below. Professional and warm tone. Max 2 follow-up questions at a time.
+
+INSURER LOGIC (no default preference — advise best fit for the risk):
+- AVB/BAV: NN, Centraal Beheer, AXA, Allianz, HDI, Chubb
+- Transport: Zurich, AXA, Allianz, HDI, TVM
+- Events: Hiscox, Chubb, AIG, Markel
+- Machinery: Allianz Engineering, HSB, Chubb, Zurich
+- MSV/CAR: Allianz, AXA XL, Zurich, Munich Re, HDI
+Always follow client's stated preference first.
+
+AVB: Covers third-party bodily injury and property damage. Ask about: exact activities, work at client premises, products/export, work at height, hazardous substances, subcontractors, foreign operations, previously declined?
+BAV: Covers financial loss from professional errors. Ask about: exact services, potential claim size, government/financial clients, subcontractors, retroactive date, PI obligations, US/Canada work?
+TRANSPORT: Ask about: own vs third-party transport, cargo value, ADR/refrigerated, international routes, own drivers vs hired, GPS/security.
+EVENTS: Ask about: public or private, alcohol, stages/structures, artists with contracts, outdoor/weather dependent, emergency plan, external suppliers insured?
+MACHINERY: Ask about: fixed or mobile, inspection certificates, standstill costs per day, rented to others, lease or owned?
+MSV/CAR: Ask about: CAR or MSV, existing structure at risk, who is insured, subcontractors included, commissioning/testing, maintenance period?
+
+RISK RATINGS: 🟢 Low / 🟡 Medium / 🔴 High
+
+DOSSIER FORMAT (when you have enough information):
+---DOSSIER---
+## AJOGA DOSSIER — [PRODUCT]
+
+**Reference:** AJG-[YEAR]-[NR]
+**Date:** [TODAY]
+**Status:** Ready to forward to insurer
+
+### CLIENT DETAILS
+**Name:** [name] | **Date of birth:** [dob]
+**Company:** [company] | **Phone:** [phone] | **Email:** [email]
+**Address:** [address] | **Risk Address:** [if different]
+**Insurer preference:** [preference]
+
+### RISK PROFILE
+[2-3 sentence summary]
+
+### RISK ASSESSMENT
+[Per factor with rating: 🟢 Low / 🟡 Medium / 🔴 High]
+
+### REQUIRED COVERAGE
+[Products, limits, clauses in plain English]
+
+### INSURER RECOMMENDATION
+**Recommended:** [name + brief reason]
+**Alternative:** [name + reason]
+
+### PREMIUM INDICATION
+[Range — always add: "Indicative — final premium determined by insurer"]
+
+### FLAGS FOR INSURER
+[Risk elevations, exclusions, special clauses, missing info]
+
+### AJOGA INTERMEDIARY NOTE
+AJOGA is an independent intermediary. The insurer makes the final acceptance decision.
+---EINDE---
+
+After the dossier, tell the client warmly their application is complete and will be forwarded to the insurer. They will be contacted about the outcome.`;
+
+const PRODUCT_EXPLANATIONS = {
+  avb: `**Commercial General Liability (AVB) / Bedrijfsaansprakelijkheid**
+
+AVB covers your business if you accidentally cause injury to someone or damage their property during your work.
+
+**What is covered:**
+- A customer slips and falls at your premises
+- Your employee damages a client's property while working on-site
+- A product you sold causes damage after delivery
+
+**What is NOT covered:**
+- Your own products or work (separate guarantee insurance needed)
+- Professional errors and advice (needs BAV/PI policy)
+- Vehicles (separate motor policy required)
+- Cyber incidents (separate cyber policy needed)
+
+This is one of the most essential insurances for any business. Would you like to start an application for AVB?`,
+
+  bav: `**Professional Indemnity (BAV) / Beroepsaansprakelijkheid**
+
+BAV covers you if a client suffers financial loss due to a mistake, omission or negligence in your professional services.
+
+**What is covered:**
+- An architect makes a design error that causes costly rebuilding
+- An IT consultant delivers faulty software that causes business loss
+- An accountant makes an error in a tax filing
+
+**What is NOT covered:**
+- Intentional misconduct
+- Bodily injury or property damage (needs AVB policy)
+- Work outside your stated profession
+
+Important: BAV works on a **claims-made** basis — you are only covered for claims made while the policy is active. Retroactive cover is often essential.
+
+Would you like to start a BAV application?`,
+
+  transport: `**Transport & Logistics Insurance / Transport & Logistiek**
+
+Transport insurance covers your vehicles, cargo and liability as a transporter or logistics company.
+
+**What is covered:**
+- CMR liability for international road freight
+- Cargo damage or loss during transport
+- Fleet vehicles (third-party liability + comprehensive)
+- Goods in transit (own or third-party cargo)
+
+**What is NOT covered:**
+- Intentional damage or theft through negligence
+- Certain hazardous goods without ADR declaration
+- Cargo beyond the agreed declared value
+
+Whether you operate 1 van or a fleet of 50 trucks — AJOGA can arrange the right cover.
+
+Would you like to start a transport insurance application?`,
+
+  evenementen: `**Event Insurance / Evenementenverzekering**
+
+Event insurance protects event organisers against financial loss and liability before, during and after an event.
+
+**What is covered:**
+- Cancellation or postponement due to unforeseen circumstances
+- Organiser liability for injuries to visitors or third-party damage
+- Equipment and materials (owned or hired)
+- Visitor accidents
+
+**What is NOT covered:**
+- Events cancelled due to poor ticket sales or commercial reasons
+- Damage caused intentionally by the organiser
+- Events without the required permits
+
+Applies to festivals, corporate events, sports events, trade fairs and more.
+
+Would you like to start an event insurance application?`,
+
+  machine: `**Machinery Breakdown & Technical Insurance / Machinebreuk**
+
+Machinery breakdown insurance covers sudden and unforeseen damage to your machines and technical installations.
+
+**What is covered:**
+- Mechanical or electrical breakdown
+- Operator error causing machine damage
+- Short circuit, overvoltage damage
+- Business interruption / standstill losses (optional add-on)
+
+**What is NOT covered:**
+- Normal wear and tear or gradual deterioration
+- Damage due to lack of maintenance
+- Cosmetic damage not affecting functionality
+
+Essential for businesses that depend on machinery — downtime can be extremely costly.
+
+Would you like to start a machinery insurance application?`,
+
+  msv: `**Erection & Construction Insurance / Montage & Constructie (MSV/CAR)**
+
+MSV and CAR policies cover damage to construction and installation projects during the build or assembly phase.
+
+**CAR (Contractors All Risk)** — for civil/structural construction work
+**MSV (Montage)** — for mechanical, electrical and installation projects
+
+**What is covered:**
+- Damage to the works under construction (fire, storm, theft, collapse)
+- Third-party liability during the project
+- Tools and equipment on-site
+- Existing structures at risk during the work (optional)
+
+**What is NOT covered:**
+- Faulty design or workmanship (separate decennial liability needed)
+- Gradual deterioration
+
+Applies to residential builds, commercial construction, industrial installations and infrastructure.
+
+Would you like to start a MSV/CAR application?`
+};
+
+const PRODUCT_EXPLANATIONS_NL = {
+  avb: `**Bedrijfsaansprakelijkheidsverzekering (AVB)**
+
+AVB dekt uw bedrijf als u per ongeluk letsel of schade toebrengt aan anderen tijdens uw werkzaamheden.
+
+**Wat is gedekt:**
+- Een klant glijdt uit op uw bedrijfsterrein
+- Uw medewerker beschadigt de eigendommen van een klant tijdens werkzaamheden
+- Een product dat u heeft verkocht veroorzaakt schade na levering
+
+**Wat is NIET gedekt:**
+- Schade aan uw eigen producten of werk (hiervoor is een garantieverzekering nodig)
+- Beroepsfouten en adviezen (hiervoor is een BAV/PI-polis nodig)
+- Motorrijtuigen (aparte autoverzekering vereist)
+- Cyberincidenten (aparte cyberverzekering nodig)
+
+AVB is een van de meest essentiële verzekeringen voor elk bedrijf. Wilt u een AVB-aanvraag starten?`,
+
+  bav: `**Beroepsaansprakelijkheidsverzekering (BAV)**
+
+BAV dekt u als een klant financiële schade lijdt door een fout, verzuim of nalatigheid in uw professionele dienstverlening.
+
+**Wat is gedekt:**
+- Een architect maakt een ontwerpfout die kostbare herstelwerkzaamheden veroorzaakt
+- Een IT-consultant levert software die niet werkt en bedrijfsschade veroorzaakt
+- Een accountant maakt een fout in een belastingaangifte
+
+**Wat is NIET gedekt:**
+- Opzettelijk handelen
+- Lichamelijk letsel of zaakschade (hiervoor is een AVB-polis nodig)
+- Werkzaamheden buiten uw opgegeven beroep
+
+Belangrijk: BAV werkt op basis van **claims-made** — u bent alleen gedekt voor claims die worden ingediend terwijl de polis actief is. Retroactieve dekking is vaak essentieel.
+
+Wilt u een BAV-aanvraag starten?`,
+
+  transport: `**Transport- & Logistiekverzekering**
+
+Transportverzekering dekt uw voertuigen, lading en aansprakelijkheid als transporteur of logistiek bedrijf.
+
+**Wat is gedekt:**
+- CMR-aansprakelijkheid voor internationaal wegvervoer
+- Schade aan of verlies van lading tijdens transport
+- Wagenpark (WA + casco)
+- Goederen onderweg (eigen of derden lading)
+
+**Wat is NIET gedekt:**
+- Opzettelijke schade of diefstal door nalatigheid
+- Bepaalde gevaarlijke goederen zonder ADR-verklaring
+- Lading boven de opgegeven waarde
+
+Of u nu 1 bestelbus of een vloot van 50 vrachtwagens heeft — AJOGA regelt de juiste dekking.
+
+Wilt u een transportverzekering aanvragen?`,
+
+  evenementen: `**Evenementenverzekering**
+
+Evenementenverzekering beschermt organisatoren tegen financieel verlies en aansprakelijkheid voor, tijdens en na een evenement.
+
+**Wat is gedekt:**
+- Annulering of uitstel door onvoorziene omstandigheden
+- Aansprakelijkheid organisator voor letsel bezoekers of schade aan derden
+- Materialen en apparatuur (eigen of gehuurd)
+- Ongevallen bezoekers
+
+**Wat is NIET gedekt:**
+- Evenementen geannuleerd door tegenvallende kaartverkoop of commerciële redenen
+- Schade veroorzaakt door opzet van de organisator
+- Evenementen zonder vereiste vergunningen
+
+Van toepassing op festivals, bedrijfsfeesten, sportevenementen, beurzen en meer.
+
+Wilt u een evenementenverzekering aanvragen?`,
+
+  machine: `**Machinebreuk- & Technische Verzekering**
+
+Machinebreuk dekt plotselinge en onvoorziene schade aan uw machines en technische installaties.
+
+**Wat is gedekt:**
+- Mechanische of elektrische defecten
+- Bedienersfouten die machineschade veroorzaken
+- Kortsluiting of overspanningsschade
+- Bedrijfsschade / stilstandverliezen (optionele aanvulling)
+
+**Wat is NIET gedekt:**
+- Normale slijtage of geleidelijke achteruitgang
+- Schade door gebrek aan onderhoud
+- Cosmetische schade die de functionaliteit niet beïnvloedt
+
+Onmisbaar voor bedrijven die afhankelijk zijn van machines — stilstand kan extreem kostbaar zijn.
+
+Wilt u een machinebreukverzekering aanvragen?`,
+
+  msv: `**Montage- & Constructieverzekering (MSV/CAR)**
+
+MSV en CAR-polissen dekken schade aan bouw- en installatieprojecten tijdens de bouw- of montagefase.
+
+**CAR (Contractors All Risk)** — voor bouwkundige/civieltechnische werkzaamheden
+**MSV (Montage)** — voor mechanische, elektrische en installatieprojecten
+
+**Wat is gedekt:**
+- Schade aan het werk in aanbouw (brand, storm, diefstal, instorting)
+- Aansprakelijkheid jegens derden tijdens het project
+- Gereedschappen en materieel op de bouwplaats
+- Bestaande gebouwen die risico lopen tijdens de werkzaamheden (optioneel)
+
+**Wat is NIET gedekt:**
+- Gebreken in ontwerp of uitvoering (aparte decennale aansprakelijkheid nodig)
+- Geleidelijke achteruitgang
+
+Van toepassing op woningbouw, utiliteitsbouw, industriële installaties en infrastructuur.
+
+Wilt u een MSV/CAR-aanvraag starten?`
+};
+
+
+function explainProduct(product) {
+  // Remove welcome screen
+  const welcome = document.getElementById('chat-welcome');
+  if (welcome) welcome.remove();
+  document.getElementById('client-chat').innerHTML = '';
+  chatActive = false;
+
+  // Show explanation as AI message
+  appendMsg('ai', currentLang === 'nl' ? PRODUCT_EXPLANATIONS_NL[product] : PRODUCT_EXPLANATIONS[product]);
+
+  // Add a start button below
+  const chat = document.getElementById('client-chat');
+  const btnWrap = document.createElement('div');
+  btnWrap.style.cssText = 'display:flex;justify-content:flex-start;padding-left:44px;margin-top:-8px';
+  const btn = document.createElement('button');
+  btn.textContent = T[currentLang].startBtn(product);
+  btn.style.cssText = 'background:var(--green);border:none;border-radius:8px;padding:10px 20px;color:white;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s';
+  btn.onmouseover = function(){ this.style.background='var(--green2)'; };
+  btn.onmouseout = function(){ this.style.background='var(--green)'; };
+  btn.onclick = function(){ prefillAndStart(product); };
+  btnWrap.appendChild(btn);
+
+  chat.appendChild(btnWrap);
+  chat.scrollIntoView({ behavior: 'smooth' });
+}
+
+function prefillAndStart(product) {
+  // Pre-select product in the form and switch to coverage tab
+  document.getElementById('f-subject').value = product;
+  showDekkingFields();
+  switchTab('dekking');
+  // Focus the form
+  document.querySelector('.form-col').scrollTop = 0;
+
+  // Show a prompt to fill in contact details first if name is empty
+  const voornaam = document.getElementById('f-voornaam').value.trim();
+  if (!voornaam) {
+    switchTab('contact');
+    alert(T[currentLang].alertContact);
+  }
+}
+
+// ── TRANSLATIONS ─────────────────────────────────────────────────────────
+let uploadedFiles = { policy:[], kvk:[], financial:[], claims:[], other:[] };
 
 function handleUpload(category, input) {
   const files = Array.from(input.files);
-  const maxSize = 10 * 1024 * 1024; // 10MB
-  const validFiles = files.filter(f => {
-    if (f.size > maxSize) { alert(f.name + ' is too large. Max 10MB per file.'); return false; }
-    return true;
+  files.forEach(f => {
+    if (f.size > 10*1024*1024) { alert(f.name + ' is too large. Max 10MB.'); return; }
+    uploadedFiles[category].push(f);
   });
-  uploadedFiles[category] = [...uploadedFiles[category], ...validFiles];
   renderUploadedFiles(category);
-  // Stop click propagation issues
   input.value = '';
 }
 
@@ -588,206 +982,346 @@ function renderUploadedFiles(category) {
   const box = document.getElementById('box-' + category);
   const files = uploadedFiles[category];
   container.innerHTML = '';
-  if (files.length === 0) { box.classList.remove('has-files'); return; }
+  if (!files.length) { box.classList.remove('has-files'); return; }
   box.classList.add('has-files');
   files.forEach((f, i) => {
     const item = document.createElement('div');
     item.className = 'upload-file-item';
-    const sizeStr = f.size > 1024*1024 ? (f.size/1024/1024).toFixed(1) + ' MB' : Math.round(f.size/1024) + ' KB';
-    item.innerHTML = '<span style="font-size:13px">📄</span><span class="upload-file-name">' + esc(f.name) + '</span><span class="upload-file-size">' + sizeStr + '</span><button class="upload-file-remove" onclick="removeFile(\'' + category + '\',' + i + ');event.stopPropagation()">✕</button>';
+    const sizeStr = f.size > 1024*1024 ? (f.size/1024/1024).toFixed(1)+' MB' : Math.round(f.size/1024)+' KB';
+    const name = document.createElement('span'); name.className='upload-file-name'; name.textContent=f.name;
+    const size = document.createElement('span'); size.className='upload-file-size'; size.textContent=sizeStr;
+    const btn = document.createElement('button'); btn.className='upload-file-remove'; btn.textContent='✕';
+    btn.onclick = function(e){ e.stopPropagation(); uploadedFiles[category].splice(i,1); renderUploadedFiles(category); };
+    item.appendChild(document.createElement('span')).textContent='📄';
+    item.appendChild(name); item.appendChild(size); item.appendChild(btn);
     container.appendChild(item);
   });
-  const count = document.createElement('span');
-  count.className = 'upload-count';
-  count.textContent = files.length + ' file' + (files.length > 1 ? 's' : '') + ' selected';
+  const count = document.createElement('span'); count.className='upload-count';
+  count.textContent = files.length + ' file' + (files.length>1?'s':'') + ' selected';
   container.appendChild(count);
 }
 
-function removeFile(category, index) {
-  uploadedFiles[category].splice(index, 1);
-  renderUploadedFiles(category);
-}
-
 function getUploadSummary() {
-  const labels = { policy: 'Insurance policies', kvk: 'Company registration', financial: 'Financial statements', claims: 'Claims history', other: 'Other documents' };
-  let summary = '';
-  Object.keys(uploadedFiles).forEach(cat => {
-    if (uploadedFiles[cat].length > 0) {
-      summary += '\n' + labels[cat] + ': ' + uploadedFiles[cat].map(f => f.name).join(', ');
-    }
+  const labels = { policy:'Insurance policies', kvk:'Company registration', financial:'Financial statements', claims:'Claims history', other:'Other documents' };
+  let s = '';
+  Object.keys(uploadedFiles).forEach(k => {
+    if (uploadedFiles[k].length > 0) s += '\n' + labels[k] + ': ' + uploadedFiles[k].map(f=>f.name).join(', ');
   });
-  return summary || 'None uploaded';
+  return s || 'None';
 }
 
-const PRODUCT_FIELDS = {
-  avb: [
-    { id:'avbactiviteit', label:'Business activities *', type:'textarea', placeholder:'What does the business do exactly? Products, services, work at third-party premises...' },
-    { id:'avbsbi', label:'Industry / SBI code (if known)', type:'text', placeholder:'e.g. 4120 (construction)' },
-    { id:'avbomzet', label:'Annual turnover (€) *', type:'select', opts:['< €100k','€100k–€250k','€250k–€500k','€500k–€1M','€1M–€2.5M','€2.5M–€5M','€5M–€10M','> €10M'] },
-    { id:'avbpersoneel', label:'Number of employees (FTE)', type:'select', opts:['0 (sole trader)','1–5','6–15','16–50','51–100','> 100'] },
-    { id:'avblocatie', label:'Work at client premises?', type:'select', opts:['No','Sometimes','Yes — always'] },
-    { id:'avbproduct', label:'Products manufactured or sold?', type:'select', opts:['No — services only','Yes — trade/retail','Yes — own production'] },
-    { id:'avbexport', label:'Export outside EU?', type:'select', opts:['No','Yes — within Europe','Yes — worldwide incl. US/Canada'] },
-    { id:'avbgevaar', label:'Hazardous materials or substances?', type:'select', opts:['No','Yes — to be specified'] },
-    { id:'avbhoogte', label:'Work at height (> 2.5m)?', type:'select', opts:['No','Sometimes','Yes — regularly'] },
-    { id:'avbonderaan', label:'Subcontractors or freelancers hired?', type:'select', opts:['No','Sometimes','Yes — structurally'] },
-    { id:'avbdekking', label:'Desired insured amount', type:'select', opts:['€1.25M','€2.5M','€5M','€10M','> €10M'] },
-    { id:'avbschade', label:'Claims history (5 years)', type:'select', opts:['No claims','1 minor claim (< €5k)','2–3 minor claims','1 major claim (> €50k)','Multiple major claims'] },
-    { id:'avbhuidig', label:'Current insurer + reason for switching', type:'text', placeholder:'e.g. Allianz — too expensive / cancelled' },
-    { id:'avbgeweigerd', label:'Previously declined by an insurer?', type:'select', opts:['No','Yes — to be specified'] },
-  ],
-  bav: [
-    { id:'bavberoep', label:'Profession / field *', type:'text', placeholder:'e.g. architect, IT consultant, accountant' },
-    { id:'bavopdrachten', label:'Type of services and assignments *', type:'textarea', placeholder:'What do you deliver to clients? What are the risks if something goes wrong?' },
-    { id:'bavklanten', label:'Type of clients', type:'select', opts:['Individuals','SME businesses','Large corporates / multinationals','Government','Mixed'] },
-    { id:'bavomzet', label:'Annual turnover (€) *', type:'select', opts:['< €50k','€50k–€100k','€100k–€250k','€250k–€500k','€500k–€1M','> €1M'] },
-    { id:'bavpersoneel', label:'Number of employees', type:'select', opts:['0 (sole trader)','1–5','6–15','16–50','> 50'] },
-    { id:'bavervaring', label:'Years of experience in field', type:'select', opts:['< 2 years','2–5 years','5–10 years','> 10 years'] },
-    { id:'bavretro', label:'Retroactive cover needed?', type:'select', opts:['No','Yes — date to be determined','Not sure'] },
-    { id:'bavdekking', label:'Desired insured amount', type:'select', opts:['€250k','€500k','€1M','€2.5M','€5M','> €5M'] },
-    { id:'bavverplicht', label:'PI required by client / contract?', type:'select', opts:['No','Yes — minimum amount required'] },
-    { id:'bavschade', label:'Claims or complaints (5 years)', type:'select', opts:['No','Yes — to be specified'] },
-    { id:'bavhuidig', label:'Current insurer + reason for switching', type:'text', placeholder:'e.g. HDI — contract expired' },
-  ],
-  transport: [
-    { id:'trtransporttype', label:'Type of transport activity *', type:'select', opts:['Own goods transport','Third-party transport (client goods)','Both','Courier service','International freight'] },
-    { id:'trvloot', label:'Number of vehicles *', type:'select', opts:['1','2–5','6–15','16–50','> 50'] },
-    { id:'trtypes', label:'Vehicle types', type:'text', placeholder:'e.g. vans, trucks, semi-trailers, cranes' },
-    { id:'trgebied', label:'Operating area', type:'select', opts:['Netherlands','Benelux','Europe','International (outside EU)','Worldwide'] },
-    { id:'trcmr', label:'International transport (CMR liability)?', type:'select', opts:['No','Yes — EU','Yes — worldwide'] },
-    { id:'trcargo', label:'Cargo value per shipment (€)', type:'select', opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M'] },
-    { id:'trgoederen', label:'Type of goods', type:'text', placeholder:'e.g. electronics, construction materials, food, hazardous goods (ADR)' },
-    { id:'tradrkoel', label:'Hazardous goods (ADR) or refrigerated transport?', type:'select', opts:['No','Yes — ADR','Yes — refrigerated','Both'] },
-    { id:'trgps', label:'GPS / track & trace installed?', type:'select', opts:['Yes — fully','Partially','No'] },
-    { id:'tromzet', label:'Annual transport turnover (€)', type:'select', opts:['< €250k','€250k–€500k','€500k–€1M','€1M–€5M','> €5M'] },
-    { id:'trschade', label:'Fleet claims history (3 years)', type:'select', opts:['None','1–2 minor claims','3–5 claims','More than 5 claims','Major claim (> €50k)'] },
-    { id:'trhuidig', label:'Current insurer + reason for switching', type:'text', placeholder:'e.g. Zurich — too expensive' },
-  ],
-  evenementen: [
-    { id:'evnaam', label:'Event name / type *', type:'text', placeholder:'e.g. music festival, corporate event, sports event, trade fair' },
-    { id:'evdatum', label:'Event date', type:'text', placeholder:'e.g. 15 June 2025' },
-    { id:'evduur', label:'Event duration', type:'select', opts:['1 day','2–3 days','4–7 days','Multiple weekends','Ongoing (season)'] },
-    { id:'evlocatie', label:'Venue type', type:'select', opts:['Indoor (hall/venue)','Outdoor','Both (indoor + outdoor)','Mobile (changing locations)'] },
-    { id:'evbezoeker', label:'Expected number of visitors', type:'select', opts:['< 100','100–500','500–2,500','2,500–10,000','> 10,000'] },
-    { id:'evkaartjes', label:'Entry fee / ticket sales?', type:'select', opts:['No — free entry','Yes — ticket sales','Yes — subscriptions'] },
-    { id:'evomzet', label:'Total event budget (€)', type:'select', opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M'] },
-    { id:'evactiviteit', label:'Special activities or risks', type:'text', placeholder:'e.g. fireworks, stages, alcohol, extreme sports, live acts' },
-    { id:'evannulering', label:'Cancellation insurance desired?', type:'select', opts:['No','Yes','Not sure'] },
-    { id:'evaansprakelijk', label:'Organiser liability insurance desired?', type:'select', opts:['Yes','No','Not sure'] },
-    { id:'evmaterialen', label:'Equipment / materials to be insured?', type:'select', opts:['No','Yes — own equipment','Yes — hired equipment','Both'] },
-    { id:'evvergunning', label:'Permits obtained?', type:'select', opts:['Yes — complete','In progress','Not yet'] },
-  ],
-  machine: [
-    { id:'mtype', label:'Type of machine(s) *', type:'text', placeholder:'e.g. CNC milling machine, crane, compressor, generator, production line' },
-    { id:'mwaarde', label:'Total new replacement value (€) *', type:'select', opts:['< €50k','€50k–€250k','€250k–€1M','€1M–€5M','> €5M'] },
-    { id:'mleeftijd', label:'Average age of machines', type:'select', opts:['< 2 years','2–5 years','5–10 years','> 10 years'] },
-    { id:'msector', label:'Industry / sector', type:'text', placeholder:'e.g. metalworking, construction, food production, energy' },
-    { id:'mgebruik', label:'Machine usage', type:'select', opts:['Own use','Rented to third parties','Both'] },
-    { id:'mlocatie', label:'Machine location', type:'select', opts:['Fixed (own premises)','Mobile (changing locations)','Both'] },
-    { id:'monderhoud', label:'Maintenance and inspections', type:'select', opts:['Regular — certified','Regular — in-house','Irregular','Not sure'] },
-    { id:'mbedrijfsschade', label:'Business interruption / standstill cover desired?', type:'select', opts:['No','Yes','Not sure'] },
-    { id:'mstilstand', label:'Max. acceptable standstill period', type:'select', opts:['1–3 days','1 week','2 weeks','1 month','> 1 month'] },
-    { id:'mschade', label:'Machine claims history (5 years)', type:'select', opts:['None','1 claim','2–3 claims','Multiple major claims'] },
-    { id:'mhuidig', label:'Current insurer + reason for switching', type:'text', placeholder:'e.g. Allianz — contract expired' },
-  ],
-  msv: [
-    { id:'msvtype', label:'Project type *', type:'select', opts:['New residential construction','Commercial construction (office, warehouse)','Renovation / refurbishment','Installation project','Infrastructure (roads, bridges)','Industrial installation','Other'] },
-    { id:'msvomschrijving', label:'Project description *', type:'textarea', placeholder:'What is being built, installed or assembled?' },
-    { id:'msvwaarde', label:'Contract sum / project value (€) *', type:'select', opts:['< €100k','€100k–€500k','€500k–€2M','€2M–€10M','€10M–€50M','> €50M'] },
-    { id:'msvduur', label:'Project duration', type:'select', opts:['< 3 months','3–6 months','6–12 months','1–2 years','> 2 years'] },
-    { id:'msvlocatie', label:'Project location', type:'text', placeholder:'e.g. Amsterdam, Rotterdam, abroad' },
-    { id:'msvopdrachtgever', label:'Client type', type:'select', opts:['Individual','SME business','Large corporation','Government / municipality','Housing corporation'] },
-    { id:'msvhoofdaan', label:'Main contractor or subcontractor?', type:'select', opts:['Main contractor','Subcontractor','Both roles','Sole trader'] },
-    { id:'msvonderaan', label:'Subcontractors engaged?', type:'select', opts:['No','Yes — domestic','Yes — international'] },
-    { id:'msvbestaand', label:'Existing structure to be covered?', type:'select', opts:['No','Yes — value to be determined'] },
-    { id:'msvcar', label:'CAR or MSV?', type:'select', opts:['CAR — civil/construction','MSV — erection/installation','Combination','Not sure — let AJOGA advise'] },
-    { id:'msvschade', label:'Project claims history (5 years)', type:'select', opts:['None','1 claim','2–3 claims','Multiple major claims'] },
-  ],
+let currentLang = 'en';
+
+const T = {
+  en: {
+    appTitle: 'Insurance Application',
+    appSub: 'Fill in your details · AJOGA will guide you through',
+    tabApp: '💬 Application',
+    tabDash: '📋 Dashboard',
+    tabContact: '👤 Contact Details',
+    tabCoverage: '🛡 Coverage',
+    secPersonal: 'Personal Details',
+    secAddress: 'Home / Business Address',
+    secRisk: 'Risk Address',
+    secPref: 'Preference & Remarks',
+    secCoverage: 'Desired Insurance',
+    salutation: 'Salutation',
+    firstName: 'First name',
+    lastName: 'Last name',
+    dob: 'Date of birth',
+    company: 'Company name',
+    phone: 'Phone',
+    email: 'Email address',
+    street: 'Street + house number',
+    postcode: 'Postal code',
+    city: 'City',
+    country: 'Country',
+    sameAddress: 'Same as address above?',
+    sameYes: 'Yes — same address',
+    sameNo: 'No — different risk address',
+    riskStreet: 'Risk street + house number',
+    insurerPref: 'Insurer preference',
+    noPref: 'No preference (AJOGA advises)',
+    remarks: 'Remarks / additional information',
+    remarksPlaceholder: 'Any additional information relevant to your application...',
+    product: 'Product',
+    selectIns: 'Select insurance...',
+    nextStep: 'Next step →',
+    startApp: '🛡 Start application',
+    back: '← Back',
+    optional: 'Optional',
+    chatTitle: 'AJOGA — Your Insurance Intermediary',
+    chatSub: 'Commercial specialist · AVB · BAV · Transport · Events · Machinery · MSV/CAR',
+    welcomeTitle: 'Welcome to AJOGA',
+    welcomeSub: 'Fill in your contact details and desired insurance in the form on the left. AJOGA analyses your risk and prepares your dossier for the insurer.',
+    sendBtn: 'Send',
+    chatPlaceholder: 'Type your answer here...',
+    dashTitle: 'Dashboard',
+    dashSub: 'Review applications and manually forward to the insurer',
+    statTotal: 'Total',
+    statNew: 'New',
+    statSent: 'Sent',
+    noApps: 'No applications',
+    noAppsSub: 'Applications appear here once clients complete their conversation with AJOGA',
+    fullDossier: '👁 Full dossier',
+    print: '🖨 Print',
+    sentToInsurer: '✉️ Sent to insurer',
+    delete: '🗑 Delete',
+    statusNew: '● New',
+    statusSent: '✓ Sent',
+    close: 'Close',
+    navBadge: 'Commercial Specialist',
+    startBtn: (p) => '🛡 Start ' + p.toUpperCase() + ' application →',
+    alertFirstName: 'Please enter your first name.',
+    alertProduct: 'Please select an insurance product.',
+    alertContact: 'Please fill in your contact details first, then proceed to Coverage.',
+    deleteConfirm: 'Delete this application?',
+    tabUpload: '📎 Documents',
+    tabUploadNext: 'Upload Documents →',
+    secDocs: 'Document Upload',
+    docsSub: 'Upload any relevant documents. PDF, JPG, PNG, DOCX accepted. Max 10MB.',
+    lblPolicy: 'Existing insurance policies',
+    lblKvk: 'Company registration / KvK',
+    lblFinancial: 'Financial statements / annual reports',
+    lblClaims: 'Claims / damage history',
+    lblOther: 'Other documents',
+    inProgress: 'Conversation in progress...',
+    countries: ['Netherlands','Belgium','Germany','Other'],
+    salutations: ['Mr.','Mrs.','Ms.','Dr.'],
+  },
+  nl: {
+    appTitle: 'Verzekeringsaanvraag',
+    appSub: 'Vul uw gegevens in · AJOGA begeleidt u verder',
+    tabApp: '💬 Aanvraag',
+    tabDash: '📋 Overzicht',
+    tabContact: '👤 Contactgegevens',
+    tabCoverage: '🛡 Dekking',
+    secPersonal: 'Persoonsgegevens',
+    secAddress: 'Woon- / Vestigingsadres',
+    secRisk: 'Risicoadres',
+    secPref: 'Voorkeur & Opmerkingen',
+    secCoverage: 'Gewenste Verzekering',
+    salutation: 'Aanhef',
+    firstName: 'Voornaam',
+    lastName: 'Achternaam',
+    dob: 'Geboortedatum',
+    company: 'Bedrijfsnaam',
+    phone: 'Telefoon',
+    email: 'E-mailadres',
+    street: 'Straat + huisnummer',
+    postcode: 'Postcode',
+    city: 'Woonplaats',
+    country: 'Land',
+    sameAddress: 'Zelfde als bovenstaand adres?',
+    sameYes: 'Ja — zelfde adres',
+    sameNo: 'Nee — afwijkend risicoadres',
+    riskStreet: 'Risicostraat + huisnummer',
+    insurerPref: 'Verzekeraar voorkeur',
+    noPref: 'Geen voorkeur (AJOGA adviseert)',
+    remarks: 'Opmerkingen / toelichting',
+    remarksPlaceholder: 'Aanvullende informatie die voor AJOGA relevant kan zijn...',
+    product: 'Product',
+    selectIns: 'Selecteer verzekering...',
+    nextStep: 'Volgende stap →',
+    startApp: '🛡 Aanvraag starten',
+    back: '← Terug',
+    optional: 'Optioneel',
+    chatTitle: 'AJOGA — Uw Verzekeringstussenpersoon',
+    chatSub: 'Zakelijke specialist · AVB · BAV · Transport · Evenementen · Machinebreuk · MSV/CAR',
+    welcomeTitle: 'Welkom bij AJOGA',
+    welcomeSub: 'Vul uw contactgegevens en gewenste verzekering in het formulier links in. AJOGA analyseert uw risico en stelt uw dossier samen voor de verzekeraar.',
+    sendBtn: 'Verstuur',
+    chatPlaceholder: 'Typ uw antwoord hier...',
+    dashTitle: 'Overzicht',
+    dashSub: 'Beoordeel aanvragen en stuur handmatig door naar de verzekeraar',
+    statTotal: 'Totaal',
+    statNew: 'Nieuw',
+    statSent: 'Verstuurd',
+    noApps: 'Geen aanvragen',
+    noAppsSub: 'Aanvragen verschijnen hier zodra klanten hun gesprek met AJOGA hebben voltooid',
+    fullDossier: '👁 Volledig dossier',
+    print: '🖨 Afdrukken',
+    sentToInsurer: '✉️ Verstuurd naar verzekeraar',
+    delete: '🗑 Verwijderen',
+    statusNew: '● Nieuw',
+    statusSent: '✓ Verstuurd',
+    close: 'Sluiten',
+    navBadge: 'Zakelijke Specialist',
+    startBtn: (p) => '🛡 Start ' + p.toUpperCase() + ' aanvraag →',
+    alertFirstName: 'Vul uw voornaam in.',
+    alertProduct: 'Selecteer een verzekeringsproduct.',
+    alertContact: 'Vul eerst uw contactgegevens in voordat u naar Dekking gaat.',
+    deleteConfirm: 'Aanvraag verwijderen?',
+    tabUpload: '📎 Documenten',
+    tabUploadNext: 'Documenten uploaden →',
+    secDocs: 'Documenten uploaden',
+    docsSub: 'Upload relevante documenten ter ondersteuning van uw aanvraag. PDF, JPG, PNG, DOCX. Max 10MB.',
+    lblPolicy: 'Bestaande verzekeringsdocumenten',
+    lblKvk: 'KvK-uittreksel / bedrijfsregistratie',
+    lblFinancial: 'Jaarrekeningen / financiële rapportages',
+    lblClaims: 'Schadehistorie / schadecorrespondentie',
+    lblOther: 'Overige documenten',
+    inProgress: 'Gesprek nog bezig...',
+    countries: ['Nederland','België','Duitsland','Anders'],
+    salutations: ['De heer','Mevrouw','Dhr./Mevr.','Dr.'],
+  }
 };
 
-const SYSTEM = `You are AJOGA, a specialist Dutch insurance intermediary (tussenpersoon) with deep expertise in exactly 5 commercial insurance lines: AVB (bedrijfsaansprakelijkheid), BAV (beroepsaansprakelijkheid), Transport & Logistiek, Evenementenverzekering, and Machinebreuk & MSV/CAR (montage en constructie). You do NOT handle other insurance types. If asked about anything outside these 5 lines, politely explain that AJOGA only covers these commercial specialisms and suggest a general broker for other needs.
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  document.getElementById('lang-nl').classList.toggle('active', lang === 'nl');
 
-LANGUAGE: Always English. Professional and warm tone.
-TONE: Professional, warm, knowledgeable. You are a trusted specialist. Max 2 follow-up questions at a time. Short clear paragraphs. No jargon without explanation.
+  const t = T[lang];
 
-INSURER LOGIC (no default preference — advise best fit for the risk):
-- AVB/BAV MKB: NN, Centraal Beheer, AXA, Allianz, HDI, Chubb
-- Transport: Zurich, AXA, Allianz, HDI, TVM
-- Evenementen: Hiscox, Chubb, AIG, Markel
-- Machinebreuk: Allianz Engineering, HSB, Chubb, Zurich
-- MSV/CAR: Allianz, AXA XL, Zurich, Munich Re, HDI
-Always follow client's stated preference first.
+  // Nav tabs
+  document.querySelectorAll('.ntab')[0].innerHTML = t.tabApp;
+  document.querySelectorAll('.ntab')[1].innerHTML = t.tabDash;
 
-== AVB == Covers: lichamelijk letsel en zaakschade aan derden.
-Key follow-up: dagelijkse werkzaamheden, bij klanten op locatie?, producten (export?), hoogte > 2,5m, gevaarlijke stoffen, onderaannemers, contractuele boetes, buitenland, eerder geweigerd?
-Flags: bouw+hoogte=hoog, productie+export VS/CA=hoog, puur kantoor=laag
-Exclusions: opzet, eigen werk/product, beroepsfouten, motorrijtuigen, milieu, recall, cyber
+  // Nav badge
+  document.querySelector('.nav-badge').textContent = t.navBadge;
 
-== BAV == Covers: financiele schade door fouten of nalatigheid in beroepsuitoefening.
-Key follow-up: exacte diensten en mogelijke fouten, schadeomvang bij fout, overheid/financieel?, onderaannemers, retroactieve datum, verplichtstelling, VS/CA opdrachten?
-Always claims-made in NL. Check: retroactief, run-off, buitenlandse clausule.
-Flags: financieel advies=hoog, IT/software=hoog, medisch=hoog
+  // Form header
+  document.querySelector('.col-head-title').textContent = t.appTitle;
+  document.querySelector('.col-head-sub').textContent = t.appSub;
 
-== TRANSPORT == Covers: CMR-aansprakelijkheid, goederentransport, wagenparkdekking.
-Key follow-up: eigen of derden vervoer, goederenwaarde per zending, ADR/koelvervoer, internationale routes, eigen rijders vs inhuur, beveiliging (GPS, alarmen)?
-Flags: ADR=hoog, hoge ladingwaarde=hoog, internationaal=gemiddeld
+  // Form tabs
+  document.getElementById('tab-contact').textContent = t.tabContact;
+  document.getElementById('tab-dekking').textContent = t.tabCoverage;
 
-== EVENEMENTEN == Covers: annulering, aansprakelijkheid organisator, materialen, bezoekers.
-Key follow-up: publiek of besloten?, alcohol?, podia/tribunes?, artiesten met contracten?, outdoor en weersafhankelijk?, calamiteitenplan?, externe leveranciers verzekerd?
-Flags: outdoor+>5000=hoog, vuurwerk=hoog, alcohol+grote menigte=hoog
+  // Section headers
+  const secHeaders = document.querySelectorAll('.section-header-text');
+  const secMap = [t.secPersonal, t.secAddress, t.secRisk, t.secPref, t.secCoverage];
+  secHeaders.forEach((el, i) => { if (secMap[i]) el.textContent = secMap[i]; });
 
-== MACHINEBREUK == Covers: plotselinge schade aan machines en installaties.
-Key follow-up: vast of mobiel, keuringen aanwezig (Kiwa, Lloyd), stilstandkosten per dag, verhuur aan derden, lease of eigendom?
-Flags: machines >10 jaar=gemiddeld, geen keuringen=hoog, hoge stilstandkosten=hoog
+  // Form labels
+  const labelMap = {
+    'f-aanhef': t.salutation,
+    'f-voornaam': t.firstName,
+    'f-achternaam': t.lastName,
+    'f-geboortedatum': t.dob,
+    'f-bedrijf': t.company,
+    'f-telefoon': t.phone,
+    'f-email': t.email,
+    'f-straat': t.street,
+    'f-postcode': t.postcode,
+    'f-woonplaats': t.city,
+    'f-land': t.country,
+    'f-zelfde-adres': t.sameAddress,
+    'f-r-straat': t.riskStreet,
+    'f-pref': t.insurerPref,
+    'f-opmerkingen': t.remarks,
+    'f-subject': t.product,
+  };
+  Object.entries(labelMap).forEach(([id, label]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const lbl = el.previousElementSibling || el.parentElement.querySelector('.fl');
+      if (lbl && lbl.classList.contains('fl')) {
+        const span = lbl.querySelector('span');
+        lbl.textContent = label;
+        if (span) lbl.appendChild(span);
+      }
+    }
+  });
 
-== MSV/CAR == Covers: schade aan het werk tijdens bouw/montage, aansprakelijkheid, gereedschappen.
-Key follow-up: CAR of MSV?, bestaande opstal in gevaar?, wie is verzekeringnemer, onderaannemers mee?, proefdraaien voor oplevering?, onderhoudstermijn (12-24 mnd)?
-Flags: waterwerken=hoog, tunnels=hoog, installaties in bestaand gebouw=gemiddeld
+  // Salutation options
+  const aanhef = document.getElementById('f-aanhef');
+  if (aanhef) {
+    const val = aanhef.value;
+    aanhef.innerHTML = '<option value="">--</option>';
+    t.salutations.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; aanhef.appendChild(o); });
+    aanhef.value = val;
+  }
 
-RISK RATINGS: 🟢 Laag / 🟡 Gemiddeld / 🔴 Hoog
+  // Same address options
+  const zelfde = document.getElementById('f-zelfde-adres');
+  if (zelfde) {
+    const val = zelfde.value;
+    zelfde.innerHTML = '<option value="ja">' + t.sameYes + '</option><option value="nee">' + t.sameNo + '</option>';
+    zelfde.value = val;
+  }
 
-DOSSIER FORMAT (produce when you have sufficient information):
----DOSSIER---
-## AJOGA DOSSIER — [PRODUCT]
+  // Country options
+  const land = document.getElementById('f-land');
+  if (land) {
+    const val = land.value;
+    land.innerHTML = '';
+    t.countries.forEach(c => { const o = document.createElement('option'); o.textContent = c; land.appendChild(o); });
+    land.value = val;
+  }
 
-**Referentie:** AJG-[YEAR]-[NR]
-**Datum:** [VANDAAG]
-**Status:** Gereed voor doorsturen naar verzekeraar
+  // No preference option
+  const pref = document.getElementById('f-pref');
+  if (pref && pref.options[0]) pref.options[0].textContent = t.noPref;
 
-### KLANTGEGEVENS
-**Aanhef + Naam:** [aanhef naam] | **Date of birth:** [datum]
-**Bedrijf:** [bedrijfsnaam indien van toepassing]
-**Telefoon:** [tel] | **E-mail:** [email]
-**Adres:** [volledig adres]
-**Risk Address:** [indien afwijkend]
-**Insurer preference:** [voorkeur]
+  // Placeholders
+  const phMap = {
+    'f-bedrijf': t.optional,
+    'f-opmerkingen': t.remarksPlaceholder,
+  };
+  Object.entries(phMap).forEach(([id, ph]) => {
+    const el = document.getElementById(id);
+    if (el) el.placeholder = ph;
+  });
 
-### RISICOPROFIEL
-[2-3 zinnen kernomschrijving]
+  // Product select
+  const subj = document.getElementById('f-subject');
+  if (subj && subj.options[0]) subj.options[0].textContent = t.selectIns;
 
-### RISICOBEOORDELING
-[Per factor: 🟢 Laag / 🟡 Gemiddeld / 🔴 Hoog]
+  // Buttons
+  document.getElementById('next-btn').textContent = currentTab === 'contact' ? t.nextStep : t.startApp;
+  document.getElementById('prev-btn').textContent = t.back;
+  document.getElementById('send-btn').textContent = t.sendBtn;
+  document.getElementById('chat-input').placeholder = t.chatPlaceholder;
 
-### BENODIGDE DEKKING
-[Polissen, limieten, clausules in eenvoudig Nederlands]
+  // Chat header
+  document.querySelector('.chat-header-title').textContent = t.chatTitle;
+  document.querySelector('.chat-header-sub').textContent = t.chatSub;
 
-### VERZEKERAAR ADVIES
-**Aanbevolen:** [naam + korte reden]
-**Alternatief:** [naam + reden]
+  // Welcome screen
+  const cwTitle = document.querySelector('.cw-title');
+  const cwSub = document.querySelector('.cw-sub');
+  if (cwTitle) cwTitle.textContent = t.welcomeTitle;
+  if (cwSub) cwSub.textContent = t.welcomeSub;
 
-### PREMIE-INDICATIE
-[Bandbreedte — altijd: "Indicatief — definitieve premie door verzekeraar vastgesteld"]
+  // Dashboard
+  document.querySelector('.owner-topbar h2').textContent = t.dashTitle;
+  document.querySelector('.owner-topbar p').textContent = t.dashSub;
+  document.getElementById('stat-total').nextElementSibling.textContent = t.statTotal;
+  document.getElementById('stat-new').nextElementSibling.textContent = t.statNew;
+  document.getElementById('stat-sent').nextElementSibling.textContent = t.statSent;
 
-### AANDACHTSPUNTEN VOOR VERZEKERAAR
-[Risicoverhogingen, uitsluitingen, bijzondere clausules, ontbrekende info]
+  // Documents tab
+  const tabUpload = document.getElementById('tab-upload');
+  if (tabUpload) tabUpload.textContent = t.tabUpload;
+  const secDocs = document.getElementById('sec-docs');
+  if (secDocs) secDocs.textContent = t.secDocs;
+  const docsSub = document.getElementById('docs-sub');
+  if (docsSub) docsSub.textContent = t.docsSub;
+  const docLabels = {
+    'lbl-policy': t.lblPolicy, 'lbl-kvk': t.lblKvk,
+    'lbl-financial': t.lblFinancial, 'lbl-claims': t.lblClaims, 'lbl-other': t.lblOther
+  };
+  Object.entries(docLabels).forEach(([id, label]) => {
+    const el = document.getElementById(id); if (el) el.textContent = label;
+  });
 
-### AJOGA INTERMEDIAIR NOTITIE
-AJOGA is een onafhankelijke tussenpersoon. De verzekeraar neemt de definitieve acceptatiebeslissing.
----EINDE---
+  // Modal close button
+  document.querySelector('.modal-footer .act-btn').textContent = t.close;
 
-After the dossier, tell the client warmly that their application is complete and AJOGA will forward the dossier to the insurer. They will be contacted about the outcome.`;
+  // Re-render dashboard to update status labels
+  renderDashboard();
 
-// ── INIT ─────────────────────────────────────────────────────────────────
+  // Update system prompt language
+  updateSystemLang(lang);
+}
+
+function updateSystemLang(lang) {
+  // Handled dynamically in startChat via currentLang
+}
+
+
 renderDashboard();
 
 function goView(v) {
@@ -803,27 +1337,23 @@ function switchTab(tab) {
   document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
   document.getElementById('section-' + tab).classList.add('active');
   document.getElementById('tab-' + tab).classList.add('active');
-  document.getElementById('prev-btn').style.display = (tab === 'dekking' || tab === 'upload') ? 'block' : 'none';
-  document.getElementById('next-btn').textContent = tab === 'contact' ? 'Next step →' : tab === 'dekking' ? 'Upload Documents →' : '🛡 Start application';
+  document.getElementById('prev-btn').style.display = tab === 'dekking' ? 'block' : 'none';
+  document.getElementById('next-btn').textContent = tab === 'contact' ? 'Next step / Volgende stap →' : '🛡 Start application / Aanvraag';
 }
 
 function nextOrStart() {
   if (currentTab === 'contact') {
-    if (!document.getElementById('f-voornaam').value.trim()) { alert('Please enter your first name.'); return; }
+    if (!document.getElementById('f-voornaam').value.trim()) { alert(T[currentLang].alertFirstName); return; }
     switchTab('dekking');
   } else if (currentTab === 'dekking') {
-    if (!document.getElementById('f-subject').value) { alert('Please select an insurance product.'); return; }
+    if (!document.getElementById('f-subject').value) { alert(T[currentLang].alertProduct); return; }
     switchTab('upload');
   } else {
     startChat();
   }
 }
 
-function prevTab() {
-  if (currentTab === 'dekking') switchTab('contact');
-  else if (currentTab === 'upload') switchTab('dekking');
-}
-
+function prevTab() { if (currentTab==='dekking') switchTab('contact'); else if (currentTab==='upload') switchTab('dekking'); }
 
 function toggleRisicoAdres() {
   document.getElementById('risico-adres-fields').style.display =
@@ -835,14 +1365,12 @@ function showDekkingFields() {
   const container = document.getElementById('dynamic-fields');
   container.innerHTML = '';
   if (!subject || !PRODUCT_FIELDS[subject]) return;
-
   const label = document.getElementById('f-subject').options[document.getElementById('f-subject').selectedIndex].text;
   let html = '<div class="dynamic-title">Details — ' + label + '</div>';
-
   PRODUCT_FIELDS[subject].forEach(f => {
     html += '<div class="fg"><label class="fl">' + f.label + '</label>';
     if (f.type === 'select') {
-      html += '<select class="fs" id="df-' + f.id + '"><option value="">Selecteer...</option>';
+      html += '<select class="fs" id="df-' + f.id + '"><option value="">Select...</option>';
       f.opts.forEach(o => { html += '<option>' + o + '</option>'; });
       html += '</select>';
     } else if (f.type === 'textarea') {
@@ -861,11 +1389,10 @@ function startChat() {
   const achternaam = document.getElementById('f-achternaam').value.trim();
   const subject = document.getElementById('f-subject').value;
   if (!voornaam) { alert('Please enter your first name.'); return; }
-  if (!subject) { alert('Please select an insurance product.'); return; }
+  if (!subject) { alert(T[currentLang].alertProduct); return; }
 
   const naam = (aanhef ? aanhef + ' ' : '') + voornaam + (achternaam ? ' ' + achternaam : '');
   const aanspreking = achternaam ? (aanhef || 'Dear') + ' ' + achternaam : voornaam;
-
   const geboortedatum = document.getElementById('f-geboortedatum').value;
   const bedrijf = document.getElementById('f-bedrijf').value.trim();
   const telefoon = document.getElementById('f-telefoon').value.trim();
@@ -886,9 +1413,9 @@ function startChat() {
     : straat + ', ' + postcode + ' ' + woonplaats;
 
   const subjectNames = {
-    avb:'Bedrijfsaansprakelijkheid (AVB)', bav:'Beroepsaansprakelijkheid (BAV)',
-    transport:'Transport & Logistiek', evenementen:'Evenementenverzekering',
-    machine:'Machinebreuk & Technische Verzekering', msv:'Montage & Constructie (MSV/CAR)'
+    avb:'Commercial General Liability (AVB)', bav:'Professional Indemnity (BAV)',
+    transport:'Transport & Logistics', evenementen:'Event Insurance',
+    machine:'Machinery Breakdown & Technical', msv:'Erection & Construction (MSV/CAR)'
   };
 
   let dynamicData = '';
@@ -901,16 +1428,10 @@ function startChat() {
 
   history = [];
   chatActive = true;
-  const uploadSummaryShort = Object.keys(uploadedFiles)
-    .filter(k => uploadedFiles[k].length > 0)
-    .map(k => uploadedFiles[k].length + ' ' + k)
-    .join(', ') || 'none';
-
   currentSub = {
     naam, aanhef, telefoon, email, subject,
     subjectLabel: subjectNames[subject] || subject,
     pref, status: 'new',
-    uploadedDocs: uploadSummaryShort,
     ref: 'AJG-' + new Date().getFullYear() + '-' + String(submissions.length + 1).padStart(4,'0'),
     time: now(), analysis: ''
   };
@@ -919,29 +1440,27 @@ function startChat() {
   if (empty) empty.remove();
   document.getElementById('client-chat').innerHTML = '';
 
-  const intro = `Newe aanvraag — volledig intakeformulier ingevuld:
+  let intro = `New insurance application:
 
-KLANTGEGEVENS:
-Aanhef + naam: ${naam}
+CLIENT DETAILS:
+Name: ${naam}
 ${geboortedatum ? 'Date of birth: ' + geboortedatum : ''}
-${bedrijf ? 'Bedrijf: ' + bedrijf : ''}
-${telefoon ? 'Telefoon: ' + telefoon : ''}
-${email ? 'E-mail: ' + email : ''}
-Adres: ${straat}, ${postcode} ${woonplaats}, ${land}
+${bedrijf ? 'Company: ' + bedrijf : ''}
+${telefoon ? 'Phone: ' + telefoon : ''}
+${email ? 'Email: ' + email : ''}
+Address: ${straat}, ${postcode} ${woonplaats}, ${land}
 Risk Address: ${risicoAdres}
 
-VERZEKERING: ${subjectNames[subject]}
-VERZEKERAAR VOORKEUR: ${pref}
-${opmerkingen ? 'OPMERKINGEN: ' + opmerkingen : ''}
-${dynamicData ? '\nINGEVULDE PRODUCTGEGEVENS:' + dynamicData : ''}
+INSURANCE: ${subjectNames[subject]}
+INSURER PREFERENCE: ${pref}
+${opmerkingen ? 'REMARKS: ' + opmerkingen : ''}
+${dynamicData ? '\nPRODUCT DETAILS:' + dynamicData : ''}
 
-INSTRUCTIE: Spreek de klant aan als "${aanspreking}" (gebruik "u"). Begroet hen professioneel en warm. Bevestig de gewenste verzekering. Gebruik de ingevulde gegevens en stel alleen gerichte vervolgvragen die nog ontbreken voor dit specifieke product. Maximaal 2 vragen tegelijk.`;
+LANGUAGE: ${currentLang === "nl" ? "Respond in Dutch (gebruik u-vorm, professioneel en warm)" : "Respond in English (professional and warm)"}.
+INSTRUCTION: Greet the client as "${aanspreking}". Confirm the insurance product. Ask only targeted follow-up questions that are still missing for this specific product. Maximum 2 questions at a time.`;
 
-  const uploadSummary = getUploadSummary();
-  if (uploadSummary !== 'None uploaded') {
-    intro += '\n\nUPLOADED DOCUMENTS:\n' + uploadSummary + '\nNote: Documents have been uploaded by the client and are available for review in the dossier.';
-  }
-
+  const uploadSum = getUploadSummary();
+  if (uploadSum !== 'None') intro += '\n\nUPLOADED DOCUMENTS:\n' + uploadSum;
   history.push({ role: 'user', content: intro });
   showTyping();
   callAPI();
@@ -973,9 +1492,9 @@ async function callAPI() {
       body: JSON.stringify({ system: SYSTEM, messages: history })
     });
     removeTyping();
-    if (!res.ok) { const e = await res.text(); showErr('Fout ' + res.status + ': ' + e); history.pop(); return; }
+    if (!res.ok) { const e = await res.text(); showErr('Error ' + res.status + ': ' + e); history.pop(); return; }
     const data = await res.json();
-    if (data.error) { showErr('Fout: ' + data.error); history.pop(); return; }
+    if (data.error) { showErr('Error: ' + data.error); history.pop(); return; }
     const reply = data.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
     history.push({ role: 'assistant', content: reply });
     appendMsg('ai', reply);
@@ -985,7 +1504,7 @@ async function callAPI() {
       localStorage.setItem('ajoga_subs', JSON.stringify(submissions));
     }
   } catch(e) {
-    removeTyping(); showErr('Verbinding mislukt: ' + e.message); history.pop();
+    removeTyping(); showErr('Connection failed: ' + e.message); history.pop();
   } finally {
     document.getElementById('send-btn').disabled = !document.getElementById('chat-input').value.trim() || !chatActive;
   }
@@ -996,8 +1515,8 @@ function renderDashboard() {
   if (!submissions.length) {
     list.innerHTML = `<div class="sub-empty">
       <div style="font-size:36px;opacity:0.3">📬</div>
-      <div style="font-size:13px;font-weight:600;color:var(--text2)">No applications</div>
-      <div style="font-size:12px;text-align:center;max-width:300px;line-height:1.7;color:var(--text3)">Applications appear here once clients complete their conversation with AJOGA</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text2)">${T[currentLang].noApps}</div>
+      <div style="font-size:12px;text-align:center;max-width:300px;line-height:1.7;color:var(--text3)">${T[currentLang].noAppsSub}</div>
     </div>`;
     updateStats(); return;
   }
@@ -1014,20 +1533,18 @@ function renderDashboard() {
       </div>
       <div class="sc-body">
         <div class="sc-info">
-          <strong>Klant</strong>
+          <strong>Client</strong>
           ${sub.telefoon ? '<div>📞 ' + esc(sub.telefoon) + '</div>' : ''}
           ${sub.email ? '<div>✉️ ' + esc(sub.email) + '</div>' : ''}
-          <div>🏦 ${esc(sub.pref || 'Geen voorkeur')}</div>
-          <div style="margin-top:8px">
-            <span class="status-badge-sm ${sub.status === 'sent' ? 'sb-sent' : 'sb-new'}">${sub.status === 'sent' ? '✓ Sendd' : '● New'}</span>
-          </div>
+          <div>🏦 ${esc(sub.pref || 'No preference')}</div>
+          <div style="margin-top:8px"><span class="status-badge-sm ${sub.status === 'sent' ? 'sb-sent' : 'sb-new'}">${sub.status === 'sent' ? '✓ Sent / Verstuurd' : '● New / Nieuw'}</span></div>
         </div>
-        <div class="sc-analysis">${sub.analysis ? fmt(sub.analysis) : '<span style="color:var(--text3);font-style:italic">Gesprek nog bezig...</span>'}</div>
+        <div class="sc-analysis">${sub.analysis ? fmt(sub.analysis) : '<span style="color:var(--text3);font-style:italic">' + T[currentLang].inProgress + '</span>'}</div>
       </div>
       <div class="sc-actions">
-        ${sub.analysis ? `<button class="act-btn" onclick="openModal(${i})">👁 Full dossier</button>` : ''}
-        ${sub.analysis ? `<button class="act-btn" onclick="openModal(${i});setTimeout(()=>window.print(),400)">🖨 Print</button>` : ''}
-        ${sub.status !== 'sent' && sub.analysis ? `<button class="act-btn primary" onclick="markSent(${i})">✉️ Sendd naar verzekeraar</button>` : ''}
+        ${sub.analysis ? '<button class="act-btn" onclick="openModal(' + i + ')">' + T[currentLang].fullDossier + '</button>' : ''}
+        ${sub.analysis ? '<button class="act-btn" onclick="openModal(' + i + ');setTimeout(()=>window.print(),400)">' + T[currentLang].print + '</button>' : ''}
+        ${sub.status !== 'sent' && sub.analysis ? '<button class="act-btn primary" onclick="markSent(' + i + ')">' + T[currentLang].sentToInsurer + '</button>' : ''}
         <button class="act-btn danger" style="margin-left:auto" onclick="deleteSub(${i})">🗑 Delete</button>
       </div>`;
     list.appendChild(card);
@@ -1041,8 +1558,8 @@ function updateStats() {
   document.getElementById('stat-sent').textContent = submissions.filter(s => s.status === 'sent').length;
 }
 
-function markSent(i) { submissions[i].status = 'sent'; localStorage.setItem('ajoga_subs', JSON.stringify(submissions)); renderDashboard(); }
-function deleteSub(i) { if (!confirm('Delete this application?')) return; submissions.splice(i, 1); localStorage.setItem('ajoga_subs', JSON.stringify(submissions)); renderDashboard(); }
+function markSent(i) { submissions[i].status = 'sent'; localStorage.setItem('ajoga_subs', JSON.stringify(submissions)); }
+function deleteSub(i) { if (!confirm(T[currentLang].deleteConfirm)) return; submissions.splice(i, 1); localStorage.setItem('ajoga_subs', JSON.stringify(submissions)); }
 function openModal(i) {
   const sub = submissions[i];
   document.getElementById('modal-title').textContent = sub.naam + ' · ' + sub.subjectLabel + ' · ' + sub.ref;
@@ -1057,7 +1574,11 @@ function appendMsg(role, content) {
   wrap.className = 'msg-wrap' + (role === 'client' ? ' right' : '');
   const av = document.createElement('div');
   av.className = 'msg-av ' + (role === 'ai' ? 'av-ai' : 'av-cl');
-  av.textContent = role === 'ai' ? '🛡' : '👤';
+  if (role === 'ai') {
+    av.innerHTML = '<svg width="16" height="18" viewBox="0 0 20 22" fill="none"><path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white"/><path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  } else {
+    av.textContent = '👤';
+  }
   const bub = document.createElement('div');
   bub.className = 'msg-bub ' + (role === 'ai' ? 'bub-ai' : 'bub-cl');
   bub.innerHTML = role === 'ai' ? fmt(content) : esc(content);
@@ -1069,7 +1590,8 @@ function appendMsg(role, content) {
 function showTyping() {
   const chat = document.getElementById('client-chat');
   const row = document.createElement('div'); row.className = 'typing-wrap'; row.id = 'typing-row';
-  const av = document.createElement('div'); av.className = 'msg-av av-ai'; av.textContent = '🛡';
+  const av = document.createElement('div'); av.className = 'msg-av av-ai';
+  av.innerHTML = '<svg width="16" height="18" viewBox="0 0 20 22" fill="none"><path d="M10 1L2 4.5V10C2 14.5 5.5 18.7 10 20C14.5 18.7 18 14.5 18 10V4.5L10 1Z" fill="white"/><path d="M7 10.5L9 12.5L13 8.5" stroke="#1a3d1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const bub = document.createElement('div'); bub.className = 'typing-bub';
   bub.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
   row.appendChild(av); row.appendChild(bub); chat.appendChild(row); row.scrollIntoView({ behavior: 'smooth' });
@@ -1088,9 +1610,9 @@ function fmt(text) {
     .replace(/^[-*] (.+)$/gm,'<ul><li>$1</li></ul>')
     .replace(/<\/ul>\n<ul>/g,'')
     .replace(/^---$/gm,'<hr>')
-    .replace(/🟢 Laag/g,'<span class="risk-tag rt-low">🟢 Laag</span>')
-    .replace(/🟡 Gemiddeld/g,'<span class="risk-tag rt-med">🟡 Gemiddeld</span>')
-    .replace(/🔴 Hoog/g,'<span class="risk-tag rt-high">🔴 Hoog</span>')
+    .replace(/🟢 Low/g,'<span class="risk-tag rt-low">🟢 Low</span>')
+    .replace(/🟡 Medium/g,'<span class="risk-tag rt-med">🟡 Medium</span>')
+    .replace(/🔴 High/g,'<span class="risk-tag rt-high">🔴 High</span>')
     .replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
 }
 function now() {
