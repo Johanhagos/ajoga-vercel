@@ -631,6 +631,93 @@ const PRODUCT_FIELDS = {
   ],
 };
 
+const PRODUCT_FIELDS_NL = {
+  avb:[
+    {id:'avbactiviteit',label:'Bedrijfsactiviteiten *',type:'textarea',placeholder:'Wat doet het bedrijf precies? Producten, diensten, werkzaamheden bij derden...'},
+    {id:'avbsbi',label:'Branche / SBI-code (indien bekend)',type:'text',placeholder:'bijv. 4120 (bouwbedrijf)'},
+    {id:'avbomzet',label:'Jaaromzet (€) *',type:'select',opts:['< €100k','€100k–€250k','€250k–€500k','€500k–€1M','€1M–€2.5M','€2.5M–€5M','€5M–€10M','> €10M']},
+    {id:'avbpersoneel',label:'Aantal medewerkers (FTE)',type:'select',opts:['0 (ZZP)','1–5','6–15','16–50','51–100','> 100']},
+    {id:'avblocatie',label:'Werkt u bij klanten op locatie?',type:'select',opts:['Nee','Soms','Ja — altijd']},
+    {id:'avbproduct',label:'Produceert of verkoopt u producten?',type:'select',opts:['Nee — puur diensten','Ja — handel/retail','Ja — eigen productie']},
+    {id:'avbexport',label:'Export buiten EU?',type:'select',opts:['Nee','Ja — binnen Europa','Ja — wereldwijd incl. VS/Canada']},
+    {id:'avbgevaar',label:'Gevaarlijke stoffen of materialen?',type:'select',opts:['Nee','Ja — nader te omschrijven']},
+    {id:'avbhoogte',label:'Werkzaamheden op hoogte (> 2,5m)?',type:'select',opts:['Nee','Soms','Ja — regelmatig']},
+    {id:'avbonderaan',label:'Onderaannemers of ZZP ingehuurd?',type:'select',opts:['Nee','Soms','Ja — structureel']},
+    {id:'avbdekking',label:'Gewenst verzekerd bedrag',type:'select',opts:['€1.25M','€2.5M','€5M','€10M','> €10M']},
+    {id:'avbschade',label:'Schadeverleden (5 jaar)',type:'select',opts:['Geen schades','1 kleine schade (< €5k)','2–3 kleine schades','1 grote schade (> €50k)','Meerdere grote schades']},
+    {id:'avbhuidig',label:'Huidige verzekeraar + reden van overstap',type:'text',placeholder:'bijv. Allianz — te duur / opgezegd'},
+    {id:'avbgeweigerd',label:'Eerder geweigerd door een verzekeraar?',type:'select',opts:['Nee','Ja — nader te omschrijven']},
+  ],
+  bav:[
+    {id:'bavberoep',label:'Beroep / vakgebied *',type:'text',placeholder:'bijv. architect, IT-consultant, accountant'},
+    {id:'bavopdrachten',label:'Type opdrachten en diensten *',type:'textarea',placeholder:'Wat levert u precies aan klanten? Wat zijn de risicos als er iets misgaat?'},
+    {id:'bavklanten',label:'Type klanten',type:'select',opts:['Particulieren','MKB-bedrijven','Grote bedrijven / multinationals','Overheid','Gemengd']},
+    {id:'bavomzet',label:'Jaaromzet (€) *',type:'select',opts:['< €50k','€50k–€100k','€100k–€250k','€250k–€500k','€500k–€1M','> €1M']},
+    {id:'bavpersoneel',label:'Aantal medewerkers',type:'select',opts:['0 (ZZP)','1–5','6–15','16–50','> 50']},
+    {id:'bavervaring',label:'Jaren ervaring in vakgebied',type:'select',opts:['< 2 jaar','2–5 jaar','5–10 jaar','> 10 jaar']},
+    {id:'bavretro',label:'Retroactieve dekking nodig?',type:'select',opts:['Nee','Ja — datum nader te bepalen','Weet niet']},
+    {id:'bavdekking',label:'Gewenst verzekerd bedrag',type:'select',opts:['€250k','€500k','€1M','€2.5M','€5M','> €5M']},
+    {id:'bavverplicht',label:'PI verplicht gesteld door opdrachtgever?',type:'select',opts:['Nee','Ja — minimaal bedrag vereist']},
+    {id:'bavschade',label:'Claims of klachten (5 jaar)',type:'select',opts:['Nee','Ja — nader te omschrijven']},
+    {id:'bavhuidig',label:'Huidige verzekeraar + reden van overstap',type:'text',placeholder:'bijv. HDI — contract afgelopen'},
+  ],
+  transport:[
+    {id:'trtransporttype',label:'Type transportactiviteit *',type:'select',opts:['Eigen vervoer (eigen goederen)','Derdenvervoer (goederen van klanten)','Beide','Koeriersdienst','Internationaal vrachttransport']},
+    {id:'trvloot',label:'Aantal voertuigen *',type:'select',opts:['1','2–5','6–15','16–50','> 50']},
+    {id:'trtypes',label:'Type voertuigen',type:'text',placeholder:'bijv. bestelwagens, vrachtwagens, opleggers, kranen'},
+    {id:'trgebied',label:'Rijgebied',type:'select',opts:['Nederland','Benelux','Europa','Internationaal (buiten EU)','Wereldwijd']},
+    {id:'trcmr',label:'Internationaal vervoer (CMR-aansprakelijkheid)?',type:'select',opts:['Nee','Ja — EU','Ja — wereldwijd']},
+    {id:'trcargo',label:'Goederenwaarde per transport (€)',type:'select',opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M']},
+    {id:'trgoederen',label:'Type goederen',type:'text',placeholder:'bijv. elektronica, bouwmaterialen, voedsel, gevaarlijke stoffen (ADR)'},
+    {id:'tradrkoel',label:'Gevaarlijke stoffen (ADR) of koelvervoer?',type:'select',opts:['Nee','Ja — ADR','Ja — koelvervoer','Beide']},
+    {id:'trgps',label:'GPS / track & trace aanwezig?',type:'select',opts:['Ja — volledig','Gedeeltelijk','Nee']},
+    {id:'tromzet',label:'Jaaromzet transport (€)',type:'select',opts:['< €250k','€250k–€500k','€500k–€1M','€1M–€5M','> €5M']},
+    {id:'trschade',label:'Schadeverleden vloot (3 jaar)',type:'select',opts:['Geen','1–2 kleine schades','3–5 schades','Meer dan 5 schades','Grote schade (> €50k)']},
+    {id:'trhuidig',label:'Huidige verzekeraar + reden van overstap',type:'text',placeholder:'bijv. Zurich — te duur'},
+  ],
+  evenementen:[
+    {id:'evnaam',label:'Naam / type evenement *',type:'text',placeholder:'bijv. muziekfestival, bedrijfsfeest, sportevenement, beurs'},
+    {id:'evdatum',label:'Datum evenement',type:'text',placeholder:'bijv. 15 juni 2025'},
+    {id:'evduur',label:'Duur evenement',type:'select',opts:['1 dag','2–3 dagen','4–7 dagen','Meerdere weekenden','Doorlopend (seizoen)']},
+    {id:'evlocatie',label:'Type locatie',type:'select',opts:['Binnen (zaal/hal)','Buiten','Beide (indoor + outdoor)','Mobiel (wisselende locaties)']},
+    {id:'evbezoeker',label:'Verwacht aantal bezoekers',type:'select',opts:['< 100','100–500','500–2.500','2.500–10.000','> 10.000']},
+    {id:'evkaartjes',label:'Entreegeld / kaartverkoop?',type:'select',opts:['Nee — gratis toegang','Ja — kaartverkoop','Ja — abonnementen']},
+    {id:'evomzet',label:'Totale begroting evenement (€)',type:'select',opts:['< €10k','€10k–€50k','€50k–€250k','€250k–€1M','> €1M']},
+    {id:'evactiviteit',label:'Bijzondere activiteiten of risicos',type:'text',placeholder:'bijv. vuurwerk, podia, alcohol, extreme sporten, live acts'},
+    {id:'evannulering',label:'Annuleringsverzekering gewenst?',type:'select',opts:['Nee','Ja','Weet niet']},
+    {id:'evaansprakelijk',label:'Aansprakelijkheid organisator meeverzekeren?',type:'select',opts:['Ja','Nee','Weet niet']},
+    {id:'evmaterialen',label:'Materialen / apparatuur meeverzekeren?',type:'select',opts:['Nee','Ja — eigen materiaal','Ja — gehuurd materiaal','Beide']},
+    {id:'evvergunning',label:'Vergunningen aangevraagd?',type:'select',opts:['Ja — compleet','In aanvraag','Nog niet']},
+  ],
+  machine:[
+    {id:'mtype',label:'Type machine(s) *',type:'text',placeholder:'bijv. CNC-freesmachine, kraan, compressor, generator, productielijn'},
+    {id:'mwaarde',label:'Totale nieuwwaarde machines (€) *',type:'select',opts:['< €50k','€50k–€250k','€250k–€1M','€1M–€5M','> €5M']},
+    {id:'mleeftijd',label:'Gemiddelde leeftijd machines',type:'select',opts:['< 2 jaar','2–5 jaar','5–10 jaar','> 10 jaar']},
+    {id:'msector',label:'Sector / branche',type:'text',placeholder:'bijv. metaalbewerking, bouw, voedselproductie, energie'},
+    {id:'mgebruik',label:'Gebruik machines',type:'select',opts:['Eigen gebruik','Verhuurd aan derden','Beide']},
+    {id:'mlocatie',label:'Locatie machines',type:'select',opts:['Vast (eigen locatie)','Mobiel (wisselende locaties)','Beide']},
+    {id:'monderhoud',label:'Onderhoud en inspectie',type:'select',opts:['Regelmatig — gecertificeerd','Regelmatig — eigen dienst','Onregelmatig','Weet niet']},
+    {id:'mbedrijfsschade',label:'Stilstandverzekering gewenst?',type:'select',opts:['Nee','Ja','Weet niet']},
+    {id:'mstilstand',label:'Max. acceptabele stilstandperiode',type:'select',opts:['1–3 dagen','1 week','2 weken','1 maand','> 1 maand']},
+    {id:'mschade',label:'Schadeverleden machines (5 jaar)',type:'select',opts:['Geen','1 schade','2–3 schades','Meerdere grote schades']},
+    {id:'mhuidig',label:'Huidige verzekeraar + reden van overstap',type:'text',placeholder:'bijv. Allianz — contract afgelopen'},
+  ],
+  msv:[
+    {id:'msvtype',label:'Type project *',type:'select',opts:['Nieuwbouw woning(en)','Utiliteitsbouw (kantoor, bedrijfshal)','Renovatie / verbouwing','Installatieproject','Infrastructuur (wegen, bruggen)','Industriële installatie','Anders']},
+    {id:'msvomschrijving',label:'Projectomschrijving *',type:'textarea',placeholder:'Wat wordt er gebouwd, geïnstalleerd of gemonteerd?'},
+    {id:'msvwaarde',label:'Aanneemsom / projectwaarde (€) *',type:'select',opts:['< €100k','€100k–€500k','€500k–€2M','€2M–€10M','€10M–€50M','> €50M']},
+    {id:'msvduur',label:'Looptijd project',type:'select',opts:['< 3 maanden','3–6 maanden','6–12 maanden','1–2 jaar','> 2 jaar']},
+    {id:'msvlocatie',label:'Projectlocatie',type:'text',placeholder:'bijv. Amsterdam, Rotterdam, buitenland'},
+    {id:'msvopdrachtgever',label:'Type opdrachtgever',type:'select',opts:['Particulier','MKB-bedrijf','Grote onderneming','Overheid / gemeente','Woningcorporatie']},
+    {id:'msvhoofdaan',label:'Hoofdaannemer of onderaannemer?',type:'select',opts:['Hoofdaannemer','Onderaannemer','Beide rollen','ZZP / eenmanszaak']},
+    {id:'msvonderaan',label:'Onderaannemers ingehuurd?',type:'select',opts:['Nee','Ja — nationaal','Ja — internationaal']},
+    {id:'msvbestaand',label:'Bestaande opstal meeverzekeren?',type:'select',opts:['Nee','Ja — waarde nader te bepalen']},
+    {id:'msvcar',label:'CAR of MSV?',type:'select',opts:['CAR — bouwkundig','MSV — montage/installatie','Combinatie','Weet niet — laat AJOGA adviseren']},
+    {id:'msvschade',label:'Schadeverleden projecten (5 jaar)',type:'select',opts:['Geen','1 schade','2–3 schades','Meerdere grote schades']},
+  ],
+};
+
+
 const SYSTEM = `You are AJOGA, a specialist Dutch insurance intermediary with deep expertise in 5 commercial lines: AVB (Commercial General Liability), BAV (Professional Indemnity), Transport & Logistics, Event Insurance, and Machinery Breakdown & MSV/CAR (Erection & Construction). You do NOT handle other insurance types. If asked about anything outside these 5 lines, politely explain that AJOGA only covers these commercial specialisms.
 
 LANGUAGE: Respond in the language specified in the instruction below. Professional and warm tone. Max 2 follow-up questions at a time.
@@ -1046,6 +1133,14 @@ const T = {
     remarksPlaceholder: 'Any additional information relevant to your application...',
     product: 'Product',
     selectIns: 'Select insurance...',
+    products: [
+      {v:'avb', l:'Commercial General Liability (AVB)'},
+      {v:'bav', l:'Professional Indemnity (BAV)'},
+      {v:'transport', l:'Transport & Logistics'},
+      {v:'evenementen', l:'Event Insurance'},
+      {v:'machine', l:'Machinery Breakdown & Technical'},
+      {v:'msv', l:'Erection & Construction (MSV/CAR)'},
+    ],
     nextStep: 'Next step →',
     startApp: '🛡 Start application',
     back: '← Back',
@@ -1122,6 +1217,14 @@ const T = {
     remarksPlaceholder: 'Aanvullende informatie die voor AJOGA relevant kan zijn...',
     product: 'Product',
     selectIns: 'Selecteer verzekering...',
+    products: [
+      {v:'avb', l:'Bedrijfsaansprakelijkheid (AVB)'},
+      {v:'bav', l:'Beroepsaansprakelijkheid (BAV)'},
+      {v:'transport', l:'Transport & Logistiek'},
+      {v:'evenementen', l:'Evenementenverzekering'},
+      {v:'machine', l:'Machinebreuk & Technische Verzekering'},
+      {v:'msv', l:'Montage & Constructie (MSV/CAR)'},
+    ],
     nextStep: 'Volgende stap →',
     startApp: '🛡 Aanvraag starten',
     back: '← Terug',
@@ -1265,9 +1368,20 @@ function setLang(lang) {
     if (el) el.placeholder = ph;
   });
 
-  // Product select
+  // Product select — translate all options
   const subj = document.getElementById('f-subject');
-  if (subj && subj.options[0]) subj.options[0].textContent = t.selectIns;
+  if (subj) {
+    const currentVal = subj.value;
+    subj.innerHTML = '<option value="">' + t.selectIns + '</option>';
+    t.products.forEach(p => {
+      const o = document.createElement('option');
+      o.value = p.v; o.textContent = p.l;
+      subj.appendChild(o);
+    });
+    subj.value = currentVal;
+    // Re-render dynamic fields with new language labels
+    if (currentVal) showDekkingFields();
+  }
 
   // Buttons
   document.getElementById('next-btn').textContent = currentTab === 'contact' ? t.nextStep : t.startApp;
@@ -1278,6 +1392,14 @@ function setLang(lang) {
   // Chat header
   document.querySelector('.chat-header-title').textContent = t.chatTitle;
   document.querySelector('.chat-header-sub').textContent = t.chatSub;
+
+  // Re-render switchTab button text with correct language
+  const nextBtn = document.getElementById('next-btn');
+  if (nextBtn) {
+    if (currentTab === 'contact') nextBtn.textContent = t.nextStep;
+    else if (currentTab === 'upload') nextBtn.textContent = t.startApp;
+    else nextBtn.textContent = t.tabUploadNext;
+  }
 
   // Welcome screen
   const cwTitle = document.querySelector('.cw-title');
@@ -1364,13 +1486,15 @@ function showDekkingFields() {
   const subject = document.getElementById('f-subject').value;
   const container = document.getElementById('dynamic-fields');
   container.innerHTML = '';
-  if (!subject || !PRODUCT_FIELDS[subject]) return;
+  if (!subject) return;
+  const fields = currentLang === 'nl' ? PRODUCT_FIELDS_NL[subject] : PRODUCT_FIELDS[subject];
+  if (!fields) return;
   const label = document.getElementById('f-subject').options[document.getElementById('f-subject').selectedIndex].text;
-  let html = '<div class="dynamic-title">Details — ' + label + '</div>';
-  PRODUCT_FIELDS[subject].forEach(f => {
+  let html = '<div class="dynamic-title">' + (currentLang==='nl'?'Gegevens':'Details') + ' — ' + label + '</div>';
+  fields.forEach(f => {
     html += '<div class="fg"><label class="fl">' + f.label + '</label>';
     if (f.type === 'select') {
-      html += '<select class="fs" id="df-' + f.id + '"><option value="">Select...</option>';
+      html += '<select class="fs" id="df-' + f.id + '"><option value="">' + (currentLang==='nl'?'Selecteer...':'Select...') + '</option>';
       f.opts.forEach(o => { html += '<option>' + o + '</option>'; });
       html += '</select>';
     } else if (f.type === 'textarea') {
@@ -1419,8 +1543,9 @@ function startChat() {
   };
 
   let dynamicData = '';
-  if (PRODUCT_FIELDS[subject]) {
-    PRODUCT_FIELDS[subject].forEach(f => {
+  const activeFields = currentLang === 'nl' ? PRODUCT_FIELDS_NL[subject] : PRODUCT_FIELDS[subject];
+  if (activeFields) {
+    activeFields.forEach(f => {
       const el = document.getElementById('df-' + f.id);
       if (el && el.value && el.value !== '') dynamicData += '\n' + f.label + ': ' + el.value;
     });
